@@ -27,17 +27,46 @@ p {
     font-family: 'Raleway', sans-serif;
 }
 
-.navbar-custom {
-    background-color: #171616;
-    padding-left: 30px;
-    padding-right: 30px;
+i {
+    font-size: 2.5rem;
+    color: #85b5dc;
 }
 
-.navbar-font a {
+.nav-item.active {
+    color: #85b5dc;
+}
+
+.navbar-custom {
+    background-color: #171616;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.navbar-custom a {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
+    color: #d3d3d3;
+}
+
+.navbar-custom a:hover {
+    color: #fff;
+}
+
+.pageContent {
+    padding-top: 30px;
+    background-color: #d3d3d3;
+}
+
+.homeCards {
+    background-color: #85b5dc;
 }
 
 .footer-custom {
     background-color: #171616;
+}
+
+.footer-split {
+    display: flex;
+    justify-content: space-between;
+    color: white;
 }
