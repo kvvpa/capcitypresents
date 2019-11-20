@@ -1,2 +1,43 @@
-/* Style McStyleson */
+/* Color Theme
 
+Eerie Black - #171616
+Jet - #303030
+Light Gray - #d3d3d3
+Light Cobalt Blue - #85b5dc
+White - #ffffff */
+
+body {
+    padding-top: 87px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+a {
+    font-family: 'Raleway', sans-serif;
+}
+
+p {
+    font-family: 'Raleway', sans-serif;
+}
+
+.navbar-custom {
+    background-color: #171616;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.navbar-font a {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+}
+
+.footer-custom {
+    background-color: #171616;
+}
