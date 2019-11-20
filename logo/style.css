@@ -1,38 +1,51 @@
 /* css file for /logo/ */
 
+html {
+    background-image: url("opt-320/logo-blk-alltrans.png");
+    background-size: 20%;
+    background-color: #85b5dc;
+}
+
 h1 {
-    color: black;
-    margin-left: 25px;
+    color: #d3d3d3;
+    margin: 0px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    background-color: #171616;
 }
 
 img {
-    margin-left: 25px;
-    margin-bottom: 10px;
+    padding-bottom: 5px;
 }
 
 a {
-    font-size: 1.5em;
+    font-size: 1.5rem;
     color: white;
-    margin-left: 9.15px;
-}
-
-footer {
-    margin-top: 5px;
-    margin-left: 25px;
-    font-size: small;
-    font-style: italic;
 }
 
 a:hover {
-    color: red;
+    color: #85b5dc;
+}
+
+footer {
+    color: #d3d3d3;
+    background-color: #171616;
+    font-size: 0.65rem;
+    padding-top: 20px;
+    padding-bottom: 5px;
+}
+
+.darkify {
+    background-color: #303030;
+
 }
 
 .tinify {
-    font-size: 80%;
+    font-size: 70%;
 }
 
 .scootch {
-    padding-left: 30px;
+    padding-left: 20px;
 }
 
 .last {
