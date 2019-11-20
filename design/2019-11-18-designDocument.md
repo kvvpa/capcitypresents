@@ -86,7 +86,7 @@ This page's purpose is to provide contact information to visitors of the website
 **Form and contact information below**<br>
 The submission form will be aligned to the left, contact information will be aligned to the right.
 
-*** **Final Notes**
+### **Final Notes**
 
 **Inspiration**<br>
 Based on the Modern Business bootstrap template, as well as the spoken needs of my client.
