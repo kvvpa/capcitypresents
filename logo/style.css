@@ -16,15 +16,15 @@ a {
     margin-left: 9.15px;
 }
 
-a:hover {
-    color: red;
-}
-
 footer {
     margin-top: 5px;
     margin-left: 25px;
     font-size: 70%;
     font-style: italic;
+}
+
+a:hover {
+    color: red;
 }
 
 .scootch {
