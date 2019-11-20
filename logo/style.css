@@ -16,17 +16,17 @@ a {
     margin-left: 9.15px;
 }
 
-footer {
-    margin-top: 5px;
-    margin-left: 25px;
-    font-size: 70%;
-    font-style: italic;
-}
-
 a:hover {
     color: red;
 }
 
 .scootch {
     padding-left: 30px;
+}
+
+.footer {
+    margin-top: 5px;
+    margin-left: 25px;
+    font-size: 70%;
+    font-style: italic;
 }
