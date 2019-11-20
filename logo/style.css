@@ -1,0 +1,32 @@
+/* css file for /logo/ */
+
+h1 {
+    color: black;
+    margin-left: 25px;
+}
+
+img {
+    margin-left: 25px;
+    margin-top: 10px;
+}
+
+a {
+    font-size: 1.5em;
+    color: white;
+    margin-left: 9.15px;
+}
+
+a:hover {
+    color: red;
+}
+
+footer {
+    margin-top: 5px;
+    margin-left: 25px;
+    font-size: 70%;
+    font-style: italic;
+}
+
+.scootch {
+    padding-left: 30px;
+}
