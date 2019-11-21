@@ -8,6 +8,19 @@ White - #ffffff */
 
 body {
     padding-top: 87px;
+    font-family: 'Raleway', sans-serif;
+}
+
+body a:hover {
+    color: black;
+}
+
+a {
+    color: #85b5dc;
+}
+
+a:hover {
+    color: white;
 }
 
 h1,
@@ -17,15 +30,6 @@ h4,
 h5,
 h6 {
     font-family: 'Bebas Neue', sans-serif;
-}
-
-a {
-    font-family: 'Raleway', sans-serif;
-    color: #85b5dc;
-}
-
-a:hover {
-    color: white;
 }
 
 p {
@@ -69,21 +73,6 @@ i:hover {
 .homeCards {
     background-color: #85b5dc;
 }
-.card-body a:hover{
-    color: #171616 !important;
-}
-
-.firstCard {
-    font-size: 1rem !important;
-}
-
-.secondCard {
-    font-size: 1.51rem !important;
-}
-
-.thirdCard {
-    font-size: 0.8rem !important;
-}
 
 .footer-custom {
     background-color: #171616;
@@ -92,7 +81,7 @@ i:hover {
 .footer-split {
     display: flex;
     justify-content: space-between;
-    color: white;
+    color: #d3d3d3;
 }
 
 .footer-right {
