@@ -129,7 +129,7 @@ i:hover {
 
 @media (max-width: 992px) {
     .poof {
-        visibility: collapse;
+        visibility: hidden;
     }
 }
 
