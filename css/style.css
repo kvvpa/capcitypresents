@@ -48,6 +48,18 @@ i:hover {
     color: white;
 }
 
+.dat404style a {
+    color: #171616;
+}
+
+.dat404style a:hover {
+    color: white;
+}
+
+.dat404style a:active {
+    color: white;
+}
+
 .breadcrumb {
     background-color: #85b5dc;
 }
