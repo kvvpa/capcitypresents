@@ -23,6 +23,10 @@ a:hover {
     color: white;
 }
 
+a:active {
+    color: white;
+}
+
 h1,
 h2,
 h3,
@@ -45,6 +49,23 @@ i:hover {
     color: white;
 }
 
+.breadcrumb {
+    background-color: #85b5dc;
+}
+
+.breadcrumb-item a {
+    color: #171616;
+    text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+    color: white;
+}
+
+.breadcrumb-item.active {
+    color: #171616 !important;
+}
+
 .nav-item.active {
     color: #85b5dc;
 }
@@ -62,7 +83,7 @@ i:hover {
 }
 
 .navbar-custom a:hover {
-    color: #fff;
+    color: white;
 }
 
 .pageContent {
@@ -98,5 +119,6 @@ i:hover {
 }
 
 .footer-right a:active {
+    text-decoration: none;
     color: white;
 }
