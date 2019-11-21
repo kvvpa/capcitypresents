@@ -74,15 +74,15 @@ i:hover {
 }
 
 .firstCard {
-    font-size: 1rem;
+    font-size: 1rem !important;
 }
 
 .secondCard {
-    font-size: 1.51rem;
+    font-size: 1.51rem !important;
 }
 
 .thirdCard {
-    font-size: 0.8rem;
+    font-size: 0.8rem !important;
 }
 
 .footer-custom {
