@@ -4,106 +4,110 @@
 <head>
 
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Modern Business - Start Bootstrap Template</title>
-
-  <!-- Bootstrap core CSS -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name=viewport content="width=device-width, initial-scale=1">
+  <meta name="description" content="Official Website for CapCity Presents">
+  <meta name='author' content='devj0ey'>
+  <title>CapCity Presents - Events</title>
+  <script src="https://kit.fontawesome.com/7d85f50127.js" crossorigin="anonymous"></script>
+  <link rel="apple-touch-icon" sizes="180x180" href="images/fav/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/fav/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/fav/favicon-16x16.png">
+  <link rel="manifest" href="images/fav/site.webmanifest">
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Bebas+Neue|Raleway&display=swap" rel="stylesheet">
   <link href="css/modern-business.css" rel="stylesheet">
-
+  <link href="css/style.css" rel="stylesheet">
 </head>
 
-<body>
+<body class='pageContent'>
 
-  <!-- Navigation -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">Start Bootstrap</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0">
+  </script>
+
+  <!--THIS IS THE NAVIGATION YO-->
+  <nav class="navbar navbar-expand-md navbar-custom fixed-top">
+    <div class='container'>
+      <a href="index.html" class="navbar-brand"><img src='logo/opt-320/logo-txt-wht.png' width='100px' heigh='auto'></a>
+      <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navi"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="about.html">About</a>
+      <div id='navi' class="navbar-collapse collapse justify-content-stretch">
+        <div class="navbar-nav ml-auto">
+          <a class='nav-item nav-link' href='index.html'>Home</a>
+          <a class='nav-item nav-link' href='about.html'>About</a>
+          <a class='nav-item nav-link active' href='events.html'>Events</a>
+          <a class='nav-item nav-link' href='contact.html'>Contact</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="services.html">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Portfolio
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-              <a class="dropdown-item" href="portfolio-1-col.html">1 Column Portfolio</a>
-              <a class="dropdown-item" href="portfolio-2-col.html">2 Column Portfolio</a>
-              <a class="dropdown-item" href="portfolio-3-col.html">3 Column Portfolio</a>
-              <a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
-              <a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Blog
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              <a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
-              <a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>
-              <a class="dropdown-item" href="blog-post.html">Blog Post</a>
-            </div>
-          </li>
-          <li class="nav-item active dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Other Pages
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              <a class="dropdown-item active" href="full-width.html">Full Width Page</a>
-              <a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
-              <a class="dropdown-item" href="faq.html">FAQ</a>
-              <a class="dropdown-item" href="404.html">404</a>
-              <a class="dropdown-item" href="pricing.html">Pricing Table</a>
-            </div>
-          </li>
-        </ul>
+          </ul>
+        </div>
       </div>
-    </div>
   </nav>
 
   <!-- Page Content -->
-  <div class="container">
+  <div class='pageContent'>
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">Full Width
-      <small>Subheading</small>
-    </h1>
-
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="index.html">Home</a>
-      </li>
-      <li class="breadcrumb-item active">Full Width</li>
-    </ol>
-
-    <p>Most of Start Bootstrap's unstyled templates can be directly integrated into the Modern Business template. You can view all of our unstyled templates on our website at
-      <a href="http://startbootstrap.com/template-categories/unstyled">http://startbootstrap.com/template-categories/unstyled</a>.</p>
-
+    <div class="container">
+      <div class='container bread-space'>
+        <h1>About
+          <small>CapCity Presents</small>
+        </h1>
+      </div>
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item">
+          <a href="index.html">Home</a>
+        </li>
+        <li class="breadcrumb-item active">Events</li>
+      </ol>
+    </div>
+  </div>
+    <div class='container eventBox'>
+      <div class='container pb-0 poof m-0'>
+        <img src='images/left-3-1.png'>
+        <img src='images/left-3-2.png'>
+        <img src='images/left-3-3.png'>
+        <img src='images/left-3-1.png'>
+        <img src='images/left-3-2.png'>
+        <img src='images/left-3-3.png'>
+      </div>
+      <div class='container pl-0 pr-0'>
+        <div class="fb-page" data-href="https://www.facebook.com/capcitypresents" data-tabs="events" data-width="500"
+          data-height='1000' data-small-header="false" data-adapt-container-width="false" data-hide-cover="false"
+          data-show-facepile="true">
+          <blockquote cite="https://www.facebook.com/capcitypresents" class="fb-xfbml-parse-ignore"><a
+              href="https://www.facebook.com/capcitypresents">CapCity Presents</a></blockquote>
+        </div>
+      </div>
+      <div class='container pb-0 poof m-0'>
+        <img src='images/right-3-1.png'>
+        <img src='images/right-3-2.png'>
+        <img src='images/right-3-3.png'>
+        <img src='images/right-3-1.png'>
+        <img src='images/right-3-2.png'>
+        <img src='images/right-3-3.png'>
+      </div>
+    </div>
   </div>
   <!-- /.container -->
 
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+  <footer class="py-5 footer-custom">
+    <div class="container footer-split">
+      <p>
+        <a href='https://www.facebook.com/capcitypresents/' target='_blank' alt='Facebook'><i
+            class="fab fa-facebook-square"></i></a>
+        <a href='https://www.twitter.com/capcitypresents/' target='_blank' alt='Twitter'><i
+            class="fab fa-twitter-square"></i></a>
+        <a href='https://www.instagram.com/capcitypresents/' target='_blank' alt='Instagram'><i
+            class="fab fa-instagram"></i></a></p>
+      <p class='footer-right'>&copy;2019 Capcity Presents<br>
+        <a href='privacy.html' target='_blank' alt='privacy policy'>privacy</a> | <a href='tos.html' target='_blank'
+          alt='terms of use'>terms</a> | <a href='https://github.com/devj0ey/' target='_blank' alt='site admin'>site
+          by devj0ey</a></p>
     </div>
-    <!-- /.container -->
   </footer>
 
   <!-- Bootstrap core JavaScript -->

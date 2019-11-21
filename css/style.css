@@ -113,6 +113,26 @@ i:hover {
     color: white;
 }
 
+.eventBox {
+    background-color: #d3d3d3;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.eventBox img {
+    width: 290px;
+}
+
+@media (max-width: 1200px) {
+    .poof {
+        visibility: hidden;
+    }
+}
+
 .homeCards {
     background-color: #85b5dc;
 }
@@ -162,5 +182,17 @@ i:hover {
 
 .footer-right a:active {
     text-decoration: none;
+    color: white;
+}
+
+.footer-fix a {
+    color: #85b5dc;
+}
+
+.footer-fix a:hover {
+    color: white;
+}
+
+.footer-fix a:active {
     color: white;
 }
