@@ -120,16 +120,28 @@ i:hover {
     padding-left: 0px;
     padding-right: 0px;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    justify-items: space-between;
 }
 
 .eventBox img {
-    width: 290px;
+    max-width: 100%;
 }
 
-@media (max-width: 1200px) {
+.leftContent,
+.rightContent {
+    align-items: center;
+    flex: 0 0 auto;
+    width: 100px;
+}
+
+.centerContent {
+    flex: 1 1 auto;
+}
+
+@media (max-width: 992px) {
     .poof {
-        visibility: hidden;
+        visibility: collapse;
     }
 }
 
