@@ -130,11 +130,13 @@ i:hover {
 
 .leftContent,
 .rightContent {
+    align-items: center;
     flex: 0 0 auto;
     width: 100px;
 }
 
 .centerContent {
+    align-items: center;
     flex: 1 1 auto;
 }
 
