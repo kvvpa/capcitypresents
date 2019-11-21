@@ -48,10 +48,6 @@ i:hover {
     color: white;
 }
 
-footer a:hover {
-    color: white! important;
-}
-
 .breadcrumb {
     background-color: #85b5dc;
 }
