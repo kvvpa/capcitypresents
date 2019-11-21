@@ -21,6 +21,11 @@ h6 {
 
 a {
     font-family: 'Raleway', sans-serif;
+    color: #85b5dc;
+}
+
+a:hover {
+    color: white;
 }
 
 p {
@@ -64,6 +69,21 @@ i:hover {
 .homeCards {
     background-color: #85b5dc;
 }
+.card-body a:hover{
+    color: #171616 !important;
+}
+
+.firstCard {
+    font-size: 1rem;
+}
+
+.secondCard {
+    font-size: 1.51rem;
+}
+
+.thirdCard {
+    font-size: 0.8rem;
+}
 
 .footer-custom {
     background-color: #171616;
@@ -81,10 +101,8 @@ i:hover {
 
 .footer-right a {
     font-size: 0.8rem;
-    color: #85b5dc;
 }
 
 .footer-right a:hover {
-    color: white;
     text-decoration: none;
 }
