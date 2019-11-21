@@ -32,6 +32,10 @@ i {
     color: #85b5dc;
 }
 
+i:hover {
+    color: white;
+}
+
 .nav-item.active {
     color: #85b5dc;
 }
@@ -69,4 +73,18 @@ i {
     display: flex;
     justify-content: space-between;
     color: white;
+}
+
+.footer-right {
+    text-align: center;
+}
+
+.footer-right a {
+    font-size: 0.8rem;
+    color: #85b5dc;
+}
+
+.footer-right a:hover {
+    color: white;
+    text-decoration: none;
 }
