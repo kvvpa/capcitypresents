@@ -94,4 +94,9 @@ i:hover {
 
 .footer-right a:hover {
     text-decoration: none;
+    color: white;
+}
+
+.footer-right a:active {
+    color: white;
 }
