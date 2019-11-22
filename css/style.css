@@ -151,6 +151,7 @@ i:hover {
 
 .datForm {
     display: flex;
+    justify-content: space-between;
 }
 
 .contactSplit {
@@ -204,6 +205,7 @@ i:hover {
 
 .footer-fix a {
     color: #85b5dc;
+    text-decoration: none;
 }
 
 .footer-fix a:hover {
