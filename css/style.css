@@ -153,6 +153,11 @@ i:hover {
     display: flex;
 }
 
+.contactSplit {
+    flex: 1 1 auto;
+    max-width: 100%;
+}
+
 .godhelpmethisoneisstupid {
     margin-block-end: 0px;
 }
