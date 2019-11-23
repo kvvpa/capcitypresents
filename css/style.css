@@ -39,6 +39,11 @@ p {
     font-family: 'Raleway', sans-serif;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 i {
     font-size: 2.5rem;
     color: #85b5dc;
@@ -113,25 +118,16 @@ i:hover {
     color: white;
 }
 
-.centerContent {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-}
-
 .eventsbg {
-    padding-top: 10%;  /* slope */
-    height: 100%;  /* start height */
-    width: 100%;
-    background-image: url(../images/collage-min.png);
+    background: url(../images/collage-min.png) no-repeat;
     background-size: cover;
-    -moz-background-size: cover;  /* Firefox 3.6 */
-    background-position: center;  /* Internet Explorer 7/8 */
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
-.eventsbg img {
-    width: 100%;
+.centerContent {
+    text-align: center;
 }
 
 .homeCards {
