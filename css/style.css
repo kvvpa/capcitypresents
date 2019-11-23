@@ -124,7 +124,7 @@ i:hover {
     padding-top: 10%;  /* slope */
     height: 100%;  /* start height */
     width: 100%;
-    background-image: url(/images/collage-min.png);
+    background-image: url(images/collage-min.png);
     background-size: cover;
     -moz-background-size: cover;  /* Firefox 3.6 */
     background-position: center;  /* Internet Explorer 7/8 */
