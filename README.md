@@ -6,4 +6,4 @@ For business and booking inquiries, please visit https://capcitypresents.com/con
 
 Thank you!
 
-**K V V P Λ** [e-mail](mailto:hi@kvvpa.com) [website](https://kvvpa.com)
+**K V V P Λ** [[e-mail]](mailto:hi@kvvpa.com) [[website]](https://kvvpa.com)
