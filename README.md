@@ -8,7 +8,7 @@ For business and booking inquiries, please visit https://capcitypresents.com/con
 
 Thank you!
 
-**K V V P Λ** [[e-mail]](mailto:hi@kvvpa.com) [[website]](https://kvvpa.com)
+**Joey Cristina** [[contact me]](https://kvvpa.com/#contact)
 
 [logo]: https://capcitypresents.com/logo/opt-320/logo-txt-blk-whttext.png
 [website]: https://capcitypresents.com
