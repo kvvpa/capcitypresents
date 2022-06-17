@@ -1,6 +1,6 @@
 # capcitypresents.com
 
-![CapCity Presents Logo][logo]
+![CapCity Presents Logo][logo](https://capcitypresents.com)
 
 This is a website made for Andy "Remex" Moreno and CapCity Presents in Olympia, Washington. The design is based on the Modern Business bootstrap template. This also served as an assignment for my WATS-3010 class at Seattle University.
 
