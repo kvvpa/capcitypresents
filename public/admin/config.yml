@@ -4,24 +4,45 @@ backend:
 
 local_backend: true
 
+site_url: https://capcitypresents.netlify.app
+display_url: https://capcitypresents.netlify.app
+logo_url: /logo/opt-320/logo-txt-wht.png
+show_preview_links: true
+
 media_folder: public/uploads
 public_folder: /uploads
 
 collections:
   - name: events
     label: Events
+    label_singular: Event
     folder: src/content/events
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} - {{date}}"
+    sortable_fields: [date, title, venue, status]
+    view_filters:
+      - label: Upcoming/Announced
+        field: status
+        pattern: announced
+      - label: Sold out
+        field: status
+        pattern: sold-out
+      - label: Cancelled
+        field: status
+        pattern: cancelled
+      - label: Past
+        field: status
+        pattern: past
     fields:
       - { label: Title, name: title, widget: string }
       - { label: Date, name: date, widget: datetime, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
-      - { label: Doors Time, name: doorsTime, widget: string, required: false }
-      - { label: Show Time, name: showTime, widget: string, required: false }
+      - { label: Doors Time, name: doorsTime, widget: string, required: false, hint: "Example: 7:00 PM" }
+      - { label: Show Time, name: showTime, widget: string, required: false, hint: "Example: 8:00 PM" }
       - { label: Venue, name: venue, widget: string }
       - { label: City, name: city, widget: string, default: "Olympia, WA" }
-      - { label: Age Restriction, name: ageRestriction, widget: string, required: false }
-      - { label: Price, name: price, widget: string, required: false }
+      - { label: Age Restriction, name: ageRestriction, widget: string, required: false, hint: "Example: All Ages or 21+" }
+      - { label: Price, name: price, widget: string, required: false, hint: "Example: $12 advance / $15 door" }
       - { label: Ticket URL, name: ticketUrl, widget: string, required: false }
       - { label: Facebook Event URL, name: facebookEventUrl, widget: string, required: false }
       - { label: Poster, name: poster, widget: image, required: false }
@@ -29,6 +50,10 @@ collections:
         name: status
         widget: select
         default: announced
-        options: [announced, sold-out, cancelled, past]
+        options:
+          - { label: Announced, value: announced }
+          - { label: Sold out, value: sold-out }
+          - { label: Cancelled, value: cancelled }
+          - { label: Past, value: past }
       - { label: Featured, name: featured, widget: boolean, default: false }
       - { label: Description, name: body, widget: markdown, required: false }
