@@ -53,14 +53,20 @@ const posterFallback = event.data.poster ? 'Poster unavailable' : 'Poster coming
 
 <style>
   .event-detail {
-    display: grid;
-    grid-template-columns: minmax(280px, .8fr) minmax(0, 1.2fr);
-    gap: 34px 28px;
-    align-items: start;
+    display: block;
+  }
+
+  .event-detail::after {
+    clear: both;
+    content: "";
+    display: block;
   }
 
   .event-info {
+    float: right;
+    margin: 0 0 34px 28px;
     min-width: 0;
+    width: calc(60% - 28px);
   }
 
   .event-info h1 {
@@ -68,7 +74,9 @@ const posterFallback = event.data.poster ? 'Poster unavailable' : 'Poster coming
   }
 
   .event-poster-card {
-    width: 100%;
+    float: left;
+    margin: 0 28px 34px 0;
+    width: calc(40% - 28px);
   }
 
   .detail-poster-frame {
@@ -104,11 +112,11 @@ const posterFallback = event.data.poster ? 'Poster unavailable' : 'Poster coming
 
   .event-poster-actions .button {
     flex: 1 1 auto;
+    min-width: max-content;
     white-space: nowrap;
   }
 
   .event-description {
-    grid-column: 1 / -1;
     max-width: none;
   }
 
@@ -117,8 +125,12 @@ const posterFallback = event.data.poster ? 'Poster unavailable' : 'Poster coming
   }
 
   @media (min-width: 821px) {
-    .event-detail.has-wide-poster {
-      grid-template-columns: minmax(360px, 1fr) minmax(0, 1fr);
+    .event-detail.has-wide-poster .event-poster-card {
+      width: calc(50% - 28px);
+    }
+
+    .event-detail.has-wide-poster .event-info {
+      width: calc(50% - 28px);
     }
 
     .event-detail.has-wide-poster h1 {
@@ -127,14 +139,19 @@ const posterFallback = event.data.poster ? 'Poster unavailable' : 'Poster coming
   }
 
   @media (max-width: 820px) {
-    .event-detail {
-      grid-template-columns: 1fr;
-      gap: 18px;
+    .event-info,
+    .event-poster-card {
+      float: none;
+      margin: 0;
+      width: 100%;
+    }
+
+    .event-info {
+      margin-top: 18px;
     }
 
     .event-description {
-      grid-column: auto;
-      margin-top: 6px;
+      margin-top: 24px;
     }
 
     .event-info h1 {
