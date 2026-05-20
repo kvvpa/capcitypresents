@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+<BaseLayout title="Privacy Policy" description="Privacy Policy for CapCity Presents.">
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Legal</p>
+      <h1>Privacy Policy</h1>
+      <p class="lede">Last updated: May 19, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container prose panel">
+      <p>CapCity Presents operates this website to share event information, booking details, and contact information for live events in Olympia, Washington.</p>
+
+      <h2>Information we collect</h2>
+      <p>We do not sell personal information. We may receive information you choose to send us, such as your name, email address, social media handle, event details, booking inquiry, or other message content.</p>
+      <p>Our hosting provider may collect standard technical information, such as IP address, browser type, device information, referring pages, and basic usage logs needed to operate and secure the website.</p>
+
+      <h2>How we use information</h2>
+      <p>We use information to respond to messages, manage booking inquiries, publish event information, maintain the website, prevent abuse, and improve site reliability.</p>
+
+      <h2>Event listings and public information</h2>
+      <p>Information submitted for an event may be published on the website if it is intended for public promotion. This may include event title, date, venue, poster artwork, ticket links, performer names, and social media or ticketing links.</p>
+
+      <h2>Third-party services</h2>
+      <p>This website may link to third-party services such as Facebook, Instagram, ticketing platforms, venues, email providers, Netlify, GitHub, and Google services. Those services have their own privacy practices and policies.</p>
+
+      <h2>Cookies and analytics</h2>
+      <p>The site may use basic cookies or similar technologies required by hosting, security, admin login, or analytics tools. If analytics, Google services, Facebook embeds, or other tracking tools are added, this policy should be updated to describe them more specifically.</p>
+
+      <h2>Admin users</h2>
+      <p>Authorized site editors may log in through the website admin system. Admin authentication and content updates may be handled by third-party services such as Netlify and GitHub.</p>
+
+      <h2>Data sharing</h2>
+      <p>We may share information with service providers that help operate the website, respond to inquiries, manage event promotion, or comply with legal obligations. We do not sell personal information.</p>
+
+      <h2>Data retention</h2>
+      <p>We keep information only as long as reasonably needed for event, booking, administrative, legal, or site operation purposes.</p>
+
+      <h2>Children</h2>
+      <p>This website is not intended to collect personal information from children under 13. If you believe a child has provided personal information, contact us so we can review and remove it where appropriate.</p>
+
+      <h2>Your choices</h2>
+      <p>You can contact us to request correction or removal of personal information you have sent us, subject to any legal, administrative, or event-record needs.</p>
+
+      <h2>Contact</h2>
+      <p>For privacy questions, contact <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+    </div>
+  </section>
+</BaseLayout>
