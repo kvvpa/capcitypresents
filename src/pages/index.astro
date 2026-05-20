@@ -144,21 +144,29 @@ const featured = upcoming.find((event) => event.data.featured) ?? upcoming[0];
   }
 
   .booking-checklist ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    display: grid;
+    gap: 7px;
     list-style: none;
     margin: 10px 0 0;
     padding: 0;
   }
 
   .booking-checklist li {
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    background: rgba(255,255,255,.05);
+    position: relative;
+    padding-left: 18px;
     color: var(--ink);
-    font-weight: 900;
-    padding: 9px 13px;
+    font-weight: 800;
+  }
+
+  .booking-checklist li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: .72em;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--hot);
   }
 
   @media (max-width: 820px) {
