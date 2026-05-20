@@ -17,9 +17,10 @@ const pageTitle = title === site.name ? site.name : `${title} | ${site.name}`;
     <script is:inline>
       (() => {
         const authHash = window.location.hash;
-        const isIdentityCallback = /^#(invite_token|confirmation_token|recovery_token|access_token|email_change_token)=/.test(authHash);
+        const isIdentityCallback = /^#\/?(invite_token|confirmation_token|recovery_token|access_token|email_change_token)=/.test(authHash);
         if (isIdentityCallback && !window.location.pathname.startsWith('/admin')) {
-          window.location.replace(`/admin/${authHash}`);
+          const normalizedHash = authHash.replace(/^#\//, '#');
+          window.location.replace(`/admin/${normalizedHash}`);
         }
       })();
     </script>
