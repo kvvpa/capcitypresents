@@ -164,13 +164,14 @@ h3 { font-size: 1.45rem; letter-spacing: -.04em; }
   .roots-media { padding: 18px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255,255,255,.045); overflow: hidden; }
   .roots-copy h2 { max-width: none; margin-bottom: 14px; }
   .roots-copy .actions { margin-top: 20px; padding-top: 0; }
-  .archive-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(3, minmax(0, 1fr)); gap: 6px; aspect-ratio: 1; min-height: 0; }
-  .archive-strip img:first-child { grid-row: 1 / span 2; }
+  .archive-strip { display: block; aspect-ratio: 16 / 10; min-height: 0; }
+  .archive-strip img { display: none; }
+  .archive-strip img:nth-child(3) { display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(1) contrast(1.04); }
   .roots-proof { grid-template-columns: 1fr; gap: 12px; }
-  .roots-proof .award-callout { flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-  .roots-proof .award-callout img { width: min(250px, 70vw); }
-  .award-callout { align-items: center; text-align: center; }
-  .award-callout img { width: min(250px, 70vw); margin-inline: auto; }
+  .roots-proof .award-callout,
+  .award-callout { display: block; text-align: left; padding: 14px 16px; }
+  .roots-proof .award-callout img,
+  .award-callout img { display: none; }
   .calendar-row { grid-template-columns:74px minmax(0,1fr); padding: 12px; gap: 12px; }
   .calendar-row .button { grid-column:1/-1; width: 100%; }
   .date-chip { min-height: 64px; }
