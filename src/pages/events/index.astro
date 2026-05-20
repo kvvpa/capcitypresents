@@ -2,56 +2,30 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import EventCard from '../../components/EventCard.astro';
-import { sortUpcoming, sortPast, eventMonth, eventDay, formatEventDate } from '../../lib/events';
+import { sortUpcoming, sortPast, eventMonth, eventDay } from '../../lib/events';
 
 const allEvents = await getCollection('events');
 const upcoming = sortUpcoming(allEvents);
 const past = sortPast(allEvents);
 ---
-<BaseLayout title="Events" description="Browse upcoming CapCity Presents shows in Olympia, WA, with dates, venues, age policies, ticket links, and event updates.">
+<BaseLayout title="Events" description="Browse upcoming CapCity Presents shows in Olympia, WA, with posters, ticket links, venues, doors, and age info.">
   <section class="hero">
     <div class="container">
       <p class="eyebrow">Events</p>
       <h1>Upcoming Olympia shows</h1>
-      <p class="lede">Browse upcoming CapCity Presents shows in Olympia and nearby rooms. Listings include practical details like date, venue, city, doors, show time, age policy, ticket status, and links when available.</p>
+      <p class="lede">Current CapCity dates. Flyers, ticket links, venues, doors, and age info are added as soon as they are confirmed.</p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <div class="calendar-list">
-        {upcoming.length ? upcoming.map((event) => (
-          <article class="calendar-row">
-            <a class="date-chip" href={`/events/${event.slug}/`} aria-label={`View event details for ${event.data.title}`}>
-              <span>{eventMonth(event)}</span>
-              <span>{eventDay(event)}</span>
-            </a>
-            <div>
-              <h3><a href={`/events/${event.slug}/`}>{event.data.title}</a></h3>
-              <p class="meta">{formatEventDate(event)} / {event.data.venue} / {event.data.city}</p>
-              <p class="meta">
-                {event.data.ageRestriction || 'Age policy TBA'}
-                {(event.data.doorsTime || event.data.showTime) ? ' / ' : ''}
-                {event.data.doorsTime ? `Doors ${event.data.doorsTime}` : ''}
-                {event.data.doorsTime && event.data.showTime ? ' / ' : ''}
-                {event.data.showTime ? `Show ${event.data.showTime}` : ''}
-              </p>
-            </div>
-            <a class="button" href={`/events/${event.slug}/`}>View event details</a>
-          </article>
-        )) : <p class="meta">No upcoming shows are published yet. Check back soon for new Olympia announcements.</p>}
-      </div>
+      {upcoming.length ? (
+        <div class="event-grid">{upcoming.map((event) => <EventCard event={event} />)}</div>
+      ) : (
+        <p class="meta">No upcoming shows are published yet. Check back soon for new Olympia announcements.</p>
+      )}
     </div>
   </section>
-
-  {upcoming.length > 0 && (
-    <section class="section">
-      <div class="container">
-        <div class="section-head"><h2>Event posters</h2><p>Approved poster art appears here when it is added to event listings. Key details stay in text so the info is easy to scan.</p></div>
-        <div class="event-grid">{upcoming.map((event) => <EventCard event={event} />)}</div>
-      </div>
-    </section>
-  )}
 
   {past.length > 0 && (
     <section class="section">
