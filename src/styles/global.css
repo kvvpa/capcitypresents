@@ -76,8 +76,8 @@ h3 { font-size: 1.45rem; letter-spacing: -.04em; }
 .roots-proof .award-callout { height: 100%; margin: 0; background: rgba(7,7,7,.24); }
 .roots-proof .press-callout { display: flex; flex-direction: column; }
 .roots-proof .press-callout .actions { margin-top: auto; padding-top: 12px; }
-.roots-proof .award-callout { flex-direction: column; align-items: flex-start; justify-content: space-between; }
-.roots-proof .award-callout img { width: min(138px, 100%); }
+.roots-proof .award-callout { flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.roots-proof .award-callout img { width: min(220px, 100%); margin-inline: auto; }
 .press-callout { margin: 22px 0 0; padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255,255,255,.04); }
 .press-callout h3 { color: var(--ink); font-size: clamp(1.4rem, 2.6vw, 2.05rem); line-height: 1.02; margin: 4px 0 10px; }
 .press-callout p { margin: 0; }
@@ -167,10 +167,10 @@ h3 { font-size: 1.45rem; letter-spacing: -.04em; }
   .archive-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(3, minmax(0, 1fr)); gap: 6px; aspect-ratio: 1; min-height: 0; }
   .archive-strip img:first-child { grid-row: 1 / span 2; }
   .roots-proof { grid-template-columns: 1fr; gap: 12px; }
-  .roots-proof .award-callout { flex-direction: row; align-items: flex-start; justify-content: flex-start; }
-  .roots-proof .award-callout img { width: min(170px, 48vw); }
-  .award-callout { align-items: flex-start; }
-  .award-callout img { width: min(170px, 48vw); }
+  .roots-proof .award-callout { flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .roots-proof .award-callout img { width: min(250px, 70vw); }
+  .award-callout { align-items: center; text-align: center; }
+  .award-callout img { width: min(250px, 70vw); margin-inline: auto; }
   .calendar-row { grid-template-columns:74px minmax(0,1fr); padding: 12px; gap: 12px; }
   .calendar-row .button { grid-column:1/-1; width: 100%; }
   .date-chip { min-height: 64px; }
