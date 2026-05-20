@@ -1,7 +1,7 @@
 export const site = {
   name: 'CapCity Presents',
-  tagline: 'Live shows in Olympia, WA.',
-  description: 'Independent booking and live events in Olympia, Washington.',
+  tagline: 'Independent live music in Olympia, WA.',
+  description: 'CapCity Presents books and promotes independent live music in Olympia, Washington, with upcoming shows, ticket links, venue details, and booking info in one place.',
   email: 'booking@capcitypresents.com',
   location: 'Olympia, WA',
   facebook: 'https://www.facebook.com/capcitypresents',
