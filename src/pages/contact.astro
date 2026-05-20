@@ -10,12 +10,111 @@ import { site } from '../data/site';
         <h1>Contact CapCity Presents</h1>
       </div>
       <div class="panel prose">
-        <p>For booking inquiries, collaborations, venue conversations, or general event questions, email CapCity Presents.</p>
-        <p>For booking, include the date range, city or venue, lineup, ticketing details, and anything already confirmed.</p>
-        <p><strong>Email:</strong> <a href={`mailto:${site.email}`}>{site.email}</a></p>
-        <p><strong>Facebook:</strong> <a href={site.facebook}>CapCity Presents</a></p>
-        <p><strong>Instagram:</strong> <a href={site.instagram}>@capcitypresents</a></p>
+        <p>Send booking inquiries, event questions, venue conversations, or flyer/site notes here. For booking, include the date range, lineup, venue details if you have them, and anything already confirmed.</p>
+        <form class="contact-form" name="contact" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact" />
+          <input type="hidden" name="subject" value="CapCity Presents website contact" />
+          <p class="hidden-field">
+            <label>Do not fill this out: <input name="bot-field" /></label>
+          </p>
+          <div class="form-grid">
+            <label>
+              Name
+              <input type="text" name="name" autocomplete="name" required />
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" autocomplete="email" required />
+            </label>
+          </div>
+          <label>
+            What is this about?
+            <select name="inquiry_type" required>
+              <option value="">Choose one</option>
+              <option value="Booking inquiry">Booking inquiry</option>
+              <option value="Event question">Event question</option>
+              <option value="Venue or collaboration">Venue or collaboration</option>
+              <option value="Website or poster update">Website or poster update</option>
+              <option value="Other">Other</option>
+            </select>
+          </label>
+          <label>
+            Date range or event name, if relevant
+            <input type="text" name="date_or_event" />
+          </label>
+          <label>
+            Message
+            <textarea name="message" rows="8" required></textarea>
+          </label>
+          <button class="button primary" type="submit">Send message</button>
+        </form>
+        <div class="contact-links">
+          <p><strong>Email:</strong> <a href={`mailto:${site.email}`}>{site.email}</a></p>
+          <p><strong>Facebook:</strong> <a href={site.facebook}>CapCity Presents</a></p>
+          <p><strong>Instagram:</strong> <a href={site.instagram}>@capcitypresents</a></p>
+        </div>
       </div>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .contact-form {
+    display: grid;
+    gap: 14px;
+    margin: 22px 0;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .contact-form label {
+    display: grid;
+    gap: 7px;
+    color: var(--ink);
+    font-weight: 800;
+  }
+
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: rgba(7, 7, 7, .72);
+    color: var(--ink);
+    font: inherit;
+    padding: 12px 13px;
+  }
+
+  .contact-form textarea {
+    resize: vertical;
+    min-height: 160px;
+  }
+
+  .contact-form input:focus,
+  .contact-form select:focus,
+  .contact-form textarea:focus {
+    outline: 2px solid rgba(245, 184, 75, .55);
+    outline-offset: 2px;
+  }
+
+  .hidden-field {
+    display: none;
+  }
+
+  .contact-links {
+    border-top: 1px solid var(--line);
+    margin-top: 24px;
+    padding-top: 16px;
+  }
+
+  @media (max-width: 640px) {
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
