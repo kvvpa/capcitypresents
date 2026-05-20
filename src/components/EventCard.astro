@@ -6,7 +6,7 @@ const { event } = Astro.props as { event: EventEntry };
 const href = `/events/${event.slug}/`;
 ---
 <article class="card event-card">
-  <a href={href} aria-label={`View ${event.data.title}`}>
+  <a href={href} aria-label={`View event details for ${event.data.title}`}>
     <div class="poster-frame">
       {event.data.poster ? <img src={event.data.poster} alt={`${event.data.title} poster`} /> : <span>Poster coming soon</span>}
     </div>
@@ -15,8 +15,11 @@ const href = `/events/${event.slug}/`;
   <h3><a href={href}>{event.data.title}</a></h3>
   <p class="meta">{event.data.venue} / {event.data.city}</p>
   <p class="meta">
+    {event.data.ageRestriction || 'Age policy TBA'}
+    {(event.data.doorsTime || event.data.showTime) ? ' / ' : ''}
     {event.data.doorsTime ? `Doors ${event.data.doorsTime}` : ''}
     {event.data.doorsTime && event.data.showTime ? ' / ' : ''}
     {event.data.showTime ? `Show ${event.data.showTime}` : ''}
   </p>
+  <div class="actions"><a class="button" href={href}>View event details</a></div>
 </article>
