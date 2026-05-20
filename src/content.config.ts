@@ -1,10 +1,18 @@
 import { defineCollection, z } from 'astro:content';
 
+const dateString = z.preprocess((value) => {
+  if (value instanceof Date) {
+    return value.toISOString().slice(0, 10);
+  }
+
+  return value;
+}, z.string());
+
 const events = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    date: z.string(),
+    date: dateString,
     doorsTime: z.string().optional(),
     showTime: z.string().optional(),
     venue: z.string(),
