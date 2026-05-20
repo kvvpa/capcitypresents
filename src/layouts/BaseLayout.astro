@@ -1,0 +1,41 @@
+---
+import '../styles/global.css';
+import { site } from '../data/site';
+
+const { title = site.name, description = site.description } = Astro.props;
+const pageTitle = title === site.name ? site.name : `${title} | ${site.name}`;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{pageTitle}</title>
+    <link rel="icon" href="/images/fav/favicon-32x32.png" />
+  </head>
+  <body>
+    <header class="nav">
+      <div class="container nav-inner">
+        <a class="brand" href="/">
+          <img src="/logo/opt-320/logo-txt-wht.png" alt="CapCity Presents" onerror="this.style.display='none'" />
+          <span class="brand-fallback">CapCity Presents</span>
+        </a>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="/events/">Events</a>
+          <a href="/booking/">Booking</a>
+          <a href="/about/">About</a>
+          <a href="/contact/">Contact</a>
+          <a href="/admin/">Admin</a>
+        </nav>
+      </div>
+    </header>
+    <main><slot /></main>
+    <footer class="footer">
+      <div class="container footer-inner">
+        <span>{site.name} - {site.location}</span>
+        <span><a href={site.facebook}>Facebook</a> / <a href={site.instagram}>Instagram</a></span>
+      </div>
+    </footer>
+  </body>
+</html>
