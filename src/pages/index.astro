@@ -13,9 +13,9 @@ const featured = upcoming.find((event) => event.data.featured) ?? upcoming[0];
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">Olympia, WA / independent live music</p>
+        <p class="eyebrow">Olympia, WA / DIY live music</p>
         <h1>Oly, amplified.</h1>
-        <p class="lede">CapCity Presents books and promotes Olympia shows with the essentials up front: dates, venues, ticket links, age info, and booking contact.</p>
+        <p class="lede">CapCity Presents books Olympia shows with roots in hardcore, punk, metal, and DIY spaces. Clear dates, ticket links, age info, and booking contact stay up front because shows should be easy to find and easy to get to.</p>
         <div class="actions">
           <a class="button primary" href="/events/">See upcoming shows</a>
           <a class="button" href="/booking/">Ask about booking</a>
@@ -44,7 +44,7 @@ const featured = upcoming.find((event) => event.data.featured) ?? upcoming[0];
     <div class="container">
       <div class="section-head">
         <h2>Upcoming shows</h2>
-        <p>Dates, venues, age info, ticket links, and event updates when available.</p>
+        <p>Upcoming CapCity shows with dates, venues, ticket links, posters, and age info as they are confirmed.</p>
       </div>
       <div class="event-grid">
         {upcoming.slice(0, 3).map((event) => <EventCard event={event} />)}
@@ -56,11 +56,25 @@ const featured = upcoming.find((event) => event.data.featured) ?? upcoming[0];
   <section class="section">
     <div class="container split">
       <div class="panel">
+        <p class="eyebrow">Roots</p>
+        <h2>DIY and all-ages by default.</h2>
+      </div>
+      <div class="panel prose">
+        <p>CapCity came out of Olympia's hardcore, punk, and metal scene, where all-ages access and DIY work are not decoration. They are part of the point.</p>
+        <p>The goal is still simple: help local and touring artists put together shows that make sense for the room, the bill, and the people trying to be there.</p>
+        <div class="actions"><a class="button" href="/about/">About CapCity</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div class="panel">
         <p class="eyebrow">Booking</p>
         <h2>Bringing a show through Olympia?</h2>
       </div>
       <div class="panel prose">
-        <p>Send the date range, venue or city, lineup, ticketing details, and anything already confirmed.</p>
+        <p>Send the date range, lineup, venue details if you have them, ticketing notes, and anything already confirmed.</p>
         <p>If the idea is still early, that is fine. Share what you know and the best way to reach you.</p>
         <div class="actions"><a class="button" href="/booking/">Email booking</a></div>
       </div>
