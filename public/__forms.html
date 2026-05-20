@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Forms</title>
+  </head>
+  <body>
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="contact" />
+      <input type="hidden" name="subject" value="CapCity Presents website contact" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <select name="inquiry_type">
+        <option value="Booking inquiry">Booking inquiry</option>
+        <option value="Event question">Event question</option>
+        <option value="Venue or collaboration">Venue or collaboration</option>
+        <option value="Website or poster update">Website or poster update</option>
+        <option value="Other">Other</option>
+      </select>
+      <input type="text" name="date_or_event" />
+      <textarea name="message"></textarea>
+      <input name="bot-field" />
+    </form>
+  </body>
+</html>
