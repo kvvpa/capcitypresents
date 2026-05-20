@@ -2,10 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Forms</title>
+    <title>Netlify Forms</title>
   </head>
   <body>
-    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="contact" />
       <input type="hidden" name="subject" value="CapCity Presents website contact" />
       <input type="text" name="name" />
@@ -20,6 +20,7 @@
       <input type="text" name="date_or_event" />
       <textarea name="message"></textarea>
       <input name="bot-field" />
+      <button type="submit">Send</button>
     </form>
   </body>
 </html>
