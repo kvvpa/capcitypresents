@@ -14,11 +14,11 @@ const featured = upcoming.find((event) => event.data.featured) ?? upcoming[0];
     <div class="container hero-grid">
       <div>
         <p class="eyebrow">Olympia, WA / independent live events</p>
-        <h1>Local noise. Real rooms.</h1>
-        <p class="lede">{site.description} Punk bills, hip-hop nights, comedy, weird lineups, packed rooms, and the kind of show flyers that still deserve refrigerator space.</p>
+        <h1>Shows in the room.</h1>
+        <p class="lede">CapCity Presents books and promotes live events in Olympia, Washington. Show details live here first: date, room, doors, tickets, and the link you actually need.</p>
         <div class="actions">
           <a class="button primary" href="/events/">See upcoming shows</a>
-          <a class="button" href="/booking/">Book with CapCity</a>
+          <a class="button" href="/booking/">Book a show</a>
         </div>
       </div>
       <aside class="card hero-card">
@@ -31,9 +31,9 @@ const featured = upcoming.find((event) => event.data.featured) ?? upcoming[0];
           </>
         ) : (
           <>
-            <p class="eyebrow">Calendar loading</p>
-            <h3>Upcoming shows will appear here.</h3>
-            <p class="meta">Add events from the CMS once the site is connected to Netlify.</p>
+            <p class="eyebrow">Calendar</p>
+            <h3>Events will appear here.</h3>
+            <p class="meta">Add shows from the admin panel after setup.</p>
           </>
         )}
       </aside>
@@ -44,7 +44,7 @@ const featured = upcoming.find((event) => event.data.featured) ?? upcoming[0];
     <div class="container">
       <div class="section-head">
         <h2>Upcoming</h2>
-        <p>CMS-managed event listings. Facebook can still get the RSVP button, but the website owns the truth.</p>
+        <p>Official show listings. Facebook links can be included, but the website is the stable source.</p>
       </div>
       <div class="event-grid">
         {upcoming.slice(0, 3).map((event) => <EventCard event={event} />)}
@@ -56,12 +56,12 @@ const featured = upcoming.find((event) => event.data.featured) ?? upcoming[0];
   <section class="section">
     <div class="container split">
       <div class="panel">
-        <p class="eyebrow">The assignment</p>
-        <h2>Make Olympia loud.</h2>
+        <p class="eyebrow">Booking</p>
+        <h2>Olympia first.</h2>
       </div>
       <div class="panel prose">
-        <p>CapCity Presents is for live-event energy that feels specific to Olympia: a little scrappy, a little beautiful, never sanitized into generic venue sludge.</p>
-        <p>This rebuild is designed so Andy can add shows, upload posters, and update details without touching code.</p>
+        <p>CapCity Presents works with artists, venues, and touring acts to put together shows that make sense for the room.</p>
+        <p>For booking or event questions, send the date range, lineup, venue, ticketing details, and whatever is already confirmed.</p>
       </div>
     </div>
   </section>
