@@ -29,6 +29,21 @@ const pageTitle = title === site.name ? site.name : `${title} | ${site.name}`;
           <a href="/contact/">Contact</a>
           <a href="/admin/">Admin</a>
         </nav>
+        <div class="mobile-nav">
+          <a class="mobile-events-link" href="/events/">Events</a>
+          <details class="mobile-menu">
+            <summary>
+              <span class="menu-mark" aria-hidden="true"></span>
+              <span>Menu</span>
+            </summary>
+            <nav class="mobile-menu-panel" aria-label="Mobile navigation">
+              <a href="/booking/">Booking</a>
+              <a href="/about/">About</a>
+              <a href="/contact/">Contact</a>
+              <a href="/admin/">Admin</a>
+            </nav>
+          </details>
+        </div>
       </div>
     </header>
     <main><slot /></main>
