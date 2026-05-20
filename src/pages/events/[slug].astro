@@ -12,13 +12,15 @@ const { event } = Astro.props;
 const { Content } = await render(event);
 const poster = event.data.poster || '/assets/default-poster.png';
 const posterAlt = event.data.poster ? `${event.data.title} poster` : 'CapCity Presents poster coming soon';
+const posterFallback = event.data.poster ? 'Poster unavailable' : 'Poster coming soon';
 ---
 <BaseLayout title={event.data.title} description={`Get details for ${event.data.title} at ${event.data.venue} in ${event.data.city}, including date, doors, show time, age policy, and ticket info.`}>
   <section class="hero">
     <div class="container event-detail">
       <div class="card">
         <div class="poster-frame">
-          <img src={poster} alt={posterAlt} />
+          <span class="poster-placeholder">{posterFallback}</span>
+          <img src={poster} alt={posterAlt} onerror="this.hidden = true;" />
         </div>
       </div>
       <div>
