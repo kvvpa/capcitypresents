@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+<BaseLayout title="Contact" description="Contact CapCity Presents for booking inquiries, collaborations, event questions, and Olympia show updates.">
+  <section class="hero">
+    <div class="container split">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h1>Contact CapCity Presents</h1>
+      </div>
+      <div class="panel prose">
+        <p>For booking inquiries, collaborations, venue conversations, or general event questions, email CapCity Presents.</p>
+        <p>For booking, include the date range, city or venue, lineup, ticketing details, and anything already confirmed.</p>
+        <p><strong>Email:</strong> <a href={`mailto:${site.email}`}>{site.email}</a></p>
+        <p><strong>Facebook:</strong> <a href={site.facebook}>CapCity Presents</a></p>
+        <p><strong>Instagram:</strong> <a href={site.instagram}>@capcitypresents</a></p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+<BaseLayout title="Booking" description="Email CapCity Presents for booking inquiries, collaborations, venue conversations, and event questions in Olympia, Washington.">
+  <section class="hero">
+    <div class="container split">
+      <div>
+        <p class="eyebrow">Booking</p>
+        <h1>Booking inquiries</h1>
+      </div>
+      <div class="panel prose">
+        <p>For booking, collaborations, venue conversations, or event ideas, email CapCity Presents with the basics.</p>
+        <p>Include the date range, city or venue, lineup, ticketing details, and anything already confirmed.</p>
+        <p>If the event is still early, that is fine. Send what you know and the best way to reach you.</p>
+        <div class="actions"><a class="button primary" href={`mailto:${site.email}`}>Email booking</a><a class="button" href="/events/">See upcoming shows</a></div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

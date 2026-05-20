@@ -1,0 +1,62 @@
+---
+import '../styles/global.css';
+import SiteFooter from '../components/SiteFooter.astro';
+import { site } from '../data/site';
+
+const { title = site.name, description = site.description } = Astro.props;
+const pageTitle = title === site.name ? site.name : `${title} | ${site.name}`;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{pageTitle}</title>
+    <link rel="icon" href="/images/fav/favicon-32x32.png" />
+    <script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script is:inline>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on('login', () => {
+          if (!window.location.pathname.startsWith('/admin')) {
+            window.location.href = '/admin/';
+          }
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <header class="nav">
+      <div class="container nav-inner">
+        <a class="brand" href="/">
+          <img src="/logo/opt-320/logo-txt-wht.png" alt="CapCity Presents" />
+          <span class="brand-fallback">CapCity Presents</span>
+        </a>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="/events/">Events</a>
+          <a href="/booking/">Booking</a>
+          <a href="/about/">About</a>
+          <a href="/contact/">Contact</a>
+          <a href="/admin/">Admin</a>
+        </nav>
+        <div class="mobile-nav">
+          <a class="mobile-events-link" href="/events/">Events</a>
+          <details class="mobile-menu">
+            <summary>
+              <span class="menu-mark" aria-hidden="true"></span>
+              <span>Menu</span>
+            </summary>
+            <nav class="mobile-menu-panel" aria-label="Mobile navigation">
+              <a href="/booking/">Booking</a>
+              <a href="/about/">About</a>
+              <a href="/contact/">Contact</a>
+              <a href="/admin/">Admin</a>
+            </nav>
+          </details>
+        </div>
+      </div>
+    </header>
+    <main><slot /></main>
+    <SiteFooter />
+  </body>
+</html>
