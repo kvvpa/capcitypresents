@@ -64,7 +64,13 @@ h3 { font-size: 1.45rem; letter-spacing: -.04em; }
 .date-chip span:first-child { font-size: .78rem; color: var(--gold); }
 .date-chip span:last-child { font-size: 2rem; line-height: .9; }
 .footer { border-top: 1px solid var(--line); color: var(--muted); padding: 28px 0; margin-top: 28px; }
-.footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.footer-inner { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; }
+.footer-links { justify-self: end; }
+.footer-social { justify-self: center; display: flex; align-items: center; justify-content: center; gap: 10px; }
+.footer-social a { width: 38px; height: 38px; display: inline-grid; place-items: center; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.05); color: var(--ink); }
+.footer-social a:hover { color: var(--gold); border-color: rgba(255, 177, 143, .45); background: rgba(255,255,255,.08); }
+.footer-social svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.footer-social a:first-child svg { fill: currentColor; stroke: none; }
 @media (min-width: 821px) and (max-width: 1040px) {
   h1 { font-size: clamp(3.2rem, 7vw, 4.85rem); }
   .hero-grid { grid-template-columns: minmax(0,1fr) minmax(260px,.7fr); }
@@ -126,4 +132,6 @@ h3 { font-size: 1.45rem; letter-spacing: -.04em; }
   .calendar-row .button { grid-column:1/-1; width: 100%; }
   .date-chip { min-height: 64px; }
   .panel,.hero-card { padding: 18px; }
+  .footer-inner { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+  .footer-links { justify-self: center; }
 }
