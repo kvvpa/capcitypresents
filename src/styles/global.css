@@ -119,6 +119,7 @@ h3 { font-size: 1.45rem; letter-spacing: -.04em; }
   .mobile-menu-panel a { padding: 13px 12px; border-radius: 6px; color: var(--ink); font-weight: 900; }
   .mobile-menu-panel a:hover { background: rgba(255,255,255,.06); color: var(--gold); }
   .hero { padding: 26px 0 18px; }
+  .homepage-upcoming { display: none; }
   .hero-grid,.split,.event-detail,.event-grid,.people-grid { grid-template-columns: 1fr; gap: 18px; }
   h1 { max-width: 100%; font-size: clamp(3rem, 14.5vw, 4.65rem); }
   h2 { font-size: clamp(2.25rem, 12vw, 3.8rem); }
