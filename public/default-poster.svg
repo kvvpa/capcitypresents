@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1536" role="img" aria-labelledby="title desc">
+  <title id="title">CapCity Presents poster coming soon</title>
+  <desc id="desc">A black and white CapCity Presents placeholder poster for events without poster art.</desc>
+  <defs>
+    <linearGradient id="paper" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#030303" />
+      <stop offset="1" stop-color="#111" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="1024" height="1536" fill="url(#paper)" />
+  <g fill="none" stroke="#f4f4f4" stroke-width="2" opacity=".76">
+    <path d="M372 124h280l74 48v92l-214 68-214-68v-92z" />
+    <path d="M394 146h236l52 34v68l-170 54-170-54v-68z" opacity=".65" />
+    <path d="M105 224h250M669 224h250" />
+    <path d="M274 1118h476M70 1436h884" opacity=".5" />
+  </g>
+  <text x="512" y="217" text-anchor="middle" fill="#f6f6f6" font-family="Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif" font-size="72" letter-spacing="10" filter="url(#glow)">CAPCITY</text>
+  <text x="512" y="268" text-anchor="middle" fill="#f6f6f6" font-family="Arial, sans-serif" font-size="32" letter-spacing="11">PRESENTS</text>
+  <text x="512" y="304" text-anchor="middle" fill="#f6f6f6" font-family="Arial, sans-serif" font-size="15" letter-spacing="4" opacity=".85">EST. 2015</text>
+  <text x="512" y="548" text-anchor="middle" fill="#f6f6f6" font-family="Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif" font-size="220" letter-spacing="8">POSTER</text>
+  <text x="512" y="768" text-anchor="middle" fill="#f6f6f6" font-family="Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif" font-size="190" letter-spacing="5">COMING</text>
+  <text x="512" y="980" text-anchor="middle" fill="#f6f6f6" font-family="Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif" font-size="212" letter-spacing="8">SOON</text>
+  <text x="512" y="1094" text-anchor="middle" fill="#f6f6f6" font-family="Arial, sans-serif" font-size="50">⚡</text>
+  <g fill="none" stroke="#f4f4f4" stroke-width="2" opacity=".42">
+    <path d="M445 1325h134l88 110H357z" />
+    <path d="M512 1112v213M452 1187c16-68 104-68 120 0M429 1256c30-112 136-112 166 0" />
+    <path d="M367 1435v-54h290v54M401 1376v-74h222v74" />
+    <path d="M44 1436v-190h145v190M73 1246v-72h101v72M59 1287h116M70 1322h96M850 1436v-190h145v190M879 1246v-72h101v72M864 1287h116M875 1322h96" />
+    <path d="M210 1436v-142h104v142M708 1436v-142h104v142" />
+  </g>
+  <g fill="#f6f6f6" font-family="Arial, sans-serif" font-size="26" letter-spacing="8" opacity=".92">
+    <text x="156" y="1484" text-anchor="middle">SHOW DETAILS TBA</text>
+    <text x="512" y="1484" text-anchor="middle">STAY TUNED</text>
+    <text x="844" y="1484" text-anchor="middle">CAPCITYPRESENTS.COM</text>
+  </g>
+  <g stroke="#f6f6f6" stroke-width="1" opacity=".46">
+    <path d="M285 1458v42M722 1458v42" />
+  </g>
+</svg>
