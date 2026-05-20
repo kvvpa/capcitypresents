@@ -11,9 +11,9 @@ const past = sortPast(allEvents);
 <BaseLayout title="Events" description="Upcoming CapCity Presents shows in Olympia, Washington.">
   <section class="hero">
     <div class="container">
-      <p class="eyebrow">Calendar</p>
+      <p class="eyebrow">Events</p>
       <h1>Upcoming shows</h1>
-      <p class="lede">A real event list first, calendar polish second. Posters, rooms, dates, doors, links, and no Facebook API hostage situation.</p>
+      <p class="lede">Browse upcoming CapCity Presents events. Each listing includes the date, venue, ticket details, and event links when available.</p>
     </div>
   </section>
 
@@ -40,7 +40,7 @@ const past = sortPast(allEvents);
   {upcoming.length > 0 && (
     <section class="section">
       <div class="container">
-        <div class="section-head"><h2>Poster wall</h2><p>Same event data, visual browsing.</p></div>
+        <div class="section-head"><h2>Event posters</h2><p>Poster images will appear here when they are added to event listings.</p></div>
         <div class="event-grid">{upcoming.map((event) => <EventCard event={event} />)}</div>
       </div>
     </section>
@@ -49,7 +49,7 @@ const past = sortPast(allEvents);
   {past.length > 0 && (
     <section class="section">
       <div class="container">
-        <div class="section-head"><h2>Past shows</h2><p>Archive view for older events.</p></div>
+        <div class="section-head"><h2>Past shows</h2><p>Recently archived events.</p></div>
         <div class="calendar-list">{past.slice(0, 12).map((event) => <article class="calendar-row"><a class="date-chip" href={`/events/${event.slug}/`}><span>{eventMonth(event)}</span><span>{eventDay(event)}</span></a><div><h3><a href={`/events/${event.slug}/`}>{event.data.title}</a></h3><p class="meta">{event.data.venue} / {event.data.city}</p></div><a class="button" href={`/events/${event.slug}/`}>Details</a></article>)}</div>
       </div>
     </section>
