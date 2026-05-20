@@ -1,0 +1,68 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EventCard from '../components/EventCard.astro';
+import { site } from '../data/site';
+import { sortUpcoming, formatEventDate } from '../lib/events';
+
+const allEvents = await getCollection('events');
+const upcoming = sortUpcoming(allEvents);
+const featured = upcoming.find((event) => event.data.featured) ?? upcoming[0];
+---
+<BaseLayout title={site.name} description={site.description}>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Olympia, WA / independent live events</p>
+        <h1>Local noise. Real rooms.</h1>
+        <p class="lede">{site.description} Punk bills, hip-hop nights, comedy, weird lineups, packed rooms, and the kind of show flyers that still deserve refrigerator space.</p>
+        <div class="actions">
+          <a class="button primary" href="/events/">See upcoming shows</a>
+          <a class="button" href="/booking/">Book with CapCity</a>
+        </div>
+      </div>
+      <aside class="card hero-card">
+        {featured ? (
+          <>
+            <p class="eyebrow">Next up</p>
+            <div class="big-date">{new Date(`${featured.data.date}T12:00:00`).toLocaleDateString('en-US', { month: 'short', day: '2-digit' })}</div>
+            <h3><a href={`/events/${featured.slug}/`}>{featured.data.title}</a></h3>
+            <p class="meta">{formatEventDate(featured)} / {featured.data.venue}</p>
+          </>
+        ) : (
+          <>
+            <p class="eyebrow">Calendar loading</p>
+            <h3>Upcoming shows will appear here.</h3>
+            <p class="meta">Add events from the CMS once the site is connected to Netlify.</p>
+          </>
+        )}
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Upcoming</h2>
+        <p>CMS-managed event listings. Facebook can still get the RSVP button, but the website owns the truth.</p>
+      </div>
+      <div class="event-grid">
+        {upcoming.slice(0, 3).map((event) => <EventCard event={event} />)}
+      </div>
+      <div class="actions"><a class="button" href="/events/">View all events</a></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div class="panel">
+        <p class="eyebrow">The assignment</p>
+        <h2>Make Olympia loud.</h2>
+      </div>
+      <div class="panel prose">
+        <p>CapCity Presents is for live-event energy that feels specific to Olympia: a little scrappy, a little beautiful, never sanitized into generic venue sludge.</p>
+        <p>This rebuild is designed so Andy can add shows, upload posters, and update details without touching code.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
