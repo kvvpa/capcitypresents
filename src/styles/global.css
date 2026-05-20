@@ -56,6 +56,10 @@ h3 { font-size: 1.45rem; letter-spacing: -.04em; }
 .poster-frame { aspect-ratio: 4/5; background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.025)), #202020; border: 1px solid rgba(255,255,255,.08); display: grid; place-items: center; color: var(--muted); text-align: center; padding: 20px; font-weight: 900; text-transform: uppercase; }
 .poster-frame img { width: 100%; height: 100%; object-fit: cover; }
 .split,.event-detail { display: grid; grid-template-columns: .8fr 1.2fr; gap: 20px; }
+.award-callout { display: flex; align-items: center; gap: 16px; margin: 22px 0 0; padding: 14px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255,255,255,.04); }
+.award-callout img { width: min(190px, 42vw); height: auto; flex: 0 0 auto; }
+.award-callout p { margin: 0; }
+.award-callout strong { color: var(--ink); }
 .people-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
 .person-card h3 { color: var(--ink); margin-bottom: 14px; }
 .calendar-list { display: grid; gap: 12px; }
@@ -129,6 +133,8 @@ h3 { font-size: 1.45rem; letter-spacing: -.04em; }
   .big-date { font-size: clamp(3.3rem, 17vw, 4.8rem); }
   .section { padding: 24px 0; }
   .section-head { display:block; margin-bottom: 16px; }
+  .award-callout { align-items: flex-start; }
+  .award-callout img { width: min(170px, 48vw); }
   .calendar-row { grid-template-columns:74px minmax(0,1fr); padding: 12px; gap: 12px; }
   .calendar-row .button { grid-column:1/-1; width: 100%; }
   .date-chip { min-height: 64px; }
