@@ -13,27 +13,27 @@ const featured = upcoming.find((event) => event.data.featured) ?? upcoming[0];
   <section class="hero">
     <div class="container hero-grid">
       <div>
-        <p class="eyebrow">Olympia, WA / independent live events</p>
-        <h1>Shows in the room.</h1>
-        <p class="lede">CapCity Presents books and promotes live events in Olympia, Washington. Show details live here first: date, room, doors, tickets, and the link you actually need.</p>
+        <p class="eyebrow">Olympia, WA / live events</p>
+        <h1>CapCity Presents</h1>
+        <p class="lede">Independent live events in Olympia, Washington. Find upcoming shows, venue details, ticket links, and booking contact info here.</p>
         <div class="actions">
-          <a class="button primary" href="/events/">See upcoming shows</a>
-          <a class="button" href="/booking/">Book a show</a>
+          <a class="button primary" href="/events/">Upcoming events</a>
+          <a class="button" href="/booking/">Booking info</a>
         </div>
       </div>
       <aside class="card hero-card">
         {featured ? (
           <>
-            <p class="eyebrow">Next up</p>
+            <p class="eyebrow">Next event</p>
             <div class="big-date">{new Date(`${featured.data.date}T12:00:00`).toLocaleDateString('en-US', { month: 'short', day: '2-digit' })}</div>
             <h3><a href={`/events/${featured.slug}/`}>{featured.data.title}</a></h3>
             <p class="meta">{formatEventDate(featured)} / {featured.data.venue}</p>
           </>
         ) : (
           <>
-            <p class="eyebrow">Calendar</p>
-            <h3>Events will appear here.</h3>
-            <p class="meta">Add shows from the admin panel after setup.</p>
+            <p class="eyebrow">Events</p>
+            <h3>No upcoming events posted yet.</h3>
+            <p class="meta">Check back soon or follow CapCity Presents on social media.</p>
           </>
         )}
       </aside>
@@ -43,8 +43,8 @@ const featured = upcoming.find((event) => event.data.featured) ?? upcoming[0];
   <section class="section">
     <div class="container">
       <div class="section-head">
-        <h2>Upcoming</h2>
-        <p>Official show listings. Facebook links can be included, but the website is the stable source.</p>
+        <h2>Upcoming events</h2>
+        <p>Dates, venues, ticket links, and Facebook event links when available.</p>
       </div>
       <div class="event-grid">
         {upcoming.slice(0, 3).map((event) => <EventCard event={event} />)}
@@ -57,11 +57,11 @@ const featured = upcoming.find((event) => event.data.featured) ?? upcoming[0];
     <div class="container split">
       <div class="panel">
         <p class="eyebrow">Booking</p>
-        <h2>Olympia first.</h2>
+        <h2>Booking and event inquiries</h2>
       </div>
       <div class="panel prose">
-        <p>CapCity Presents works with artists, venues, and touring acts to put together shows that make sense for the room.</p>
-        <p>For booking or event questions, send the date range, lineup, venue, ticketing details, and whatever is already confirmed.</p>
+        <p>For booking, collaborations, or event questions, send the date range, venue, lineup, ticketing details, and anything already confirmed.</p>
+        <p>Use the booking page for the best contact info.</p>
       </div>
     </div>
   </section>
