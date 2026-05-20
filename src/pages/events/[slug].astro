@@ -79,6 +79,12 @@ const posterFallback = event.data.poster ? 'Poster unavailable' : 'Poster coming
     width: calc(40% - 28px);
   }
 
+  .event-info,
+  .event-poster-card {
+    shape-margin: 24px;
+    shape-outside: margin-box;
+  }
+
   .detail-poster-frame {
     aspect-ratio: auto;
     display: block;
@@ -143,6 +149,7 @@ const posterFallback = event.data.poster ? 'Poster unavailable' : 'Poster coming
     .event-poster-card {
       float: none;
       margin: 0;
+      shape-margin: 0;
       width: 100%;
     }
 
