@@ -1,0 +1,43 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { formatEventDate } from '../../lib/events';
+
+export async function getStaticPaths() {
+  const events = await getCollection('events');
+  return events.map((event) => ({ params: { slug: event.slug }, props: { event } }));
+}
+
+const { event } = Astro.props;
+const { Content } = await render(event);
+---
+<BaseLayout title={event.data.title} description={`${event.data.title} at ${event.data.venue} in ${event.data.city}.`}>
+  <section class="hero">
+    <div class="container event-detail">
+      <div class="card">
+        <div class="poster-frame">
+          {event.data.poster ? <img src={event.data.poster} alt={`${event.data.title} poster`} /> : <span>Poster coming soon</span>}
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow">{event.data.status}</p>
+        <h1>{event.data.title}</h1>
+        <p class="lede">{formatEventDate(event)} / {event.data.venue} / {event.data.city}</p>
+        <div class="panel" style="margin-top: 24px;">
+          <p class="meta"><strong>Doors:</strong> {event.data.doorsTime || 'TBA'}</p>
+          <p class="meta"><strong>Show:</strong> {event.data.showTime || 'TBA'}</p>
+          <p class="meta"><strong>Age:</strong> {event.data.ageRestriction || 'TBA'}</p>
+          <p class="meta"><strong>Price:</strong> {event.data.price || 'TBA'}</p>
+        </div>
+        <div class="actions">
+          {event.data.ticketUrl && <a class="button primary" href={event.data.ticketUrl}>Tickets</a>}
+          {event.data.facebookEventUrl && <a class="button" href={event.data.facebookEventUrl}>RSVP on Facebook</a>}
+          <a class="button" href="/events/">Back to events</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container prose"><Content /></div>
+  </section>
+</BaseLayout>
