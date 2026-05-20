@@ -17,8 +17,8 @@ const posterFallback = event.data.poster ? 'Poster unavailable' : 'Poster coming
 <BaseLayout title={event.data.title} description={`Get details for ${event.data.title} at ${event.data.venue} in ${event.data.city}, including date, doors, show time, age policy, and ticket info.`}>
   <section class="hero">
     <div class="container event-detail">
-      <div class="card">
-        <div class="poster-frame">
+      <div class="card event-poster-card">
+        <div class="poster-frame detail-poster-frame">
           <span class="poster-placeholder">{posterFallback}</span>
           <img src={poster} alt={posterAlt} onerror="this.hidden = true;" />
         </div>
@@ -47,3 +47,37 @@ const posterFallback = event.data.poster ? 'Poster unavailable' : 'Poster coming
     <div class="container prose"><Content /></div>
   </section>
 </BaseLayout>
+
+<style>
+  .event-detail {
+    align-items: start;
+  }
+
+  .event-poster-card {
+    align-self: start;
+  }
+
+  .detail-poster-frame {
+    aspect-ratio: auto;
+    display: block;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .detail-poster-frame .poster-placeholder {
+    position: static;
+    min-height: min(70vh, 560px);
+    padding: 20px;
+  }
+
+  .detail-poster-frame:has(img:not([hidden])) .poster-placeholder {
+    display: none;
+  }
+
+  .detail-poster-frame img {
+    position: static;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+</style>
