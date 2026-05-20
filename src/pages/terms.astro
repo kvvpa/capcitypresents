@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+<BaseLayout title="Terms of Service" description="Terms of Service for CapCity Presents.">
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Legal</p>
+      <h1>Terms of Service</h1>
+      <p class="lede">Last updated: May 19, 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container prose panel">
+      <p>These Terms of Service apply to your use of the CapCity Presents website. By using this website, you agree to these terms.</p>
+
+      <h2>Website purpose</h2>
+      <p>This website provides information about CapCity Presents events, booking, contact information, and related live event promotion in Olympia, Washington.</p>
+
+      <h2>Event information</h2>
+      <p>We try to keep event information accurate, but dates, times, venues, prices, age restrictions, lineups, and ticket availability may change. Always check the event page, venue, ticketing provider, or official social media links before making plans.</p>
+
+      <h2>Third-party links</h2>
+      <p>This website may link to third-party websites, including ticketing platforms, venues, Facebook, Instagram, Google services, and other external sites. We are not responsible for the content, policies, availability, or practices of those third-party services.</p>
+
+      <h2>Tickets and purchases</h2>
+      <p>Ticket sales, refunds, transfers, venue rules, age restrictions, entry policies, and payment processing may be handled by third-party providers or venues. Their terms apply to those transactions.</p>
+
+      <h2>Submitted content</h2>
+      <p>If you submit event details, posters, performer information, links, or other promotional materials, you confirm that you have the right to provide that content and allow CapCity Presents to use it for event promotion and website publishing.</p>
+
+      <h2>Site access and acceptable use</h2>
+      <p>You agree not to misuse the website, interfere with its operation, attempt unauthorized access, submit malicious content, or use the site in a way that violates applicable law.</p>
+
+      <h2>Admin access</h2>
+      <p>Admin access is limited to authorized editors. If you receive admin access, you are responsible for using it carefully, keeping your login secure, and only publishing accurate event or site information.</p>
+
+      <h2>Intellectual property</h2>
+      <p>Site content, branding, event listings, graphics, and other materials may be owned by CapCity Presents, artists, venues, photographers, designers, or other contributors. Do not copy or reuse materials unless you have permission or the use is otherwise allowed by law.</p>
+
+      <h2>No warranty</h2>
+      <p>The website is provided as-is. We do not guarantee that the website will always be available, error-free, or fully up to date.</p>
+
+      <h2>Limitation of liability</h2>
+      <p>To the fullest extent allowed by law, CapCity Presents is not responsible for indirect, incidental, or consequential damages related to use of the website, third-party services, event changes, or unavailable information.</p>
+
+      <h2>Changes to these terms</h2>
+      <p>We may update these terms from time to time. The updated version will be posted on this page with a new last updated date.</p>
+
+      <h2>Contact</h2>
+      <p>For questions about these terms, contact <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+    </div>
+  </section>
+</BaseLayout>
