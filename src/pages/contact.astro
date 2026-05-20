@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+<BaseLayout title="Contact" description="Contact CapCity Presents.">
+  <section class="hero">
+    <div class="container split">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h1>Hit the line.</h1>
+      </div>
+      <div class="panel prose">
+        <p><strong>Email:</strong> <a href={`mailto:${site.email}`}>{site.email}</a></p>
+        <p><strong>Facebook:</strong> <a href={site.facebook}>CapCity Presents</a></p>
+        <p><strong>Instagram:</strong> <a href={site.instagram}>@capcitypresents</a></p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
