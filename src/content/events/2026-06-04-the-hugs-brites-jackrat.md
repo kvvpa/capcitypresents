@@ -9,7 +9,7 @@ ageRestriction: All Ages
 price: $12.50 ($14.57 after fees) or $15 day of show
 ticketUrl: https://www.purplepass.com/376576-the-hugs-plus-brites-plus-jackrat-jun-4th-2026
 facebookEventUrl: https://www.facebook.com/events/1681135373041513
-poster: /uploads/the-hugs.jpg
+poster: /uploads/thehugs.jpg
 status: announced
 featured: false
 ---
