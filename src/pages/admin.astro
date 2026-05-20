@@ -8,7 +8,6 @@
     <title>CapCity Presents Admin</title>
   </head>
   <body>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script is:inline>
       (() => {
         const identityTokenPattern = /^#\/?(invite_token|confirmation_token|recovery_token|email_change_token|access_token)=/;
@@ -18,38 +17,61 @@
             window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}#${window.location.hash.slice(2)}`);
           }
         };
-        const loadDecap = () => {
-          if (document.querySelector('script[data-decap-cms]')) return;
+        const loadScript = (src, dataAttribute) => new Promise((resolve, reject) => {
+          const existing = document.querySelector(`script[${dataAttribute}]`);
+          if (existing) {
+            resolve();
+            return;
+          }
           const script = document.createElement('script');
-          script.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
-          script.dataset.decapCms = 'true';
+          script.src = src;
+          script.setAttribute(dataAttribute, 'true');
+          script.onload = resolve;
+          script.onerror = reject;
           document.body.appendChild(script);
-        };
+        });
+        const loadDecap = () => loadScript('https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js', 'data-decap-cms');
 
         normalizeIdentityHash();
 
-        if (!window.netlifyIdentity) {
-          loadDecap();
-          return;
-        }
+        loadScript('https://identity.netlify.com/v1/netlify-identity-widget.js', 'data-netlify-identity')
+          .then(() => {
+            if (!window.netlifyIdentity) {
+              loadDecap();
+              return;
+            }
 
-        window.netlifyIdentity.on('init', () => {
-          normalizeIdentityHash();
-          if (hasIdentityToken()) {
-            window.netlifyIdentity.open();
-            return;
-          }
-          loadDecap();
-        });
+            let handledInit = false;
+            const handleInit = () => {
+              handledInit = true;
+              normalizeIdentityHash();
+              if (hasIdentityToken()) {
+                window.netlifyIdentity.open();
+                return;
+              }
+              loadDecap();
+            };
 
-        window.netlifyIdentity.on('login', () => {
-          window.location.href = '/admin/';
-        });
+            window.netlifyIdentity.on('init', handleInit);
+            window.netlifyIdentity.on('login', () => {
+              window.location.href = '/admin/';
+            });
+            window.netlifyIdentity.on('close', () => {
+              normalizeIdentityHash();
+              if (!hasIdentityToken()) loadDecap();
+            });
 
-        window.netlifyIdentity.on('close', () => {
-          normalizeIdentityHash();
-          if (!hasIdentityToken()) loadDecap();
-        });
+            if (typeof window.netlifyIdentity.init === 'function') {
+              window.netlifyIdentity.init();
+            }
+
+            window.setTimeout(() => {
+              if (!handledInit) handleInit();
+            }, 500);
+          })
+          .catch(() => {
+            loadDecap();
+          });
       })();
     </script>
   </body>
