@@ -10,13 +10,15 @@ export async function getStaticPaths() {
 
 const { event } = Astro.props;
 const { Content } = await render(event);
+const poster = event.data.poster || '/default-poster.svg';
+const posterAlt = event.data.poster ? `${event.data.title} poster` : 'CapCity Presents poster coming soon';
 ---
 <BaseLayout title={event.data.title} description={`Get details for ${event.data.title} at ${event.data.venue} in ${event.data.city}, including date, doors, show time, age policy, and ticket info.`}>
   <section class="hero">
     <div class="container event-detail">
       <div class="card">
         <div class="poster-frame">
-          {event.data.poster ? <img src={event.data.poster} alt={`${event.data.title} poster`} /> : <span>Poster coming soon</span>}
+          <img src={poster} alt={posterAlt} />
         </div>
       </div>
       <div>
