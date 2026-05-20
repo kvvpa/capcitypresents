@@ -1,0 +1,57 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EventCard from '../../components/EventCard.astro';
+import { sortUpcoming, sortPast, eventMonth, eventDay, formatEventDate } from '../../lib/events';
+
+const allEvents = await getCollection('events');
+const upcoming = sortUpcoming(allEvents);
+const past = sortPast(allEvents);
+---
+<BaseLayout title="Events" description="Upcoming CapCity Presents shows in Olympia, Washington.">
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Calendar</p>
+      <h1>Upcoming shows</h1>
+      <p class="lede">A real event list first, calendar polish second. Posters, rooms, dates, doors, links, and no Facebook API hostage situation.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="calendar-list">
+        {upcoming.length ? upcoming.map((event) => (
+          <article class="calendar-row">
+            <a class="date-chip" href={`/events/${event.slug}/`}>
+              <span>{eventMonth(event)}</span>
+              <span>{eventDay(event)}</span>
+            </a>
+            <div>
+              <h3><a href={`/events/${event.slug}/`}>{event.data.title}</a></h3>
+              <p class="meta">{formatEventDate(event)} / {event.data.venue} / {event.data.city}</p>
+            </div>
+            <a class="button" href={`/events/${event.slug}/`}>Details</a>
+          </article>
+        )) : <p class="meta">No upcoming events are published yet.</p>}
+      </div>
+    </div>
+  </section>
+
+  {upcoming.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <div class="section-head"><h2>Poster wall</h2><p>Same event data, visual browsing.</p></div>
+        <div class="event-grid">{upcoming.map((event) => <EventCard event={event} />)}</div>
+      </div>
+    </section>
+  )}
+
+  {past.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <div class="section-head"><h2>Past shows</h2><p>Archive view for older events.</p></div>
+        <div class="calendar-list">{past.slice(0, 12).map((event) => <article class="calendar-row"><a class="date-chip" href={`/events/${event.slug}/`}><span>{eventMonth(event)}</span><span>{eventDay(event)}</span></a><div><h3><a href={`/events/${event.slug}/`}>{event.data.title}</a></h3><p class="meta">{event.data.venue} / {event.data.city}</p></div><a class="button" href={`/events/${event.slug}/`}>Details</a></article>)}</div>
+      </div>
+    </section>
+  )}
+</BaseLayout>
