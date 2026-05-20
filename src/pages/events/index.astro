@@ -8,12 +8,12 @@ const allEvents = await getCollection('events');
 const upcoming = sortUpcoming(allEvents);
 const past = sortPast(allEvents);
 ---
-<BaseLayout title="Events" description="Upcoming CapCity Presents shows in Olympia, Washington.">
+<BaseLayout title="Events" description="Browse upcoming CapCity Presents shows in Olympia, WA, with dates, venues, age policies, ticket links, and event updates.">
   <section class="hero">
     <div class="container">
       <p class="eyebrow">Events</p>
-      <h1>Upcoming shows</h1>
-      <p class="lede">Browse upcoming CapCity Presents events. Each listing includes the date, venue, ticket details, and event links when available.</p>
+      <h1>Upcoming Olympia shows</h1>
+      <p class="lede">Browse upcoming CapCity Presents shows in Olympia and nearby rooms. Listings include practical details like date, venue, city, doors, show time, age policy, ticket status, and links when available.</p>
     </div>
   </section>
 
@@ -22,17 +22,24 @@ const past = sortPast(allEvents);
       <div class="calendar-list">
         {upcoming.length ? upcoming.map((event) => (
           <article class="calendar-row">
-            <a class="date-chip" href={`/events/${event.slug}/`}>
+            <a class="date-chip" href={`/events/${event.slug}/`} aria-label={`View event details for ${event.data.title}`}>
               <span>{eventMonth(event)}</span>
               <span>{eventDay(event)}</span>
             </a>
             <div>
               <h3><a href={`/events/${event.slug}/`}>{event.data.title}</a></h3>
               <p class="meta">{formatEventDate(event)} / {event.data.venue} / {event.data.city}</p>
+              <p class="meta">
+                {event.data.ageRestriction || 'Age policy TBA'}
+                {(event.data.doorsTime || event.data.showTime) ? ' / ' : ''}
+                {event.data.doorsTime ? `Doors ${event.data.doorsTime}` : ''}
+                {event.data.doorsTime && event.data.showTime ? ' / ' : ''}
+                {event.data.showTime ? `Show ${event.data.showTime}` : ''}
+              </p>
             </div>
-            <a class="button" href={`/events/${event.slug}/`}>Details</a>
+            <a class="button" href={`/events/${event.slug}/`}>View event details</a>
           </article>
-        )) : <p class="meta">No upcoming events are published yet.</p>}
+        )) : <p class="meta">No upcoming shows are published yet. Check back soon for new Olympia announcements.</p>}
       </div>
     </div>
   </section>
@@ -40,7 +47,7 @@ const past = sortPast(allEvents);
   {upcoming.length > 0 && (
     <section class="section">
       <div class="container">
-        <div class="section-head"><h2>Event posters</h2><p>Poster images will appear here when they are added to event listings.</p></div>
+        <div class="section-head"><h2>Event posters</h2><p>Approved poster art appears here when it is added to event listings. Key details stay in text so the info is easy to scan.</p></div>
         <div class="event-grid">{upcoming.map((event) => <EventCard event={event} />)}</div>
       </div>
     </section>
@@ -49,8 +56,8 @@ const past = sortPast(allEvents);
   {past.length > 0 && (
     <section class="section">
       <div class="container">
-        <div class="section-head"><h2>Past shows</h2><p>Recently archived events.</p></div>
-        <div class="calendar-list">{past.slice(0, 12).map((event) => <article class="calendar-row"><a class="date-chip" href={`/events/${event.slug}/`}><span>{eventMonth(event)}</span><span>{eventDay(event)}</span></a><div><h3><a href={`/events/${event.slug}/`}>{event.data.title}</a></h3><p class="meta">{event.data.venue} / {event.data.city}</p></div><a class="button" href={`/events/${event.slug}/`}>Details</a></article>)}</div>
+        <div class="section-head"><h2>Past shows</h2><p>Recently archived CapCity Presents events.</p></div>
+        <div class="calendar-list">{past.slice(0, 12).map((event) => <article class="calendar-row"><a class="date-chip" href={`/events/${event.slug}/`} aria-label={`View event details for ${event.data.title}`}><span>{eventMonth(event)}</span><span>{eventDay(event)}</span></a><div><h3><a href={`/events/${event.slug}/`}>{event.data.title}</a></h3><p class="meta">{event.data.venue} / {event.data.city}</p></div><a class="button" href={`/events/${event.slug}/`}>View event details</a></article>)}</div>
       </div>
     </section>
   )}

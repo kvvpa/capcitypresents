@@ -11,7 +11,7 @@ export async function getStaticPaths() {
 const { event } = Astro.props;
 const { Content } = await render(event);
 ---
-<BaseLayout title={event.data.title} description={`${event.data.title} at ${event.data.venue} in ${event.data.city}.`}>
+<BaseLayout title={event.data.title} description={`Get details for ${event.data.title} at ${event.data.venue} in ${event.data.city}, including date, doors, show time, age policy, and ticket info.`}>
   <section class="hero">
     <div class="container event-detail">
       <div class="card">
@@ -24,15 +24,17 @@ const { Content } = await render(event);
         <h1>{event.data.title}</h1>
         <p class="lede">{formatEventDate(event)} / {event.data.venue} / {event.data.city}</p>
         <div class="panel" style="margin-top: 24px;">
+          <p class="meta"><strong>Date:</strong> {formatEventDate(event)}</p>
+          <p class="meta"><strong>Venue:</strong> {event.data.venue} / {event.data.city}</p>
           <p class="meta"><strong>Doors:</strong> {event.data.doorsTime || 'TBA'}</p>
           <p class="meta"><strong>Show:</strong> {event.data.showTime || 'TBA'}</p>
           <p class="meta"><strong>Age:</strong> {event.data.ageRestriction || 'TBA'}</p>
           <p class="meta"><strong>Price:</strong> {event.data.price || 'TBA'}</p>
         </div>
         <div class="actions">
-          {event.data.ticketUrl && <a class="button primary" href={event.data.ticketUrl}>Tickets</a>}
-          {event.data.facebookEventUrl && <a class="button" href={event.data.facebookEventUrl}>RSVP on Facebook</a>}
-          <a class="button" href="/events/">Back to events</a>
+          {event.data.ticketUrl && <a class="button primary" href={event.data.ticketUrl}>Get tickets</a>}
+          {event.data.facebookEventUrl && <a class="button" href={event.data.facebookEventUrl}>RSVP and share</a>}
+          <a class="button" href="/events/">Back to all events</a>
         </div>
       </div>
     </div>

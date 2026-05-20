@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "sync-assets": "mkdir -p public && ([ -d logo ] && rm -rf public/logo && cp -R logo public/logo || true) && ([ -d images ] && rm -rf public/images && cp -R images public/images || true)",
+    "sync-assets": "node scripts/sync-assets.mjs",
     "dev": "npm run sync-assets && astro dev",
     "build": "npm run sync-assets && astro build",
     "preview": "astro preview"
