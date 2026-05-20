@@ -8,7 +8,7 @@ city: Olympia, WA
 ageRestriction: All Ages
 price: $12.50 ($14.57 after fees) or $15 day of show
 ticketUrl: https://www.purplepass.com/353746-static-ghost-plus-hexx-head-plus-clock-serum-plus-odor-eater-may-27th-2026
-poster: /uploads/default.png
+poster: /assets/default-poster.png
 status: announced
 featured: false
 ---
@@ -18,7 +18,7 @@ Static Ghost performances are high-intensity, hardware-driven sets. Recently pla
 
 **Hexx Head**
 
-Hexx Head is the collaboration of artists Allie Coppola and Mike Frazier. The Boston-based electronic duo is known for blending industrial, EBM, and noise. Since their debut release, Seabeds Cough, they’ve toured from east to west coast, delivering off-kilter rhythms fused with dance music’s beat-forward structure.
+Hexx Head is the collaboration of artists Allie Coppola and Mike Frazier.1The Boston-based electronic duo is known for blending industrial, EBM, and noise. Since their debut release, Seabeds Cough, theyve toured from east to west coast, delivering off-kilter rhythms fused with dance musics beat-forward structure.
 
 
 **Clock Serum**
