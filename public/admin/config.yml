@@ -1,0 +1,34 @@
+backend:
+  name: git-gateway
+  branch: astro-decap-rebuild
+
+local_backend: true
+
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: events
+    label: Events
+    folder: src/content/events
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Date, name: date, widget: datetime, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Doors Time, name: doorsTime, widget: string, required: false }
+      - { label: Show Time, name: showTime, widget: string, required: false }
+      - { label: Venue, name: venue, widget: string }
+      - { label: City, name: city, widget: string, default: "Olympia, WA" }
+      - { label: Age Restriction, name: ageRestriction, widget: string, required: false }
+      - { label: Price, name: price, widget: string, required: false }
+      - { label: Ticket URL, name: ticketUrl, widget: string, required: false }
+      - { label: Facebook Event URL, name: facebookEventUrl, widget: string, required: false }
+      - { label: Poster, name: poster, widget: image, required: false }
+      - label: Status
+        name: status
+        widget: select
+        default: announced
+        options: [announced, sold-out, cancelled, past]
+      - { label: Featured, name: featured, widget: boolean, default: false }
+      - { label: Description, name: body, widget: markdown, required: false }
