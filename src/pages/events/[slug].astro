@@ -20,10 +20,15 @@ const posterFallback = event.data.poster ? 'Poster unavailable' : 'Poster coming
       <div class="card event-poster-card">
         <div class="poster-frame detail-poster-frame">
           <span class="poster-placeholder">{posterFallback}</span>
-          <img src={poster} alt={posterAlt} onerror="this.hidden = true;" />
+          <img
+            src={poster}
+            alt={posterAlt}
+            onload="this.closest('.event-detail')?.classList.toggle('has-wide-poster', this.naturalWidth / this.naturalHeight > 1.12);"
+            onerror="this.hidden = true;"
+          />
         </div>
       </div>
-      <div>
+      <div class="event-info">
         <p class="eyebrow">{event.data.status}</p>
         <h1>{event.data.title}</h1>
         <p class="lede">{formatEventDate(event)} / {event.data.venue} / {event.data.city}</p>
@@ -53,6 +58,10 @@ const posterFallback = event.data.poster ? 'Poster unavailable' : 'Poster coming
     align-items: start;
   }
 
+  .event-info {
+    min-width: 0;
+  }
+
   .event-poster-card {
     align-self: start;
   }
@@ -79,5 +88,15 @@ const posterFallback = event.data.poster ? 'Poster unavailable' : 'Poster coming
     width: 100%;
     height: auto;
     object-fit: contain;
+  }
+
+  @media (min-width: 821px) {
+    .event-detail.has-wide-poster {
+      grid-template-columns: minmax(360px, 1fr) minmax(0, 1fr);
+    }
+
+    .event-detail.has-wide-poster h1 {
+      font-size: clamp(3rem, 6vw, 5rem);
+    }
   }
 </style>
