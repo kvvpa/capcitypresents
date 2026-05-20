@@ -9,3 +9,13 @@
   from = "/admin"
   to = "/admin/"
   status = 301
+
+[[redirects]]
+  from = "/booking"
+  to = "/contact/"
+  status = 301
+
+[[redirects]]
+  from = "/booking/"
+  to = "/contact/"
+  status = 301
