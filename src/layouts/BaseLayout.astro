@@ -14,15 +14,15 @@ const pageTitle = title === site.name ? site.name : `${title} | ${site.name}`;
     <meta name="description" content={description} />
     <title>{pageTitle}</title>
     <link rel="icon" href="/images/fav/favicon-32x32.png" />
+    <script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script is:inline>
-      (() => {
-        const authHash = window.location.hash;
-        const isIdentityCallback = /^#\/?(invite_token|confirmation_token|recovery_token|access_token|email_change_token)=/.test(authHash);
-        if (isIdentityCallback && !window.location.pathname.startsWith('/admin')) {
-          const normalizedHash = authHash.replace(/^#\//, '#');
-          window.location.replace(`/admin/${normalizedHash}`);
-        }
-      })();
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on('login', () => {
+          if (!window.location.pathname.startsWith('/admin')) {
+            window.location.href = '/admin/';
+          }
+        });
+      }
     </script>
   </head>
   <body>
