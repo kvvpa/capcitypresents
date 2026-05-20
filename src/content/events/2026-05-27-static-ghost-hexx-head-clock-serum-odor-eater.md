@@ -8,6 +8,7 @@ city: Olympia, WA
 ageRestriction: All Ages
 price: $12.50 ($14.57 after fees) or $15 day of show
 ticketUrl: https://www.purplepass.com/353746-static-ghost-plus-hexx-head-plus-clock-serum-plus-odor-eater-may-27th-2026
+poster: /uploads/default.png
 status: announced
 featured: false
 ---
