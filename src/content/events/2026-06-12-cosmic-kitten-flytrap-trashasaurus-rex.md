@@ -8,7 +8,7 @@ city: Olympia, WA
 ageRestriction: All Ages
 price: $15 advance (+ fees) or $20 day of show
 ticketUrl: https://www.purplepass.com/349918-cosmic-kitten-plus-flytrap-plus-trashasaurus-rex-jun-12th-2026
-poster: /uploads/cosmickitten.jpg
+poster: /uploads/comic2.jpg
 status: announced
 featured: false
 ---
