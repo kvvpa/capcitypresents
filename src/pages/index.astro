@@ -44,7 +44,7 @@ const featured = upcoming.find((event) => event.data.featured) ?? upcoming[0];
     <div class="container">
       <div class="section-head">
         <h2>Upcoming shows</h2>
-        <p>Upcoming CapCity shows with dates, venues, ticket links, posters, and age info as they are confirmed.</p>
+        <p>Posters, lineups, ticket links, and show details for the next CapCity dates.</p>
       </div>
       <div class="event-grid">
         {upcoming.slice(0, 3).map((event) => <EventCard event={event} />)}
