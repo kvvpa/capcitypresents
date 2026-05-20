@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+<BaseLayout title="Booking" description="Book a show with CapCity Presents.">
+  <section class="hero">
+    <div class="container split">
+      <div>
+        <p class="eyebrow">Booking</p>
+        <h1>Bring the show.</h1>
+      </div>
+      <div class="panel prose">
+        <p>For booking, collaborations, venue questions, and event ideas, contact CapCity Presents with the date range, lineup, venue, draw estimate, and any ticketing details you already have.</p>
+        <div class="actions"><a class="button primary" href={`mailto:${site.email}`}>Email booking</a><a class="button" href="/contact/">Contact info</a></div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
