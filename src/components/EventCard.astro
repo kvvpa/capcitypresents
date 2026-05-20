@@ -4,11 +4,13 @@ import { formatEventDate } from '../lib/events';
 
 const { event } = Astro.props as { event: EventEntry };
 const href = `/events/${event.slug}/`;
+const poster = event.data.poster || '/default-poster.svg';
+const posterAlt = event.data.poster ? `${event.data.title} poster` : 'CapCity Presents poster coming soon';
 ---
 <article class="card event-card">
   <a href={href} aria-label={`View event details for ${event.data.title}`}>
     <div class="poster-frame">
-      {event.data.poster ? <img src={event.data.poster} alt={`${event.data.title} poster`} /> : <span>Poster coming soon</span>}
+      <img src={poster} alt={posterAlt} />
     </div>
   </a>
   <time datetime={event.data.date}>{formatEventDate(event)}</time>
