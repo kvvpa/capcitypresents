@@ -15,15 +15,6 @@ const pageTitle = title === site.name ? site.name : `${title} | ${site.name}`;
     <title>{pageTitle}</title>
     <link rel="icon" href="/images/fav/favicon-32x32.png" />
     <script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <script is:inline>
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on('login', () => {
-          if (!window.location.pathname.startsWith('/admin')) {
-            window.location.href = '/admin/';
-          }
-        });
-      }
-    </script>
   </head>
   <body>
     <header class="nav">
