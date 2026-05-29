@@ -2,13 +2,19 @@
 import type { EventEntry } from '../lib/events';
 import { formatEventDate } from '../lib/events';
 
-const { event } = Astro.props as { event: EventEntry };
+const { event, hidden = false } = Astro.props as { event: EventEntry; hidden?: boolean };
 const href = `/events/${event.slug}/`;
 const poster = event.data.poster || '/assets/default-poster.png';
 const posterAlt = event.data.poster ? `${event.data.title} poster` : 'CapCity Presents poster coming soon';
 const posterFallback = event.data.poster ? 'Poster unavailable' : 'Poster coming soon';
 ---
-<article class="card event-card">
+<article
+  class="card event-card"
+  data-event-card
+  data-event-date={event.data.date}
+  data-event-status={event.data.status}
+  hidden={hidden}
+>
   <a href={href} aria-label={`View event details for ${event.data.title}`}>
     <div class="poster-frame">
       <span class="poster-placeholder">{posterFallback}</span>

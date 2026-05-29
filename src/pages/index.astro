@@ -3,11 +3,25 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import EventCard from '../components/EventCard.astro';
 import { site } from '../data/site';
-import { sortUpcoming, formatEventDate } from '../lib/events';
+import { eventDate, sortUpcoming, formatEventDate } from '../lib/events';
 
 const allEvents = await getCollection('events');
 const upcoming = sortUpcoming(allEvents);
-const featured = upcoming.find((event) => event.data.featured) ?? upcoming[0];
+const listedEvents = allEvents
+  .filter((event) => event.data.status !== 'past')
+  .sort((a, b) => eventDate(a).getTime() - eventDate(b).getTime());
+const featured = listedEvents.find((event) => event.data.featured) ?? listedEvents[0];
+const featuredEvents = listedEvents.map((event) => ({
+  title: event.data.title,
+  slug: event.slug,
+  date: event.data.date,
+  status: event.data.status,
+  venue: event.data.venue,
+  featured: event.data.featured,
+  displayDate: formatEventDate(event),
+  shortDate: eventDate(event).toLocaleDateString('en-US', { month: 'short', day: '2-digit' }),
+}));
+const visibleHomeSlugs = new Set(upcoming.slice(0, 3).map((event) => event.slug));
 ---
 <BaseLayout title={site.name} description={site.description}>
   <section class="hero">
@@ -21,13 +35,13 @@ const featured = upcoming.find((event) => event.data.featured) ?? upcoming[0];
           <a class="button" href="/contact/">Ask about booking</a>
         </div>
       </div>
-      <aside class="card hero-card">
+      <aside class="card hero-card" data-next-show>
         {featured ? (
           <>
             <p class="eyebrow">Next show</p>
-            <div class="big-date">{new Date(`${featured.data.date}T12:00:00`).toLocaleDateString('en-US', { month: 'short', day: '2-digit' })}</div>
-            <h3><a href={`/events/${featured.slug}/`}>{featured.data.title}</a></h3>
-            <p class="meta">{formatEventDate(featured)} / {featured.data.venue}</p>
+            <div class="big-date" data-next-show-date>{eventDate(featured).toLocaleDateString('en-US', { month: 'short', day: '2-digit' })}</div>
+            <h3><a data-next-show-link href={`/events/${featured.slug}/`}>{featured.data.title}</a></h3>
+            <p class="meta" data-next-show-meta>{formatEventDate(featured)} / {featured.data.venue}</p>
           </>
         ) : (
           <>
@@ -46,8 +60,8 @@ const featured = upcoming.find((event) => event.data.featured) ?? upcoming[0];
         <h2>Upcoming shows</h2>
         <p>Posters, lineups, ticket links, and show details for the next CapCity dates.</p>
       </div>
-      <div class="event-grid">
-        {upcoming.slice(0, 3).map((event) => <EventCard event={event} />)}
+      <div class="event-grid" data-home-events>
+        {listedEvents.map((event) => <EventCard event={event} hidden={!visibleHomeSlugs.has(event.slug)} />)}
       </div>
       <div class="actions"><a class="button" href="/events/">View all shows</a></div>
     </div>
@@ -87,7 +101,7 @@ const featured = upcoming.find((event) => event.data.featured) ?? upcoming[0];
             />
             <div>
               <p class="eyebrow">2024 Best of South Sound</p>
-              <p><strong>Winner — Live Music</strong></p>
+              <p><strong>Winner â€” Live Music</strong></p>
             </div>
           </div>
         </div>
@@ -118,6 +132,40 @@ const featured = upcoming.find((event) => event.data.featured) ?? upcoming[0];
     </div>
   </section>
 </BaseLayout>
+
+<script define:vars={{ featuredEvents }}>
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const isPastDate = (date, status) => status === 'past' || new Date(`${date}T12:00:00`) < today;
+  const nextEvent = featuredEvents.find((event) => event.featured && !isPastDate(event.date, event.status))
+    ?? featuredEvents.find((event) => !isPastDate(event.date, event.status));
+  const nextShow = document.querySelector('[data-next-show]');
+
+  if (nextShow) {
+    const date = nextShow.querySelector('[data-next-show-date]');
+    const link = nextShow.querySelector('[data-next-show-link]');
+    const meta = nextShow.querySelector('[data-next-show-meta]');
+
+    if (nextEvent && date && link && meta) {
+      date.textContent = nextEvent.shortDate;
+      link.textContent = nextEvent.title;
+      link.setAttribute('href', `/events/${nextEvent.slug}/`);
+      meta.textContent = `${nextEvent.displayDate} / ${nextEvent.venue}`;
+    } else if (!nextEvent) {
+      nextShow.innerHTML = '<p class="eyebrow">Shows</p><h3>No upcoming shows posted yet.</h3><p class="meta">Check back soon or follow CapCity Presents for new Olympia announcements.</p>';
+    }
+  }
+
+  const cards = Array.from(document.querySelectorAll('[data-home-events] [data-event-card]'));
+  let visibleCards = 0;
+
+  cards.forEach((card) => {
+    const isVisible = !isPastDate(card.dataset.eventDate, card.dataset.eventStatus) && visibleCards < 3;
+    card.hidden = !isVisible;
+    if (isVisible) visibleCards += 1;
+  });
+</script>
 
 <style>
   .booking-split {

@@ -2,11 +2,17 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import EventCard from '../../components/EventCard.astro';
-import { sortUpcoming, sortPast, eventMonth, eventDay } from '../../lib/events';
+import { eventDate, sortUpcoming, sortPast, eventMonth, eventDay } from '../../lib/events';
 
 const allEvents = await getCollection('events');
 const upcoming = sortUpcoming(allEvents);
 const past = sortPast(allEvents);
+const listedEvents = allEvents
+  .filter((event) => event.data.status !== 'past')
+  .sort((a, b) => eventDate(a).getTime() - eventDate(b).getTime());
+const archiveEvents = [...allEvents].sort((a, b) => eventDate(b).getTime() - eventDate(a).getTime());
+const upcomingSlugs = new Set(upcoming.map((event) => event.slug));
+const pastSlugs = new Set(past.map((event) => event.slug));
 ---
 <BaseLayout title="Events" description="Browse upcoming CapCity Presents shows in Olympia, WA, with posters, ticket links, venues, doors, and age info.">
   <section class="hero">
@@ -19,20 +25,71 @@ const past = sortPast(allEvents);
 
   <section class="section">
     <div class="container">
-      {upcoming.length ? (
-        <div class="event-grid">{upcoming.map((event) => <EventCard event={event} />)}</div>
-      ) : (
-        <p class="meta">No upcoming shows are published yet. Check back soon for new Olympia announcements.</p>
-      )}
+      <div class="event-grid" data-upcoming-events>{listedEvents.map((event) => <EventCard event={event} hidden={!upcomingSlugs.has(event.slug)} />)}</div>
+      <p class="meta" data-upcoming-empty hidden={upcoming.length > 0}>No upcoming shows are published yet. Check back soon for new Olympia announcements.</p>
     </div>
   </section>
 
-  {past.length > 0 && (
-    <section class="section">
+  {archiveEvents.length > 0 && (
+    <section class="section" data-archive-section hidden={past.length === 0}>
       <div class="container">
         <div class="section-head"><h2>Past shows</h2><p>Recently archived CapCity Presents events.</p></div>
-        <div class="calendar-list">{past.slice(0, 12).map((event) => <article class="calendar-row"><a class="date-chip" href={`/events/${event.slug}/`} aria-label={`View event details for ${event.data.title}`}><span>{eventMonth(event)}</span><span>{eventDay(event)}</span></a><div><h3><a href={`/events/${event.slug}/`}>{event.data.title}</a></h3><p class="meta">{event.data.venue} / {event.data.city}</p></div><a class="button" href={`/events/${event.slug}/`}>View event details</a></article>)}</div>
+        <div class="calendar-list" data-archive-events>
+          {archiveEvents.map((event) => (
+            <article
+              class="calendar-row"
+              data-archive-row
+              data-event-date={event.data.date}
+              data-event-status={event.data.status}
+              hidden={!pastSlugs.has(event.slug)}
+            >
+              <a class="date-chip" href={`/events/${event.slug}/`} aria-label={`View event details for ${event.data.title}`}><span>{eventMonth(event)}</span><span>{eventDay(event)}</span></a>
+              <div><h3><a href={`/events/${event.slug}/`}>{event.data.title}</a></h3><p class="meta">{event.data.venue} / {event.data.city}</p></div>
+              <a class="button" href={`/events/${event.slug}/`}>View event details</a>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   )}
 </BaseLayout>
+
+<script>
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const isPastEvent = (element) => {
+    const date = element.dataset.eventDate;
+    const status = element.dataset.eventStatus;
+    if (!date) return false;
+    return status === 'past' || new Date(`${date}T12:00:00`) < today;
+  };
+
+  const upcomingCards = Array.from(document.querySelectorAll('[data-upcoming-events] [data-event-card]'));
+  let visibleUpcoming = 0;
+
+  upcomingCards.forEach((card) => {
+    const isPast = isPastEvent(card);
+    card.hidden = isPast;
+    if (!isPast) visibleUpcoming += 1;
+  });
+
+  const upcomingEmpty = document.querySelector('[data-upcoming-empty]');
+  if (upcomingEmpty) {
+    upcomingEmpty.hidden = visibleUpcoming > 0;
+  }
+
+  const archiveRows = Array.from(document.querySelectorAll('[data-archive-row]'));
+  let visibleArchive = 0;
+
+  archiveRows.forEach((row) => {
+    const isPast = isPastEvent(row);
+    row.hidden = !isPast || visibleArchive >= 12;
+    if (isPast) visibleArchive += 1;
+  });
+
+  const archiveSection = document.querySelector('[data-archive-section]');
+  if (archiveSection) {
+    archiveSection.hidden = visibleArchive === 0;
+  }
+</script>
