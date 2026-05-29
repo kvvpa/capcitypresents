@@ -1,5 +1,4 @@
 node_modules/
-.codex-ssh/
 dist/
 .astro/
 .netlify/
