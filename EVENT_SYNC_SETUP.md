@@ -21,6 +21,7 @@ Add these under repository **Settings > Secrets and variables > Actions**:
 - `FACEBOOK_PAGE_ACCESS_TOKEN`
 
 The Purplepass organizer ID is already configured as `42425`.
+The workflow reads Purplepass through the fixed `/api/purplepass-feed` Netlify function because Purplepass blocks GitHub-hosted runner IP addresses. The proxy only exposes CapCity Presents organizer data and images.
 
 The workflow uses Graph API `v25.0`, released February 18, 2026.
 

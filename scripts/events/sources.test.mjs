@@ -1,10 +1,32 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
+  fetchPurplepassEvents,
   inferFacebookPostEventDate,
   inferFacebookPostLocation,
   isFacebookEventEligible,
 } from './sources.mjs';
+
+test('uses the configured Purplepass feed proxy', async () => {
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async (url) => {
+    assert.equal(String(url), 'https://capcitypresents.com/api/purplepass-feed');
+    return new Response(JSON.stringify({
+      events: [{ source: 'purplepass', sourceId: '379058', title: 'Holy Locust' }],
+    }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  };
+  try {
+    const events = await fetchPurplepassEvents({
+      feedUrl: 'https://capcitypresents.com/api/purplepass-feed',
+    });
+    assert.equal(events[0].sourceId, '379058');
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
 
 test('uses the Facebook post year when an old event omits its year', () => {
   assert.equal(

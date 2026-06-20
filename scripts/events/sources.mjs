@@ -81,7 +81,18 @@ async function mapWithConcurrency(items, concurrency, mapper) {
   return results;
 }
 
-export async function fetchPurplepassEvents({ organizerId = '42425' } = {}) {
+export async function fetchPurplepassEvents({
+  organizerId = '42425',
+  feedUrl = process.env.PURPLEPASS_FEED_URL || '',
+} = {}) {
+  if (feedUrl) {
+    const payload = await fetchJson(feedUrl);
+    if (!Array.isArray(payload?.events)) {
+      throw new Error(`${feedUrl} did not return a Purplepass event list.`);
+    }
+    return payload.events;
+  }
+
   const organizerUrl = `https://www.purplepass.com/v2/organizer/${organizerId}`;
   const organizerData = await fetchJson(organizerUrl);
   const groups = organizerData?.rows?.events || [];
