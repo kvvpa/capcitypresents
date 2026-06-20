@@ -208,8 +208,8 @@ export function inferFacebookPostLocation(message = '') {
 
   const dateBoundary = '(?:on\\s+)?(?:(?:sun|mon|tue|wed|thu|fri|sat)(?:day)?|jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?|\\d{1,2}(?:st|nd|rd|th)?)';
   for (const line of lines) {
-    if (/https?:\/\//i.test(line)) continue;
-    const match = line.match(new RegExp(`\\bat\\s+(.+?)(?=\\s+${dateBoundary}\\b|[.!]|$)`, 'i'));
+    const textWithoutUrls = line.replace(/https?:\/\/\S+/gi, '').trim();
+    const match = textWithoutUrls.match(new RegExp(`\\bat\\s+(.+?)(?=\\s+${dateBoundary}\\b|[.!]|$)`, 'i'));
     const venue = cleanText(match?.[1] || '').replace(/[()☉]+$/g, '').trim();
     if (venue && venue.length <= 80) return { venue, city };
   }
@@ -261,7 +261,7 @@ export async function fetchFacebookEvents({
     const title = postTitle(post, attachments);
     const ageLine = message.split('\n').find((line) => /\b(all ages|21\+|18\+)\b/i.test(line)) || '';
     const priceLine = message.split('\n').find((line) => /\$\s?\d/.test(line)) || '';
-    const location = inferFacebookPostLocation(message);
+    const location = inferFacebookPostLocation(`${message}\n${title}`);
 
     return {
       source: 'facebook',
