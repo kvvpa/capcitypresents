@@ -178,6 +178,46 @@ function attachmentImage(attachment) {
   };
 }
 
+async function fetchLargestPhoto(photoId, apiVersion, accessToken) {
+  try {
+    const url = new URL(`https://graph.facebook.com/${apiVersion}/${encodeURIComponent(photoId)}`);
+    url.searchParams.set('fields', 'images');
+    url.searchParams.set('access_token', accessToken);
+    const response = await fetch(url);
+    const payload = await response.json();
+    if (!response.ok || !Array.isArray(payload.images) || !payload.images.length) return null;
+    const best = payload.images.reduce((a, b) => (
+      (Number(a.width || 0) * Number(a.height || 0)) >= (Number(b.width || 0) * Number(b.height || 0)) ? a : b
+    ));
+    if (!best?.source) return null;
+    return {
+      source: 'facebook',
+      remoteUrl: best.source,
+      width: Number(best.width || 0) || undefined,
+      height: Number(best.height || 0) || undefined,
+    };
+  } catch {
+    return null;
+  }
+}
+
+// Facebook's attachment preview is downscaled (~720px). For photo attachments,
+// pull the full set of stored resolutions and keep the largest; fall back to the
+// preview for non-photos or if the lookup fails.
+async function resolveAttachmentImages(attachments, { apiVersion, accessToken } = {}) {
+  const resolved = [];
+  for (const attachment of attachments) {
+    const preview = attachmentImage(attachment);
+    if (!preview) continue;
+    const photoId = attachment?.target?.id;
+    const fullRes = accessToken && photoId && /^\d+$/.test(String(photoId))
+      ? await fetchLargestPhoto(photoId, apiVersion, accessToken)
+      : null;
+    resolved.push(fullRes || preview);
+  }
+  return uniqueBy(resolved, (image) => image.remoteUrl);
+}
+
 function postTitle(post, attachments) {
   const attachmentTitle = attachments
     .map((attachment) => cleanText(attachment.title || ''))
@@ -277,14 +317,14 @@ export async function fetchFacebookEvents({
     nextUrl = payload.paging?.next || '';
   }
 
-  const events = posts.filter((post) => String(post.from?.id || '') === String(pageId)).map((post) => {
+  const events = (await Promise.all(posts.filter((post) => String(post.from?.id || '') === String(pageId)).map(async (post) => {
     const attachments = flattenAttachments(post.attachments?.data || []);
     const message = cleanText(post.message || '');
     const urls = postUrls(post, attachments);
     const dateText = `${message}\n${attachments.map((item) => item.description || '').join('\n')}`;
     const date = inferFacebookPostEventDate(dateText, post.created_time);
     const times = parseTimesFromText(message);
-    const images = uniqueBy(attachments.map(attachmentImage).filter(Boolean), (image) => image.remoteUrl);
+    const images = await resolveAttachmentImages(attachments, { apiVersion, accessToken });
     const title = postTitle(post, attachments);
     const ageLine = message.split('\n').find((line) => /\b(all ages|21\+|18\+)\b/i.test(line)) || '';
     const priceLine = message.split('\n').find((line) => /\$\s?\d/.test(line)) || '';
@@ -318,7 +358,7 @@ export async function fetchFacebookEvents({
         city: location.city ? 'post-text-explicit' : '',
       },
     };
-  }).filter(isFacebookEventEligible);
+  }))).filter(isFacebookEventEligible);
 
   return { events, warning: '' };
 }
