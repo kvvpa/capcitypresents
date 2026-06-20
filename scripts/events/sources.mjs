@@ -17,21 +17,15 @@ turndown.addRule('blankParagraphs', {
   replacement: () => '\n\n',
 });
 
-function extractNextData(html) {
-  const match = html.match(/<script id="__NEXT_DATA__" type="application\/json">([\s\S]*?)<\/script>/);
-  if (!match) throw new Error('Purplepass page did not include structured event data.');
-  return JSON.parse(match[1]);
-}
-
-async function fetchText(url) {
+async function fetchJson(url) {
   const response = await fetch(url, {
     headers: {
       'User-Agent': 'CapCityPresentsEventSync/1.0 (+https://capcitypresents.com)',
-      Accept: 'text/html,application/xhtml+xml',
+      Accept: 'application/json',
     },
   });
   if (!response.ok) throw new Error(`${url} returned ${response.status}`);
-  return response.text();
+  return response.json();
 }
 
 function priceFromEvent(event) {
@@ -88,9 +82,9 @@ async function mapWithConcurrency(items, concurrency, mapper) {
 }
 
 export async function fetchPurplepassEvents({ organizerId = '42425' } = {}) {
-  const organizerUrl = `https://www.purplepass.com/organizer/${organizerId}`;
-  const organizerData = extractNextData(await fetchText(organizerUrl));
-  const groups = organizerData?.props?.pageProps?.data?.rows?.events || [];
+  const organizerUrl = `https://www.purplepass.com/v2/organizer/${organizerId}`;
+  const organizerData = await fetchJson(organizerUrl);
+  const groups = organizerData?.rows?.events || [];
   const summaries = groups.flatMap((group) => group.data || []);
 
   const usable = summaries.filter((event) => {
@@ -100,8 +94,8 @@ export async function fetchPurplepassEvents({ organizerId = '42425' } = {}) {
 
   return mapWithConcurrency(usable, 5, async (summary) => {
     const sourceUrl = `https://www.purplepass.com/events/${summary.slug}`;
-    const pageData = extractNextData(await fetchText(sourceUrl));
-    const event = pageData?.props?.pageProps?.data?.event;
+    const eventData = await fetchJson(`https://www.purplepass.com/v2/events/${summary.id}`);
+    const event = eventData?.event;
     if (!event) throw new Error(`Purplepass event ${summary.id} did not contain event details.`);
 
     const description = cleanText(turndown.turndown(event.description || ''));
