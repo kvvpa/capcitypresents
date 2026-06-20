@@ -149,6 +149,62 @@
   padding: 5px 8px;
 }
 
+.capcity-tools-bucket:empty {
+  display: none;
+}
+
+.capcity-tools-bucket-title {
+  margin: 13px 0 0;
+  color: #b8bac1;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+.capcity-tools-flag-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.capcity-tools-flag-actions .capcity-tools-ack {
+  margin-top: 0;
+}
+
+.capcity-tools-ack.danger {
+  border-color: #7a2b2f;
+  color: #f2b8bb;
+}
+
+.capcity-tools-age {
+  display: block;
+  margin-top: 6px;
+  color: #e5a129;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.capcity-tools-flag[data-bucket="standing"] {
+  border-left-color: #e5a129;
+}
+
+.capcity-tools-flag[data-bucket="completed"] {
+  border-left-color: #4caf72;
+  opacity: .9;
+}
+
+.capcity-tools-resolved {
+  color: #7fd2a0;
+  font-size: 12px;
+}
+
+.capcity-tools-flag[data-bucket="wontfix"] {
+  border-left-color: #6b6e76;
+  opacity: .75;
+}
+
 .capcity-tools-message {
   min-height: 19px;
   color: #e5a129;

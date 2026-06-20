@@ -25,9 +25,12 @@
         </div>
       </section>
       <section class="capcity-tools-section">
-        <h3>Current flags</h3>
+        <h3>Flags</h3>
         <p class="capcity-tools-meta" data-flag-count></p>
-        <ul class="capcity-tools-flags" data-flags></ul>
+        <div class="capcity-tools-bucket" data-bucket="new"></div>
+        <div class="capcity-tools-bucket" data-bucket="standing"></div>
+        <div class="capcity-tools-bucket" data-bucket="completed"></div>
+        <div class="capcity-tools-bucket" data-bucket="wontfix"></div>
       </section>
       <section class="capcity-tools-section">
         <p class="capcity-tools-message" data-message></p>
@@ -37,12 +40,20 @@
 
   const panel = root.querySelector('.capcity-tools-panel');
   const message = root.querySelector('[data-message]');
-  const buttons = [...root.querySelectorAll('button')];
+  const buttons = [...root.querySelectorAll('.capcity-tools-bar button, .capcity-tools-actions button')];
   let status = null;
+  let flagIndex = new Map();
 
   const formatDate = (value) => value
     ? new Date(value).toLocaleString('en-US', { timeZone: 'America/Los_Angeles', dateStyle: 'medium', timeStyle: 'short' })
     : 'Not run yet';
+
+  function ageLabel(acknowledgedAt, reviewsSpanned) {
+    if (!acknowledgedAt) return 'Unresolved';
+    const days = Math.max(0, Math.round((Date.now() - new Date(acknowledgedAt)) / 86400000));
+    const reviews = reviewsSpanned ? `, through ${reviewsSpanned} review${reviewsSpanned === 1 ? '' : 's'}` : '';
+    return `Unresolved ${days} day${days === 1 ? '' : 's'}${reviews}`;
+  }
 
   async function token() {
     const user = window.netlifyIdentity?.currentUser();
@@ -74,19 +85,6 @@
     });
   }
 
-  function renderFlags(flags = []) {
-    root.querySelector('[data-flag-count]').textContent = flags.length
-      ? `${flags.length} item${flags.length === 1 ? '' : 's'} to check. Publishing is not blocked.`
-      : 'No current flags.';
-    root.querySelector('[data-flags]').innerHTML = flags.slice(0, 30).map((flag) => `
-      <li class="capcity-tools-flag" data-severity="${flag.severity || 'info'}">
-        <strong>${escapeHtml(flag.title || flag.eventKey || 'Event')} - ${escapeHtml(flag.label || flag.field || 'review')}</strong>
-        <span>${escapeHtml(flag.message || 'Source conflict')}</span>
-        ${flag.id ? `<button class="capcity-tools-ack" data-action="acknowledge-flag" data-flag-id="${escapeHtml(flag.id)}">Mark reviewed</button>` : ''}
-      </li>
-    `).join('');
-  }
-
   function escapeHtml(value) {
     return String(value)
       .replaceAll('&', '&amp;')
@@ -94,6 +92,69 @@
       .replaceAll('>', '&gt;')
       .replaceAll('"', '&quot;')
       .replaceAll("'", '&#039;');
+  }
+
+  function flagHeader(flag) {
+    return `${escapeHtml(flag.title || flag.eventKey || 'Event')} - ${escapeHtml(flag.label || flag.field || 'review')}`;
+  }
+
+  function bucketHtml(title, items, render) {
+    if (!items.length) return '';
+    return `<h4 class="capcity-tools-bucket-title">${escapeHtml(title)} (${items.length})</h4>
+      <ul class="capcity-tools-flags">${items.map(render).join('')}</ul>`;
+  }
+
+  function renderFlags() {
+    flagIndex = new Map();
+    const flags = status?.flags || { new: [], standing: [], completed: [] };
+    const wontFix = status?.wontFix || [];
+    const remember = (flag) => { if (flag.key) flagIndex.set(flag.key, flag); return flag; };
+
+    root.querySelector('[data-flag-count]').textContent = `${flags.new.length} new · ${flags.standing.length} standing · ${flags.completed.length} resolved`
+      + (wontFix.length ? ` · ${wontFix.length} won't fix` : '')
+      + '. Publishing is never blocked.';
+
+    root.querySelector('[data-bucket="new"]').innerHTML = bucketHtml('New', flags.new, (flag) => {
+      remember(flag);
+      return `<li class="capcity-tools-flag" data-severity="${escapeHtml(flag.severity || 'info')}">
+        <strong>${flagHeader(flag)}</strong>
+        <span>${escapeHtml(flag.message || 'Source conflict')}</span>
+        <div class="capcity-tools-flag-actions">
+          <button class="capcity-tools-ack" data-action="acknowledge-flag" data-key="${escapeHtml(flag.key)}">Acknowledge</button>
+          <button class="capcity-tools-ack danger" data-action="wont-fix-flag" data-key="${escapeHtml(flag.key)}">Won't fix</button>
+        </div>
+      </li>`;
+    });
+
+    root.querySelector('[data-bucket="standing"]').innerHTML = bucketHtml('Standing', flags.standing, (flag) => {
+      remember(flag);
+      return `<li class="capcity-tools-flag" data-bucket="standing" data-severity="warning">
+        <strong>${flagHeader(flag)}</strong>
+        <span>${escapeHtml(flag.message || 'Source conflict')}</span>
+        <span class="capcity-tools-age">⚠ ${escapeHtml(ageLabel(flag.acknowledgedAt, flag.reviewsSpanned))}</span>
+        <div class="capcity-tools-flag-actions">
+          <button class="capcity-tools-ack danger" data-action="wont-fix-flag" data-key="${escapeHtml(flag.key)}">Won't fix</button>
+          <button class="capcity-tools-ack" data-action="reset-flag" data-key="${escapeHtml(flag.key)}">Undo</button>
+        </div>
+      </li>`;
+    });
+
+    root.querySelector('[data-bucket="completed"]').innerHTML = bucketHtml('Resolved', flags.completed, (flag) => `
+      <li class="capcity-tools-flag" data-bucket="completed">
+        <strong>${flagHeader(flag)}</strong>
+        <span class="capcity-tools-resolved">✓ Self-corrected — clears after the next exported review</span>
+      </li>`);
+
+    root.querySelector('[data-bucket="wontfix"]').innerHTML = bucketHtml("Won't fix", wontFix, (flag) => {
+      remember(flag);
+      return `<li class="capcity-tools-flag" data-bucket="wontfix">
+        <strong>${flagHeader(flag)}</strong>
+        <span>${escapeHtml(flag.message || '')}</span>
+        <div class="capcity-tools-flag-actions">
+          <button class="capcity-tools-ack" data-action="reset-flag" data-key="${escapeHtml(flag.key)}">Restore</button>
+        </div>
+      </li>`;
+    });
   }
 
   function render(nextStatus) {
@@ -110,7 +171,7 @@
       : 'No active review. Begin one before making this week’s corrections.';
     root.querySelector('[data-action="begin-review"]').disabled = Boolean(status.review);
     root.querySelector('[data-action="export-review"]').disabled = !status.review;
-    renderFlags(status.flags);
+    renderFlags();
   }
 
   async function refresh() {
@@ -129,7 +190,24 @@
     }
   }
 
-  async function runAction(action, flagId = '') {
+  async function flagAction(action, flag) {
+    setBusy(true);
+    message.textContent = '';
+    try {
+      await api(action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ flag }),
+      });
+      await refresh();
+    } catch (error) {
+      message.textContent = error.message;
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function runAction(action) {
     setBusy(true);
     message.textContent = '';
     try {
@@ -159,16 +237,6 @@
         message.textContent = 'PDF downloaded and weekly review finished.';
         await refresh();
       }
-      if (action === 'acknowledge-flag') {
-        if (!flagId) throw new Error('Could not identify that flag.');
-        await api('acknowledge-flag', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ id: flagId }),
-        });
-        message.textContent = 'Flag marked as reviewed.';
-        await refresh();
-      }
     } catch (error) {
       message.textContent = error.message;
     } finally {
@@ -177,8 +245,9 @@
   }
 
   root.addEventListener('click', (event) => {
-    const action = event.target.closest('[data-action]')?.dataset.action;
-    if (!action) return;
+    const trigger = event.target.closest('[data-action]');
+    if (!trigger) return;
+    const action = trigger.dataset.action;
     if (action === 'toggle') {
       panel.classList.toggle('open');
       panel.setAttribute('aria-hidden', String(!panel.classList.contains('open')));
@@ -190,7 +259,12 @@
       panel.setAttribute('aria-hidden', 'true');
       return;
     }
-    runAction(action, event.target.closest('[data-flag-id]')?.dataset.flagId || '');
+    if (['acknowledge-flag', 'wont-fix-flag', 'reset-flag'].includes(action)) {
+      const key = trigger.dataset.key;
+      flagAction(action, flagIndex.get(key) || { key });
+      return;
+    }
+    runAction(action);
   });
 
   function mount() {

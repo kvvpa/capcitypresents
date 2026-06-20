@@ -10,11 +10,18 @@ test('creates a readable PDF review report', async () => {
     baselineSha: '1234567890',
     headSha: 'abcdef1234',
     beforeChanges: [],
-    startFlags: [],
     manualChanges: [],
     automatedDuringReview: [],
-    remainingFlags: [],
-    summary: { beforeCount: 0, manualCount: 0, remainingFlags: 0 },
+    newFlags: [
+      { title: 'Holy Locust', label: 'door time', field: 'doorsTime', message: 'Facebook says 8 PM; Purplepass says 9 PM.' },
+    ],
+    standingFlags: [
+      { title: 'MaRaK', label: 'poster', field: 'poster', message: 'Image returned 403.', acknowledgedAt: '2026-06-05T00:00:00Z', reviewsSpanned: 2 },
+    ],
+    completedFlags: [
+      { title: 'Calder Allen', label: 'poster', field: 'poster', message: 'Image returned 403.', acknowledgedAt: '2026-05-20T00:00:00Z', reviewsSpanned: 1 },
+    ],
+    summary: { beforeCount: 0, manualCount: 0, newCount: 1, standingCount: 1, completedCount: 1 },
   });
   assert.ok(bytes.length > 700);
   assert.equal(Buffer.from(bytes).subarray(0, 4).toString('ascii'), '%PDF');

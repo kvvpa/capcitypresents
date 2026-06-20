@@ -30,6 +30,13 @@ function formatDate(value) {
   });
 }
 
+function flagAge(acknowledgedAt, until, reviewsSpanned) {
+  if (!acknowledgedAt) return 'Unresolved.';
+  const days = Math.max(0, Math.round((new Date(until) - new Date(acknowledgedAt)) / 86400000));
+  const reviews = reviewsSpanned ? `, carried through ${reviewsSpanned} review${reviewsSpanned === 1 ? '' : 's'}` : '';
+  return `Unresolved ${days} day${days === 1 ? '' : 's'}${reviews}; acknowledged ${formatDate(acknowledgedAt)}.`;
+}
+
 function wrapText(text, font, size, maxWidth) {
   const paragraphs = safeText(text).split('\n');
   const lines = [];
@@ -136,10 +143,11 @@ export async function createReviewPdf(report) {
     y -= 4;
   }
 
-  function flagGroup(flag) {
+  function flagGroup(flag, note = '') {
     line(`${flag.title || flag.eventKey} - ${flag.label || flag.field}`, { size: 9, font: bold, gap: 1 });
     line(flag.message || 'Source conflict requires review.', { size: 8, color: colors.muted, indent: 8, gap: 1 });
-    if (flag.chosen) line(`Published: ${flag.chosen.source} - ${displayValue(flag.chosen.value)}`, { size: 8, indent: 8, gap: 4 });
+    if (flag.chosen) line(`Published: ${flag.chosen.source} - ${displayValue(flag.chosen.value)}`, { size: 8, indent: 8, gap: note ? 1 : 4 });
+    if (note) line(note, { size: 8, font: bold, color: colors.red, indent: 8, gap: 4 });
     y -= 6;
   }
 
@@ -151,7 +159,7 @@ export async function createReviewPdf(report) {
   line(`Report exported: ${formatDate(report.completedAt)}`, { size: 9 });
   line(`Review baseline: ${report.baselineSha?.slice(0, 7) || 'Unknown'}`, { size: 9 });
   line(`Current revision: ${report.headSha?.slice(0, 7) || 'Unknown'}`, { size: 9, gap: 14 });
-  const summaryText = `${report.summary.beforeCount} change set(s) before review; ${report.summary.manualCount} manual change set(s) during review; ${report.summary.remainingFlags} flag(s) remain.`;
+  const summaryText = `${report.summary.beforeCount} change set(s) before review; ${report.summary.manualCount} manual change set(s) during review; ${report.summary.newCount} new flag(s); ${report.summary.standingCount} still unresolved; ${report.summary.completedCount} resolved.`;
   const summaryLines = wrapText(summaryText, bold, 11, CONTENT_WIDTH - 24);
   const summaryHeight = summaryLines.length * 14 + 22;
   need(summaryHeight + 10);
@@ -167,10 +175,6 @@ export async function createReviewPdf(report) {
   if (!report.beforeChanges.length) line('No event changes were recorded since the previous review.', { color: colors.muted });
   report.beforeChanges.forEach(changeGroup);
 
-  heading('Flags present when review began');
-  if (!report.startFlags.length) line('No flags were present when the review began.', { color: colors.muted });
-  report.startFlags.forEach(flagGroup);
-
   heading('Manual corrections during review');
   if (!report.manualChanges.length) line('No manual event corrections were recorded during this review.', { color: colors.muted });
   report.manualChanges.forEach(changeGroup);
@@ -180,9 +184,17 @@ export async function createReviewPdf(report) {
     report.automatedDuringReview.forEach(changeGroup);
   }
 
-  heading('Remaining flags');
-  if (!report.remainingFlags.length) line('No unresolved flags remain.', { color: colors.muted });
-  report.remainingFlags.forEach(flagGroup);
+  heading('New flags');
+  if (!report.newFlags.length) line('No new flags this review.', { color: colors.muted });
+  report.newFlags.forEach((flag) => flagGroup(flag));
+
+  heading('Standing flags - still unresolved');
+  if (!report.standingFlags.length) line('Nothing acknowledged is still outstanding.', { color: colors.muted });
+  report.standingFlags.forEach((flag) => flagGroup(flag, flagAge(flag.acknowledgedAt, report.completedAt, flag.reviewsSpanned)));
+
+  heading('Resolved since acknowledgement');
+  if (!report.completedFlags.length) line('No acknowledged flags self-corrected this period.', { color: colors.muted });
+  report.completedFlags.forEach((flag) => flagGroup(flag, `Resolved - self-corrected (acknowledged ${formatDate(flag.acknowledgedAt)}).`));
 
   const pages = pdf.getPages();
   pages.forEach((pdfPage, index) => {
