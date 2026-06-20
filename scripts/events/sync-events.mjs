@@ -145,17 +145,38 @@ function hasDifferentSourceImages(candidates) {
 }
 
 async function main() {
-  const [existingEvents, previousState, purplepassEvents, facebookResult] = await Promise.all([
+  const [existingEvents, previousState] = await Promise.all([
     loadExistingEvents(),
     loadState(),
+  ]);
+  const [purplepassResult, facebookSettled] = await Promise.allSettled([
     fetchPurplepassEvents({ organizerId: process.env.PURPLEPASS_ORGANIZER_ID || '42425' }),
     fetchFacebookEvents(),
   ]);
+  const purplepassEvents = purplepassResult.status === 'fulfilled' ? purplepassResult.value : [];
+  const facebookResult = facebookSettled.status === 'fulfilled'
+    ? facebookSettled.value
+    : { events: [], warning: `Facebook source failed: ${facebookSettled.reason?.message || 'Unknown error'}` };
+  const sourceWarnings = [
+    ...(purplepassResult.status === 'rejected'
+      ? [`Purplepass source failed: ${purplepassResult.reason?.message || 'Unknown error'}`]
+      : []),
+    facebookResult.warning,
+  ].filter(Boolean);
 
   const bundles = attachFacebookToPurplepass(purplepassEvents, facebookResult.events);
   const claimed = new Set();
   const changes = [];
-  const flags = [];
+  const flags = sourceWarnings.map((warning) => ({
+    eventKey: warning.startsWith('Purplepass') ? 'source:purplepass' : 'source:facebook',
+    title: 'Event sync source',
+    field: 'source',
+    label: 'source connection',
+    severity: 'warning',
+    message: warning,
+    chosen: { source: 'existing', value: 'Existing website data retained.' },
+    candidates: [],
+  }));
   const nextEventsState = { ...(previousState.events || {}) };
 
   for (const bundle of bundles) {
@@ -265,7 +286,7 @@ async function main() {
       purplepassEvents: purplepassEvents.length,
       facebookEvents: facebookResult.events.length,
       facebookConfigured: !facebookResult.warning,
-      warnings: [facebookResult.warning].filter(Boolean),
+      warnings: sourceWarnings,
       changedEvents: changes.length,
     },
     events: nextEventsState,
@@ -293,6 +314,7 @@ async function main() {
     flags: nextState.flags.length,
     flagDetails: nextState.flags,
     warning: facebookResult.warning,
+    sourceWarnings,
     changes,
   }, null, 2));
 }
