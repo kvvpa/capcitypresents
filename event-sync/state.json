@@ -1,7 +1,7 @@
 {
   "version": 1,
   "lastRun": {
-    "at": "2026-06-20T17:11:03.326Z",
+    "at": "2026-06-20T17:17:33.343Z",
     "trigger": "workflow_dispatch",
     "purplepassEvents": 0,
     "facebookEvents": 2,
@@ -9,7 +9,7 @@
     "warnings": [
       "Purplepass source failed: https://www.purplepass.com/v2/organizer/42425 returned 403"
     ],
-    "changedEvents": 2
+    "changedEvents": 0
   },
   "events": {},
   "flags": [
