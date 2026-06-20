@@ -1,7 +1,7 @@
 ---
 title: Haywire in Oly June 26th!
 date: 2026-06-26
-venue: Venue TBA
+venue: Olympia Lamplighters
 city: Olympia, WA
 ticketUrl: https://haywireolympia.com
 facebookEventUrl: https://www.facebook.com/events/1569294453756923/

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "lastRun": {
-    "at": "2026-06-20T17:08:17.622Z",
+    "at": "2026-06-20T17:11:03.326Z",
     "trigger": "workflow_dispatch",
     "purplepassEvents": 0,
     "facebookEvents": 2,
@@ -26,7 +26,7 @@
         "doorsTime": "existing",
         "showTime": "existing",
         "venue": "facebook",
-        "city": "existing",
+        "city": "facebook",
         "ageRestriction": "existing",
         "price": "existing",
         "ticketUrl": "existing",
@@ -39,7 +39,7 @@
         "title": "☉THOT SQUAD: 2 THOTS | 2 Prayers Tour at Jazzbones (Tacoma, WA)☉",
         "date": "2026-11-02",
         "venue": "Jazzbones",
-        "city": "Olympia, WA",
+        "city": "Tacoma, WA",
         "facebookEventUrl": "https://www.facebook.com/events/628826649851127/",
         "poster": "/uploads/synced/facebook-137485419620294_1354125613380133-facebook-eeaceeaa18.jpg",
         "posterSource": "facebook",
@@ -51,7 +51,7 @@
         "alternateImages": [],
         "description": "THOT SQUAD returns to the Pacific Northwest! It's going down at Jazzbones on Sunday, November 2nd. Tickets go on-sale on August 13th!"
       },
-      "lastSeenAt": "2026-06-20T17:08:15.817Z"
+      "lastSeenAt": "2026-06-20T17:11:03.220Z"
     },
     "facebook:137485419620294_1295836502542378": {
       "file": "src/content/events/2026-06-26-haywire-in-oly-june-26th.md",
@@ -66,11 +66,11 @@
         "date": "existing",
         "doorsTime": "existing",
         "showTime": "existing",
-        "venue": "existing",
+        "venue": "facebook",
         "city": "facebook",
         "ageRestriction": "existing",
         "price": "existing",
-        "ticketUrl": "facebook",
+        "ticketUrl": "existing",
         "facebookEventUrl": "facebook",
         "status": "existing",
         "description": "existing"
@@ -79,8 +79,9 @@
       "lastPublished": {
         "title": "Haywire in Oly June 26th!",
         "date": "2026-06-26",
-        "venue": "Venue TBA",
+        "venue": "Olympia Lamplighters",
         "city": "Olympia, WA",
+        "ticketUrl": "https://haywireolympia.com",
         "facebookEventUrl": "https://www.facebook.com/events/1569294453756923/",
         "poster": "/uploads/synced/facebook-137485419620294_1295836502542378-facebook-b40ceaea01.jpg",
         "posterSource": "facebook",
@@ -98,10 +99,9 @@
         "syncId": "facebook:137485419620294_1295836502542378",
         "status": "announced",
         "featured": false,
-        "ticketUrl": "https://haywireolympia.com",
         "description": "HAYWIRE, DEATH BEFORE DISHONOR at Olympia Lamplighters June 26th! Only 20 days away! LOW TICKET WARNING! Get yours at https://haywireolympia.com"
       },
-      "lastSeenAt": "2026-06-20T17:08:17.622Z"
+      "lastSeenAt": "2026-06-20T17:11:03.326Z"
     }
   },
   "flags": [
