@@ -1,7 +1,7 @@
 {
   "version": 1,
   "lastRun": {
-    "at": "2026-06-20T17:02:10.584Z",
+    "at": "2026-06-20T17:08:17.622Z",
     "trigger": "workflow_dispatch",
     "purplepassEvents": 0,
     "facebookEvents": 2,
@@ -21,35 +21,37 @@
         "facebook": "https://www.facebook.com/1644183277707697/posts/1354125613380133"
       },
       "fieldSources": {
-        "title": "facebook",
-        "date": "facebook",
+        "title": "existing",
+        "date": "existing",
         "doorsTime": "existing",
         "showTime": "existing",
-        "venue": "existing",
+        "venue": "facebook",
         "city": "existing",
         "ageRestriction": "existing",
         "price": "existing",
         "ticketUrl": "existing",
         "facebookEventUrl": "facebook",
-        "status": "facebook",
-        "description": "facebook"
+        "status": "existing",
+        "description": "existing"
       },
       "manualFields": [],
       "lastPublished": {
         "title": "☉THOT SQUAD: 2 THOTS | 2 Prayers Tour at Jazzbones (Tacoma, WA)☉",
         "date": "2026-11-02",
+        "venue": "Jazzbones",
+        "city": "Olympia, WA",
         "facebookEventUrl": "https://www.facebook.com/events/628826649851127/",
-        "status": "announced",
-        "syncId": "facebook:137485419620294_1354125613380133",
-        "imageLocked": false,
-        "lockedFields": [],
-        "featured": false,
         "poster": "/uploads/synced/facebook-137485419620294_1354125613380133-facebook-eeaceeaa18.jpg",
         "posterSource": "facebook",
+        "imageLocked": false,
+        "lockedFields": [],
+        "syncId": "facebook:137485419620294_1354125613380133",
+        "status": "announced",
+        "featured": false,
         "alternateImages": [],
         "description": "THOT SQUAD returns to the Pacific Northwest! It's going down at Jazzbones on Sunday, November 2nd. Tickets go on-sale on August 13th!"
       },
-      "lastSeenAt": "2026-06-20T17:02:10.178Z"
+      "lastSeenAt": "2026-06-20T17:08:15.817Z"
     },
     "facebook:137485419620294_1295836502542378": {
       "file": "src/content/events/2026-06-26-haywire-in-oly-june-26th.md",
@@ -60,30 +62,26 @@
         "facebook": "https://www.facebook.com/1644183277707697/videos/3427495984048462"
       },
       "fieldSources": {
-        "title": "facebook",
-        "date": "facebook",
+        "title": "existing",
+        "date": "existing",
         "doorsTime": "existing",
         "showTime": "existing",
         "venue": "existing",
         "city": "facebook",
         "ageRestriction": "existing",
         "price": "existing",
-        "ticketUrl": "existing",
+        "ticketUrl": "facebook",
         "facebookEventUrl": "facebook",
-        "status": "facebook",
-        "description": "facebook"
+        "status": "existing",
+        "description": "existing"
       },
       "manualFields": [],
       "lastPublished": {
         "title": "Haywire in Oly June 26th!",
         "date": "2026-06-26",
+        "venue": "Venue TBA",
         "city": "Olympia, WA",
         "facebookEventUrl": "https://www.facebook.com/events/1569294453756923/",
-        "status": "announced",
-        "syncId": "facebook:137485419620294_1295836502542378",
-        "imageLocked": false,
-        "lockedFields": [],
-        "featured": false,
         "poster": "/uploads/synced/facebook-137485419620294_1295836502542378-facebook-b40ceaea01.jpg",
         "posterSource": "facebook",
         "alternateImages": [
@@ -95,9 +93,15 @@
             "kind": "photo"
           }
         ],
+        "imageLocked": false,
+        "lockedFields": [],
+        "syncId": "facebook:137485419620294_1295836502542378",
+        "status": "announced",
+        "featured": false,
+        "ticketUrl": "https://haywireolympia.com",
         "description": "HAYWIRE, DEATH BEFORE DISHONOR at Olympia Lamplighters June 26th! Only 20 days away! LOW TICKET WARNING! Get yours at https://haywireolympia.com"
       },
-      "lastSeenAt": "2026-06-20T17:02:10.584Z"
+      "lastSeenAt": "2026-06-20T17:08:17.622Z"
     }
   },
   "flags": [

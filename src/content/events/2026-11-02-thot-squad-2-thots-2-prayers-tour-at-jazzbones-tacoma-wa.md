@@ -1,7 +1,7 @@
 ---
 title: "☉THOT SQUAD: 2 THOTS | 2 Prayers Tour at Jazzbones (Tacoma, WA)☉"
 date: 2026-11-02
-venue: Venue TBA
+venue: Jazzbones
 city: Olympia, WA
 facebookEventUrl: https://www.facebook.com/events/628826649851127/
 poster: /uploads/synced/facebook-137485419620294_1354125613380133-facebook-eeaceeaa18.jpg
