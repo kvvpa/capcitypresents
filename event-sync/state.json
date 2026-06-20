@@ -1,18 +1,105 @@
 {
   "version": 1,
   "lastRun": {
-    "at": "2026-06-20T16:53:48.109Z",
+    "at": "2026-06-20T17:02:10.584Z",
     "trigger": "workflow_dispatch",
     "purplepassEvents": 0,
-    "facebookEvents": 0,
-    "facebookConfigured": false,
+    "facebookEvents": 2,
+    "facebookConfigured": true,
     "warnings": [
-      "Purplepass source failed: https://www.purplepass.com/v2/organizer/42425 returned 403",
-      "Facebook source failed: Facebook Graph API error: Error validating application. Application has been deleted."
+      "Purplepass source failed: https://www.purplepass.com/v2/organizer/42425 returned 403"
     ],
-    "changedEvents": 0
+    "changedEvents": 2
   },
-  "events": {},
+  "events": {
+    "facebook:137485419620294_1354125613380133": {
+      "file": "src/content/events/2026-11-02-thot-squad-2-thots-2-prayers-tour-at-jazzbones-tacoma-wa.md",
+      "sourceIds": {
+        "facebookPost": "137485419620294_1354125613380133"
+      },
+      "sourceUrls": {
+        "facebook": "https://www.facebook.com/1644183277707697/posts/1354125613380133"
+      },
+      "fieldSources": {
+        "title": "facebook",
+        "date": "facebook",
+        "doorsTime": "existing",
+        "showTime": "existing",
+        "venue": "existing",
+        "city": "existing",
+        "ageRestriction": "existing",
+        "price": "existing",
+        "ticketUrl": "existing",
+        "facebookEventUrl": "facebook",
+        "status": "facebook",
+        "description": "facebook"
+      },
+      "manualFields": [],
+      "lastPublished": {
+        "title": "☉THOT SQUAD: 2 THOTS | 2 Prayers Tour at Jazzbones (Tacoma, WA)☉",
+        "date": "2026-11-02",
+        "facebookEventUrl": "https://www.facebook.com/events/628826649851127/",
+        "status": "announced",
+        "syncId": "facebook:137485419620294_1354125613380133",
+        "imageLocked": false,
+        "lockedFields": [],
+        "featured": false,
+        "poster": "/uploads/synced/facebook-137485419620294_1354125613380133-facebook-eeaceeaa18.jpg",
+        "posterSource": "facebook",
+        "alternateImages": [],
+        "description": "THOT SQUAD returns to the Pacific Northwest! It's going down at Jazzbones on Sunday, November 2nd. Tickets go on-sale on August 13th!"
+      },
+      "lastSeenAt": "2026-06-20T17:02:10.178Z"
+    },
+    "facebook:137485419620294_1295836502542378": {
+      "file": "src/content/events/2026-06-26-haywire-in-oly-june-26th.md",
+      "sourceIds": {
+        "facebookPost": "137485419620294_1295836502542378"
+      },
+      "sourceUrls": {
+        "facebook": "https://www.facebook.com/1644183277707697/videos/3427495984048462"
+      },
+      "fieldSources": {
+        "title": "facebook",
+        "date": "facebook",
+        "doorsTime": "existing",
+        "showTime": "existing",
+        "venue": "existing",
+        "city": "facebook",
+        "ageRestriction": "existing",
+        "price": "existing",
+        "ticketUrl": "existing",
+        "facebookEventUrl": "facebook",
+        "status": "facebook",
+        "description": "facebook"
+      },
+      "manualFields": [],
+      "lastPublished": {
+        "title": "Haywire in Oly June 26th!",
+        "date": "2026-06-26",
+        "city": "Olympia, WA",
+        "facebookEventUrl": "https://www.facebook.com/events/1569294453756923/",
+        "status": "announced",
+        "syncId": "facebook:137485419620294_1295836502542378",
+        "imageLocked": false,
+        "lockedFields": [],
+        "featured": false,
+        "poster": "/uploads/synced/facebook-137485419620294_1295836502542378-facebook-b40ceaea01.jpg",
+        "posterSource": "facebook",
+        "alternateImages": [
+          {
+            "path": "/uploads/synced/facebook-137485419620294_1295836502542378-facebook-24e8a45170.jpg",
+            "source": "facebook",
+            "width": 720,
+            "height": 384,
+            "kind": "photo"
+          }
+        ],
+        "description": "HAYWIRE, DEATH BEFORE DISHONOR at Olympia Lamplighters June 26th! Only 20 days away! LOW TICKET WARNING! Get yours at https://haywireolympia.com"
+      },
+      "lastSeenAt": "2026-06-20T17:02:10.584Z"
+    }
+  },
   "flags": [
     {
       "eventKey": "source:purplepass",
@@ -27,20 +114,6 @@
       },
       "candidates": [],
       "id": "ccd8e0d8385fff"
-    },
-    {
-      "eventKey": "source:facebook",
-      "title": "Event sync source",
-      "field": "source",
-      "label": "source connection",
-      "severity": "warning",
-      "message": "Facebook source failed: Facebook Graph API error: Error validating application. Application has been deleted.",
-      "chosen": {
-        "source": "existing",
-        "value": "Existing website data retained."
-      },
-      "candidates": [],
-      "id": "dcb9a16015e214"
     }
   ]
 }
