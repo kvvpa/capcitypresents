@@ -122,8 +122,13 @@ export async function materializeEventImages({
     ? current
     : [...unique].sort((a, b) => imageScore(b) - imageScore(a))[0] || null;
 
+  // Only fall back to a previously-stored poster if it's a local file we can
+  // serve. A remote URL (e.g. a Purplepass image that 403s) must never be written
+  // as the poster, or the site renders a broken image instead of letting the
+  // page fall back to the default stand-in graphic.
+  const localExistingPoster = existingPoster?.startsWith('/') ? existingPoster : '';
   return {
-    poster: selected?.path || existingPoster || '',
+    poster: selected?.path || localExistingPoster || '',
     posterSource: selected?.source || existingPosterSource || 'unknown',
     alternateImages: unique
       .filter((candidate) => candidate.path && candidate.path !== selected?.path)
