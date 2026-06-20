@@ -48,11 +48,12 @@ function bodyQuality(value = '') {
 function candidateScore(field, source, value, evidence = '') {
   if (value === undefined || value === null || cleanText(value) === '') return -Infinity;
   let score = FIELD_SCORES[field]?.[source] ?? 60;
+  if (source === 'existing' && /\b(tba|unknown|coming soon)\b/i.test(cleanText(value))) score -= 60;
   if (field === 'description') {
     score = { existing: 62, purplepass: 76, facebook: 72 }[source] + bodyQuality(value);
   }
   if (evidence === 'ticket-page') score += 4;
-  if (evidence === 'post-text-explicit') score += 6;
+  if (evidence === 'post-text-explicit') score += field === 'venue' || field === 'city' ? 20 : 6;
   if ((field === 'doorsTime' || field === 'showTime') && isLikelyMorningMistake(value)) score -= 48;
   if (field === 'date' && isLikelyDefaultDate(value) && evidence !== 'post-text-explicit') score -= 38;
   if (field === 'status' && source === 'existing' && ['cancelled', 'sold-out'].includes(value)) score += 20;

@@ -191,7 +191,29 @@ function postUrls(post, attachments) {
   return {
     facebookEventUrl: findFacebookEventUrl(raw),
     purplepassUrl: findPurplepassUrl(raw),
+    externalUrl: (raw.match(/https?:\/\/[^\s)"'<]+/gi) || [])
+      .find((candidate) => !/facebook\.com|fb\.me|instagram\.com/i.test(candidate)) || '',
   };
+}
+
+export function inferFacebookPostLocation(message = '') {
+  const city = /\btacoma\b/i.test(message)
+    ? 'Tacoma, WA'
+    : /\b(olympia|oly)\b/i.test(message)
+      ? 'Olympia, WA'
+      : '';
+  const lines = cleanText(message).split('\n');
+  const wildChildLine = lines.find((line) => /\bwild child(?: taps)?\b/i.test(line));
+  if (wildChildLine) return { venue: 'Wild Child', city: city || 'Olympia, WA' };
+
+  const dateBoundary = '(?:on\\s+)?(?:(?:sun|mon|tue|wed|thu|fri|sat)(?:day)?|jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?|\\d{1,2}(?:st|nd|rd|th)?)';
+  for (const line of lines) {
+    if (/https?:\/\//i.test(line)) continue;
+    const match = line.match(new RegExp(`\\bat\\s+(.+?)(?=\\s+${dateBoundary}\\b|[.!]|$)`, 'i'));
+    const venue = cleanText(match?.[1] || '').replace(/[()☉]+$/g, '').trim();
+    if (venue && venue.length <= 80) return { venue, city };
+  }
+  return { venue: '', city };
 }
 
 export async function fetchFacebookEvents({
@@ -239,7 +261,7 @@ export async function fetchFacebookEvents({
     const title = postTitle(post, attachments);
     const ageLine = message.split('\n').find((line) => /\b(all ages|21\+|18\+)\b/i.test(line)) || '';
     const priceLine = message.split('\n').find((line) => /\$\s?\d/.test(line)) || '';
-    const venueLine = message.split('\n').find((line) => /\bwild child(?: taps)?\b/i.test(line)) || '';
+    const location = inferFacebookPostLocation(message);
 
     return {
       source: 'facebook',
@@ -249,11 +271,11 @@ export async function fetchFacebookEvents({
       date,
       doorsTime: times.doorsTime,
       showTime: times.showTime,
-      venue: /wild child/i.test(venueLine) ? 'Wild Child' : '',
-      city: /\bolympia\b/i.test(message) ? 'Olympia, WA' : '',
+      venue: location.venue,
+      city: location.city,
       ageRestriction: cleanText(ageLine.match(/\b(All Ages|21\+|18\+)\b/i)?.[1] || ''),
       price: cleanText(priceLine),
-      ticketUrl: urls.purplepassUrl,
+      ticketUrl: urls.purplepassUrl || urls.externalUrl,
       facebookEventUrl: urls.facebookEventUrl || post.permalink_url || '',
       description: message,
       status: /\b(cancelled|canceled)\b/i.test(message) ? 'cancelled' : /\bsold\s*out\b/i.test(message) ? 'sold-out' : 'announced',
@@ -264,15 +286,19 @@ export async function fetchFacebookEvents({
         doorsTime: times.doorsTime ? 'post-text' : '',
         showTime: times.showTime ? 'post-text' : '',
         title: attachments.some((attachment) => cleanText(attachment.title || '') === title) ? 'attachment-title' : 'post-text',
+        venue: location.venue ? 'post-text-explicit' : '',
+        city: location.city ? 'post-text-explicit' : '',
       },
     };
-  }).filter((event) => {
-    const hasEventLink = Boolean(event.facebookEventUrl.match(/facebook\.com\/events\//i));
-    const hasPurplepassLink = Boolean(event.purplepassId);
-    return hasPurplepassLink || (hasEventLink && event.title && event.date);
-  });
+  }).filter(isFacebookEventEligible);
 
   return { events, warning: '' };
+}
+
+export function isFacebookEventEligible(event) {
+  const hasEventLink = Boolean(event.facebookEventUrl?.match(/facebook\.com\/events\//i));
+  const hasPurplepassLink = Boolean(event.purplepassId);
+  return hasPurplepassLink || Boolean(hasEventLink && event.title && event.date);
 }
 
 export function attachFacebookToPurplepass(purplepassEvents, facebookEvents) {

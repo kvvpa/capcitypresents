@@ -19,7 +19,7 @@ function merge({ existing = {}, purplepass = {}, facebook = {}, previousState } 
       },
       body: '',
     },
-    purplepass: {
+    purplepass: purplepass === null ? null : {
       source: 'purplepass',
       title: 'Example Show',
       date: '2026-08-15',
@@ -30,7 +30,7 @@ function merge({ existing = {}, purplepass = {}, facebook = {}, previousState } 
       evidence: { date: 'ticket-page', showTime: 'ticket-page' },
       ...purplepass,
     },
-    facebook: {
+    facebook: facebook === null ? null : {
       source: 'facebook',
       title: 'Example Show',
       date: '2026-08-15',
@@ -81,4 +81,30 @@ test('preserves an explicitly locked field', () => {
     purplepass: { title: 'Different Ticketing Title' },
   });
   assert.equal(result.data.title, 'Joey Approved Title');
+});
+
+test('replaces a placeholder venue with a sourced venue', () => {
+  const result = merge({
+    existing: { venue: 'Venue TBA' },
+    purplepass: null,
+    facebook: { venue: 'Olympia Lamplighters' },
+  });
+  assert.equal(result.data.venue, 'Olympia Lamplighters');
+});
+
+test('uses an explicitly named Facebook venue and city for a tour stop', () => {
+  const result = merge({
+    existing: { venue: 'Venue TBA', city: 'Olympia, WA' },
+    purplepass: null,
+    facebook: {
+      venue: 'Jazzbones',
+      city: 'Tacoma, WA',
+      evidence: {
+        venue: 'post-text-explicit',
+        city: 'post-text-explicit',
+      },
+    },
+  });
+  assert.equal(result.data.venue, 'Jazzbones');
+  assert.equal(result.data.city, 'Tacoma, WA');
 });
