@@ -1,6 +1,31 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { inferFacebookPostLocation, isFacebookEventEligible } from './sources.mjs';
+import {
+  inferFacebookPostEventDate,
+  inferFacebookPostLocation,
+  isFacebookEventEligible,
+} from './sources.mjs';
+
+test('uses the Facebook post year when an old event omits its year', () => {
+  assert.equal(
+    inferFacebookPostEventDate('Haywire at Olympia Lamplighters June 26th!', '2025-06-06T18:00:00+0000'),
+    '2025-06-26',
+  );
+});
+
+test('rolls a January event into the next year when announced in December', () => {
+  assert.equal(
+    inferFacebookPostEventDate('Tour stop January 9th!', '2025-12-10T18:00:00+0000'),
+    '2026-01-09',
+  );
+});
+
+test('keeps an explicit event year even when the post is older', () => {
+  assert.equal(
+    inferFacebookPostEventDate('Tour stop November 2, 2026!', '2025-08-01T18:00:00+0000'),
+    '2026-11-02',
+  );
+});
 
 test('extracts Olympia Lamplighters from a Facebook post', () => {
   const location = inferFacebookPostLocation(

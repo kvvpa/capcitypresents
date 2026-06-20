@@ -216,6 +216,21 @@ export function inferFacebookPostLocation(message = '') {
   return { venue: '', city };
 }
 
+export function inferFacebookPostEventDate(text = '', createdTime = '') {
+  const createdAt = new Date(createdTime);
+  const hasValidCreatedTime = !Number.isNaN(createdAt.getTime());
+  const fallbackYear = hasValidCreatedTime ? createdAt.getUTCFullYear() : new Date().getFullYear();
+  const parsedDate = parseDateFromText(text, fallbackYear);
+  if (!parsedDate || !hasValidCreatedTime || /\b20\d{2}\b/.test(cleanText(text))) return parsedDate;
+
+  const candidate = new Date(`${parsedDate}T23:59:59Z`);
+  const postDateWithTolerance = new Date(createdAt.getTime() - 45 * 24 * 60 * 60 * 1000);
+  if (candidate < postDateWithTolerance) {
+    return `${fallbackYear + 1}${parsedDate.slice(4)}`;
+  }
+  return parsedDate;
+}
+
 export async function fetchFacebookEvents({
   pageId = process.env.FACEBOOK_PAGE_ID,
   accessToken = process.env.FACEBOOK_PAGE_ACCESS_TOKEN,
@@ -250,12 +265,12 @@ export async function fetchFacebookEvents({
     nextUrl = payload.paging?.next || '';
   }
 
-  const currentYear = new Date().getFullYear();
   const events = posts.filter((post) => String(post.from?.id || '') === String(pageId)).map((post) => {
     const attachments = flattenAttachments(post.attachments?.data || []);
     const message = cleanText(post.message || '');
     const urls = postUrls(post, attachments);
-    const date = parseDateFromText(`${message}\n${attachments.map((item) => item.description || '').join('\n')}`, currentYear);
+    const dateText = `${message}\n${attachments.map((item) => item.description || '').join('\n')}`;
+    const date = inferFacebookPostEventDate(dateText, post.created_time);
     const times = parseTimesFromText(message);
     const images = uniqueBy(attachments.map(attachmentImage).filter(Boolean), (image) => image.remoteUrl);
     const title = postTitle(post, attachments);
@@ -267,6 +282,7 @@ export async function fetchFacebookEvents({
       source: 'facebook',
       sourceId: String(post.id),
       sourceUrl: post.permalink_url || '',
+      sourceCreatedAt: post.created_time || '',
       title,
       date,
       doorsTime: times.doorsTime,
