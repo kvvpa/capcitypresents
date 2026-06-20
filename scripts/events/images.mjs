@@ -5,6 +5,7 @@ import {
   hashBuffer,
   imageScore,
   inferImageKind,
+  proxyPurplepass,
   safeExtension,
   uniqueBy,
 } from './utils.mjs';
@@ -29,7 +30,7 @@ async function inspectLocal(publicDir, publicPath) {
 }
 
 async function fetchImage(remoteUrl) {
-  const response = await fetch(remoteUrl, {
+  const response = await fetch(proxyPurplepass(remoteUrl), {
     headers: {
       'User-Agent': 'CapCityPresentsEventSync/1.0 (+https://capcitypresents.com)',
       Accept: 'image/avif,image/webp,image/png,image/jpeg,image/*',

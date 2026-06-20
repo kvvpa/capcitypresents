@@ -6,11 +6,36 @@ import {
   inferFacebookPostLocation,
   isFacebookEventEligible,
 } from './sources.mjs';
+import { proxyPurplepass } from './utils.mjs';
 
-test('uses the configured Purplepass feed proxy', async () => {
+test('routes Purplepass URLs through the proxy and leaves other hosts alone', () => {
+  process.env.PURPLEPASS_PROXY_BASE = 'https://pp.example.workers.dev/';
+  process.env.PURPLEPASS_PROXY_TOKEN = 'secret';
+  try {
+    const proxied = new URL(proxyPurplepass('https://www.purplepass.com/v2/organizer/42425'));
+    assert.equal(proxied.origin, 'https://pp.example.workers.dev');
+    assert.equal(proxied.searchParams.get('url'), 'https://www.purplepass.com/v2/organizer/42425');
+    assert.equal(proxied.searchParams.get('token'), 'secret');
+    // Non-Purplepass URLs (e.g. Facebook images) must not be proxied or tokenized.
+    assert.equal(proxyPurplepass('https://graph.facebook.com/x'), 'https://graph.facebook.com/x');
+  } finally {
+    delete process.env.PURPLEPASS_PROXY_BASE;
+    delete process.env.PURPLEPASS_PROXY_TOKEN;
+  }
+});
+
+test('returns the original URL when no proxy is configured', () => {
+  delete process.env.PURPLEPASS_PROXY_BASE;
+  assert.equal(
+    proxyPurplepass('https://www.purplepass.com/v2/organizer/42425'),
+    'https://www.purplepass.com/v2/organizer/42425',
+  );
+});
+
+test('uses an explicit pre-assembled feed when feedUrl is set', async () => {
   const originalFetch = globalThis.fetch;
   globalThis.fetch = async (url) => {
-    assert.equal(String(url), 'https://capcitypresents.com/api/purplepass-feed');
+    assert.equal(String(url), 'https://feed.example.com/events.json');
     return new Response(JSON.stringify({
       events: [{ source: 'purplepass', sourceId: '379058', title: 'Holy Locust' }],
     }), {
@@ -20,7 +45,7 @@ test('uses the configured Purplepass feed proxy', async () => {
   };
   try {
     const events = await fetchPurplepassEvents({
-      feedUrl: 'https://capcitypresents.com/api/purplepass-feed',
+      feedUrl: 'https://feed.example.com/events.json',
     });
     assert.equal(events[0].sourceId, '379058');
   } finally {

@@ -75,6 +75,26 @@ export function findPurplepassUrl(value = '') {
   return String(value).match(/https?:\/\/(?:www\.)?purplepass\.com\/(?:events\/)?\d+-[^\s)"'<]*/i)?.[0] || '';
 }
 
+// Purplepass fronts its API/images with an AWS WAF that 403s datacenter IPs
+// (GitHub Actions, Netlify Functions). When PURPLEPASS_PROXY_BASE points at a
+// Cloudflare Worker — whose egress the WAF allows — Purplepass requests are
+// routed through it. Non-Purplepass URLs (e.g. Facebook) pass through untouched.
+export function proxyPurplepass(url) {
+  const base = (process.env.PURPLEPASS_PROXY_BASE || '').trim().replace(/\/+$/, '');
+  if (!base) return url;
+  let host = '';
+  try {
+    host = new URL(url).host;
+  } catch {
+    return url;
+  }
+  if (!/(^|\.)purplepass\.com$/i.test(host)) return url;
+  const params = new URLSearchParams({ url });
+  const token = (process.env.PURPLEPASS_PROXY_TOKEN || '').trim();
+  if (token) params.set('token', token);
+  return `${base}/?${params.toString()}`;
+}
+
 export function parseDateFromText(text = '', fallbackYear = new Date().getFullYear()) {
   const normalized = cleanText(text);
   const iso = normalized.match(/\b(20\d{2})-(\d{2})-(\d{2})\b/);

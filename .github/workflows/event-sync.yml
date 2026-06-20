@@ -60,7 +60,10 @@ jobs:
         env:
           EVENT_SYNC_TRIGGER: ${{ github.event_name }}
           PURPLEPASS_ORGANIZER_ID: "42425"
-          PURPLEPASS_FEED_URL: "https://capcitypresents.com/api/purplepass-feed"
+          # Purplepass blocks datacenter IPs (GitHub + Netlify). Route its
+          # requests through a Cloudflare Worker, whose egress the WAF allows.
+          PURPLEPASS_PROXY_BASE: ${{ secrets.PURPLEPASS_PROXY_BASE }}
+          PURPLEPASS_PROXY_TOKEN: ${{ secrets.PURPLEPASS_PROXY_TOKEN }}
           FACEBOOK_GRAPH_VERSION: "v25.0"
           FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
           FACEBOOK_PAGE_ACCESS_TOKEN: ${{ secrets.FACEBOOK_PAGE_ACCESS_TOKEN }}

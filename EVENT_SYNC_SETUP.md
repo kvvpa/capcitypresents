@@ -19,11 +19,79 @@ Add these under repository **Settings > Secrets and variables > Actions**:
 
 - `FACEBOOK_PAGE_ID`
 - `FACEBOOK_PAGE_ACCESS_TOKEN`
+- `PURPLEPASS_PROXY_BASE` — the Cloudflare Worker URL, e.g. `https://pp-proxy.<subdomain>.workers.dev`
+- `PURPLEPASS_PROXY_TOKEN` — the shared secret set as the Worker's `PROXY_TOKEN` variable
 
 The Purplepass organizer ID is already configured as `42425`.
-The workflow reads Purplepass through the fixed `/api/purplepass-feed` Netlify function because Purplepass blocks GitHub-hosted runner IP addresses. The proxy only exposes CapCity Presents organizer data and images.
+
+Purplepass fronts its API and images with an AWS WAF that returns `403` to
+datacenter IP ranges — which includes both GitHub Actions runners **and**
+Netlify Functions (AWS Lambda). The sync therefore routes every Purplepass
+request through a Cloudflare Worker, whose egress the WAF allows. See
+[Cloudflare Worker proxy](#cloudflare-worker-proxy) for the Worker code and
+setup. Run locally with no proxy variables set and requests go directly to
+Purplepass (residential IPs are not blocked).
 
 The workflow uses Graph API `v25.0`, released February 18, 2026.
+
+## Cloudflare Worker proxy
+
+A single free Worker forwards allow-listed `purplepass.com` requests. Because the
+request exits Cloudflare's network (not AWS/Azure), Purplepass's WAF lets it
+through.
+
+1. At [dash.cloudflare.com](https://dash.cloudflare.com) → **Workers & Pages** →
+   **Create** → create a Worker named `pp-proxy` and deploy the starter.
+2. **Edit code**, replace everything with the code below, and **Deploy**.
+3. In the Worker's **Settings → Variables**, add a variable named `PROXY_TOKEN`
+   with a long random value (encrypt it). Re-deploy.
+4. Save the Worker URL as the `PURPLEPASS_PROXY_BASE` GitHub secret and the same
+   token value as `PURPLEPASS_PROXY_TOKEN`.
+
+```js
+const ALLOWED_HOST = /(^|\.)purplepass\.com$/i;
+
+export default {
+  async fetch(request, env) {
+    if (request.method !== 'GET') return new Response('Method not allowed', { status: 405 });
+    const { searchParams } = new URL(request.url);
+
+    // Shared-secret guard: enabled whenever the PROXY_TOKEN variable is set.
+    if (env.PROXY_TOKEN && searchParams.get('token') !== env.PROXY_TOKEN) {
+      return new Response('Forbidden', { status: 403 });
+    }
+
+    const target = searchParams.get('url');
+    if (!target) return new Response('Missing url', { status: 400 });
+
+    let url;
+    try { url = new URL(target); } catch { return new Response('Bad url', { status: 400 }); }
+    if (url.protocol !== 'https:' || !ALLOWED_HOST.test(url.host)) {
+      return new Response('Host not allowed', { status: 403 });
+    }
+
+    const upstream = await fetch(url.toString(), {
+      headers: {
+        'User-Agent': 'CapCityPresentsEventSync/1.0 (+https://capcitypresents.com)',
+        Accept: request.headers.get('Accept') || '*/*',
+      },
+      redirect: 'follow',
+    });
+
+    const headers = new Headers();
+    const contentType = upstream.headers.get('content-type');
+    if (contentType) headers.set('Content-Type', contentType);
+    headers.set('Access-Control-Allow-Origin', '*');
+    headers.set('Cache-Control', 'public, max-age=300');
+    return new Response(upstream.body, { status: upstream.status, headers });
+  },
+};
+```
+
+The two Netlify functions (`netlify/functions/purplepass-feed.mts` and
+`purplepass-image.mts`) were the previous proxy. They were removed because they
+no longer worked from Netlify (AWS Lambda is blocked) and nothing on the site
+consumed them.
 
 ## Meta setup
 

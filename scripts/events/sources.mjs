@@ -7,6 +7,7 @@ import {
   parseDateFromText,
   parsePurplepassId,
   parseTimesFromText,
+  proxyPurplepass,
   titleSimilarity,
   uniqueBy,
 } from './utils.mjs';
@@ -18,7 +19,7 @@ turndown.addRule('blankParagraphs', {
 });
 
 async function fetchJson(url) {
-  const response = await fetch(url, {
+  const response = await fetch(proxyPurplepass(url), {
     headers: {
       'User-Agent': 'CapCityPresentsEventSync/1.0 (+https://capcitypresents.com)',
       Accept: 'application/json',
