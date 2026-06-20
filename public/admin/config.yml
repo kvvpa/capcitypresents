@@ -46,6 +46,57 @@ collections:
       - { label: Ticket URL, name: ticketUrl, widget: string, required: false }
       - { label: Facebook Event URL, name: facebookEventUrl, widget: string, required: false }
       - { label: Poster, name: poster, widget: image, required: false }
+      - label: Poster Source
+        name: posterSource
+        widget: select
+        required: false
+        options:
+          - { label: Manually selected, value: manual }
+          - { label: Purplepass, value: purplepass }
+          - { label: Facebook, value: facebook }
+          - { label: Unknown, value: unknown }
+      - { label: Lock Poster Choice, name: imageLocked, widget: boolean, default: false, required: false, hint: "Prevents the automated sync from changing the selected poster." }
+      - label: Alternate Images
+        name: alternateImages
+        widget: list
+        required: false
+        collapsed: true
+        fields:
+          - { label: Image, name: path, widget: image }
+          - label: Source
+            name: source
+            widget: select
+            options: [manual, purplepass, facebook, unknown]
+          - label: Image Type
+            name: kind
+            widget: select
+            default: unknown
+            options:
+              - { label: Flyer, value: flyer }
+              - { label: Platform graphic, value: platform-graphic }
+              - { label: Band photo, value: photo }
+              - { label: Unknown, value: unknown }
+          - { label: Width, name: width, widget: number, required: false, value_type: int }
+          - { label: Height, name: height, widget: number, required: false, value_type: int }
+      - label: Locked Fields
+        name: lockedFields
+        widget: select
+        multiple: true
+        required: false
+        hint: "Locked fields keep your manual value during future syncs."
+        options:
+          - title
+          - date
+          - doorsTime
+          - showTime
+          - venue
+          - city
+          - ageRestriction
+          - price
+          - ticketUrl
+          - facebookEventUrl
+          - description
+      - { label: Sync ID, name: syncId, widget: hidden, required: false }
       - label: Status
         name: status
         widget: select

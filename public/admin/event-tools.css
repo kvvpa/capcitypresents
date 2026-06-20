@@ -1,0 +1,168 @@
+#capcity-event-tools {
+  position: fixed;
+  top: 12px;
+  right: 14px;
+  z-index: 2147483000;
+  color: #f5f5f5;
+  font: 14px/1.4 Inter, system-ui, sans-serif;
+}
+
+#capcity-event-tools * {
+  box-sizing: border-box;
+}
+
+.capcity-tools-bar {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.capcity-tools-button {
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: 6px;
+  background: #a3131b;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  padding: 9px 13px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, .28);
+}
+
+.capcity-tools-button.secondary {
+  background: #202124;
+}
+
+.capcity-tools-button:disabled {
+  cursor: wait;
+  opacity: .6;
+}
+
+.capcity-tools-panel {
+  display: none;
+  width: min(520px, calc(100vw - 28px));
+  max-height: calc(100vh - 76px);
+  margin-top: 8px;
+  overflow: auto;
+  border: 1px solid #3b3d42;
+  border-radius: 8px;
+  background: #151619;
+  box-shadow: 0 12px 42px rgba(0, 0, 0, .48);
+}
+
+.capcity-tools-panel.open {
+  display: block;
+}
+
+.capcity-tools-head,
+.capcity-tools-section {
+  padding: 15px 17px;
+}
+
+.capcity-tools-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #33353a;
+}
+
+.capcity-tools-head h2,
+.capcity-tools-section h3 {
+  margin: 0;
+  color: #fff;
+}
+
+.capcity-tools-head h2 {
+  font-size: 18px;
+}
+
+.capcity-tools-section {
+  border-bottom: 1px solid #2c2e32;
+}
+
+.capcity-tools-section:last-child {
+  border-bottom: 0;
+}
+
+.capcity-tools-section p {
+  margin: 5px 0;
+}
+
+.capcity-tools-meta {
+  color: #b8bac1;
+  font-size: 12px;
+}
+
+.capcity-tools-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 11px;
+}
+
+.capcity-tools-close {
+  border: 0;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  font-size: 22px;
+}
+
+.capcity-tools-flags {
+  display: grid;
+  gap: 8px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.capcity-tools-flag {
+  border-left: 4px solid #b4b7be;
+  border-radius: 3px;
+  background: #25272c;
+  padding: 9px 10px;
+}
+
+.capcity-tools-flag[data-severity="review"],
+.capcity-tools-flag[data-severity="warning"] {
+  border-left-color: #e5a129;
+}
+
+.capcity-tools-flag strong {
+  display: block;
+  margin-bottom: 3px;
+}
+
+.capcity-tools-ack {
+  display: block;
+  margin-top: 8px;
+  border: 1px solid #555961;
+  border-radius: 4px;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  padding: 5px 8px;
+}
+
+.capcity-tools-message {
+  min-height: 19px;
+  color: #e5a129;
+  font-size: 12px;
+}
+
+@media (max-width: 700px) {
+  #capcity-event-tools {
+    left: 8px;
+    right: 8px;
+  }
+
+  .capcity-tools-bar {
+    justify-content: stretch;
+  }
+
+  .capcity-tools-button {
+    flex: 1;
+  }
+}

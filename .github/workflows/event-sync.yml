@@ -1,0 +1,84 @@
+name: Sync event listings
+
+on:
+  schedule:
+    # GitHub cron uses UTC. Running at both candidates plus the timezone guard
+    # keeps this at 9:00 PM Pacific across daylight-saving changes.
+    - cron: "0 4,5 * * *"
+  workflow_dispatch:
+    inputs:
+      requested_by:
+        description: "Admin who requested the sync"
+        required: false
+        default: "Manual GitHub run"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: event-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Pacific schedule
+        id: pacific
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            HOUR="$(TZ=America/Los_Angeles date +%H)"
+            if [ "$HOUR" = "21" ]; then
+              echo "run=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "run=false" >> "$GITHUB_OUTPUT"
+            fi
+          fi
+
+      - name: Check out repository
+        if: steps.pacific.outputs.run == 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: master
+
+      - name: Set up Node
+        if: steps.pacific.outputs.run == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Install dependencies
+        if: steps.pacific.outputs.run == 'true'
+        run: npm ci
+
+      - name: Sync Purplepass and Facebook
+        if: steps.pacific.outputs.run == 'true'
+        env:
+          EVENT_SYNC_TRIGGER: ${{ github.event_name }}
+          PURPLEPASS_ORGANIZER_ID: "42425"
+          FACEBOOK_GRAPH_VERSION: "v25.0"
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          FACEBOOK_PAGE_ACCESS_TOKEN: ${{ secrets.FACEBOOK_PAGE_ACCESS_TOKEN }}
+        run: npm run events:sync
+
+      - name: Verify site build
+        if: steps.pacific.outputs.run == 'true'
+        run: npm run build
+
+      - name: Publish synced event files
+        if: steps.pacific.outputs.run == 'true'
+        shell: bash
+        run: |
+          git config user.name "CapCity Event Sync"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/content/events public/uploads/synced event-sync/state.json
+          if git diff --cached --quiet; then
+            echo "No event changes to publish."
+            exit 0
+          fi
+          git commit -m "Sync event listings"
+          git push origin HEAD:master
