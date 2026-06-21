@@ -8,7 +8,8 @@ city: Olympia, WA
 ageRestriction: All Ages
 price: $12.93 advance ($15 after fees) or $15 day of show
 ticketUrl: https://www.purplepass.com/events/376342-marak-plus-double-b-aug-1st-2026
-posterSource: unknown
+poster: /uploads/synced/purplepass-376342-purplepass-285cf31ea9.webp
+posterSource: purplepass
 imageLocked: false
 lockedFields: []
 syncId: purplepass:376342

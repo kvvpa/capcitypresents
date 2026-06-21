@@ -8,8 +8,14 @@ city: Olympia, WA
 ageRestriction: All Ages
 price: $12.50 advance ($14.57 after fees) or $15 day of show
 ticketUrl: https://www.purplepass.com/events/376840-x-suns-plus-a-collective-subconscious-plus-skyscape-paradise-jul-16th-2026
-poster: /uploads/synced/purplepass-376840-purplepass-e404b4764b.webp
+poster: /uploads/synced/purplepass-376840-purplepass-c889a9c104.webp
 posterSource: purplepass
+alternateImages:
+  - path: /uploads/synced/purplepass-376840-purplepass-e404b4764b.webp
+    source: purplepass
+    width: 350
+    height: 250
+    kind: photo
 imageLocked: false
 lockedFields: []
 syncId: purplepass:376840

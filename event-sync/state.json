@@ -1,14 +1,12 @@
 {
   "version": 1,
   "lastRun": {
-    "at": "2026-06-20T23:38:58.512Z",
+    "at": "2026-06-21T00:12:16.789Z",
     "trigger": "workflow_dispatch",
     "purplepassEvents": 20,
-    "facebookEvents": 0,
-    "facebookConfigured": false,
-    "warnings": [
-      "Facebook source failed: Facebook Graph API error: Please reduce the amount of data you're asking for, then retry your request"
-    ],
+    "facebookEvents": 2,
+    "facebookConfigured": true,
+    "warnings": [],
     "changedEvents": 20
   },
   "events": {
@@ -55,7 +53,7 @@
         "alternateImages": [],
         "description": "CapCity Presents:\n\n**Lucy Clearwater\nLilly Miller\nManisha**\nWild Child\n7:00 PM Doors\n7:30 Show\nJune 23rd, 2026\nAll Ages Event\n\n$18.50 advance ($20.84 after fees) or $22 day of show\n\nLucy Clearwater\n\nLucy Clearwater is a Los Angeles–based folk/Americana singer-songwriter who writes songs the way some people keep journals. Honestly, carefully, and with a deep respect for feeling. With a background in classical violin and a sound rooted in acoustic instruments and human-scale storytelling, her music carries emotional clarity, wit, and the warmth of California folk traditions.\n\nA 2024 Kerrville Folk Festival New Folk Competition winner, Clearwater has spent the last several years on the road, touring across the U.S., Canada, the U.K., and Europe. She's often seen sharing stages with her friends and fellow artists such as John Craigie, Victoria Canal (as both support and band member), Ye Vagabonds, Joe Pug, Martin Luke Brown, Luca Fogale, Ocie Elliott, and others.\n\nHer debut album, People ≠ Possessions, arrives May 14, 2026, produced by Grammy-winner Tyler Chester and recorded mostly live to tape at Bell Choir Studios in Los Angeles. Featuring contributions from her vibrant creative community including Madison Cunningham, Kenneth Pattengale (The Milk Carton Kids), Sean Watkins (Nickel Creek), Rob Moose, Harrison Whitford, Hayden Everett, Drew Taubenfeld and many more, the record reflects Clearwater’s belief that music is something handmade, shared, and meant to be lived with.\n\n[https://www.instagram.com/lucyclearwater/](https://www.instagram.com/lucyclearwater/)\n\n[https://www.lucyclearwater.com/](https://www.lucyclearwater.com/)\n\n[https://lucyclearwater.bandcamp](https://lucyclearwater.bandcamp).com\n\nLilly Miller\n\nLilly Miller is a vocalist, guitarist, composer, and poet whose candid, cathartic songs pull you in and reward your attention. Raised in Iowa, she began performing when she moved to Seattle, Washington in 2022. Quickly captivating the local music scene, she began touring as support for artists like Damien Jurado, Olivia Barton, and Racoma. Miller’s debut record, ‘After, now’ (2025) expands her acoustic sound with sonically explorative textures and lush soundscapes. Her forthcoming record, ‘Did Something in Me Break’ (2026), a split with Damien Jurado, features many of her previously recorded songs re-imagined in a warm, live setting.\n\nManisha\n\nFilipina-Indian artist MANISHA writes for lovers of lyrics and overthinkers of love. Much like her multicultural background, her music is a melting pot of influences from jazz and pop to musical theater. At the age of 17, she migrated from Manila, Philippines, to Seattle, Washington, where she had the opportunity to turn her passion for music into a full-time career. She attended and graduated from Berklee College of Music, where she wrote, recorded, and released her debut album Sweet Until The Aftertaste. Since college, MANISHA has moved back to Seattle, playing shows at legendary local venues such as Barboza and The Crocodile. MANISHA aims to create community through her music—one that celebrates the quirky intersectionalities in all of us."
       },
-      "lastSeenAt": "2026-06-20T23:38:53.694Z"
+      "lastSeenAt": "2026-06-21T00:12:13.793Z"
     },
     "purplepass:376155": {
       "file": "src/content/events/2026-06-24-37-houses.md",
@@ -100,7 +98,7 @@
         "alternateImages": [],
         "description": "CapCity Presents:\n\n**Blank Copy**\n\n**37 Houses**\n\n**Parasocial and the Pretty**\n\nWild Child\nJune 24th, 2026\n7PM Doors\n7:30 PM Show\n$12.50 advance ($14.57after fees) or $15 day of show\n\n**Blank Copy**\n\nWith members hailing from Virginia, Georgia, Wisconsin, Alaska, and Washington state, Blank Copy weaves together the wide-ranging musical influences of its members into a catalog of heartfelt songs containing elements of hard rock, Americana, and indie rock.\n\n**37 Houses**\n\nSuddenly locked down during the pandemic only four months into their marriage, Jeremy Rosenblum and Erin Sydney founded the post-punk/indie-pop project 37 Houses to express the frustrations that come with the complications and difficulties of even the best of relationships. With Rosenblum writing songs and Sydney lending her voice to the vocals, they recorded their debut self-titled album entirely in their own living room. The album, released November 2024, draws influence from artists ranging from post-punk greats like Sharon Van Etten and indie pop artists like Built to Spill, Pulp, and Modest Mouse."
       },
-      "lastSeenAt": "2026-06-20T23:38:53.940Z"
+      "lastSeenAt": "2026-06-21T00:12:14.097Z"
     },
     "purplepass:379058": {
       "file": "src/content/events/2026-07-09-holy-locust-pigeon-pit-yes-ma-am.md",
@@ -145,7 +143,7 @@
         "alternateImages": [],
         "description": "CapCity Presents:\n**Holy Locust**\nWild Child\nThursday July 9th, 2026\n7:00 PM Doors\n7:30 PM Start\nAll Ages Event\n$15.50 Advance (+ Fees) or $20 Day of Show\n\n**Holy Locust**\n\nHoly Locust is an American Folk band pushing the boundaries of genre and tradition. With songs ranging from the aggressive and experimental to melodic and anthemic. Their evocative group vocal harmonies ascend over dynamic rhythms and catchy melodies, while orchestral strings pull and wail. Their genre bending sound is as at home in a listening room or theatre as it is underneath a highway overpass or punk house basement. Holy Locust's music is a unique and at times haunting statement of defiance against the exploitation of consumer culture\n\n**Pigeon Pit**\n\n**Yes Ma'am**\n\nBorn from the swamps and underpasses of the American South, Yes Ma'am merges Depression Era blues, Jazz and Bluegrass with instrumental virtuosity and the raw, emotional storytelling of early punk rock. Matt's soulful voice and authentic stage presence have made him a muse for the traveling community and solidified his legendary status as street-corner royalty. His sound has shaped a generation of musicians, whether he's performing solo or with a rotating ensemble of folk punk's finest. Yes Ma'am is a force that demands attention."
       },
-      "lastSeenAt": "2026-06-20T23:38:54.213Z"
+      "lastSeenAt": "2026-06-21T00:12:14.218Z"
     },
     "purplepass:379608": {
       "file": "src/content/events/2026-07-10-manic-planet-mattress-pullover-hero.md",
@@ -188,7 +186,7 @@
         "alternateImages": [],
         "description": "CapCity Presents\n**Manic Planet\nMattress\nPullover\nHero**\nWild Child\nJuly 10th, 2026\nDoors at 7:00\nShow at 7:30\n$12 Advance ($14.07 after fees) of $15 day of show\n\n**Manic Planet**\n\nBorn of the fusion of members of two local bands, Manic Clump and Angry Blue Planet, Manic Planet is here to give you some big brain splodies from our rock (and roll).\n\n**Mattress**\n\nMattress is a new alternative emo rock band from Seattle WA. They blend a sound of 90s and 2000s style layered guitar riffs, multi part harmonies with catchy hooks with groovy and intense drumming to create a sound they describe as \"Death Pop\". Their music focuses on the mortality of aging and life, nostalgic call backs to a better time and energetic live performances.\n\n**Pullover**\n\nPullover is a 5-piece Alternative/Emo band from Seattle, WA. Forming in the Summer of 2025, they pull inspiration from their local & midwest roots to create an evolved sound. Pullover is releasing their debut EP this Summer. Pullover consists of Remy Vernhes, Michael Egan, John Gibson, Evan Hartung, and Ben Becker.\n\nHero\n\nPullover is a 5-piece Alternative/Emo band from Seattle, WA. Forming in the Summer of 2025, they pull inspiration from their local & midwest roots to create an evolved sound. Pullover is releasing their debut EP this Summer. Pullover consists of Remy Vernhes, Michael Egan, John Gibson, Evan Hartung, and Ben Becker."
       },
-      "lastSeenAt": "2026-06-20T23:38:54.543Z"
+      "lastSeenAt": "2026-06-21T00:12:14.280Z"
     },
     "purplepass:375394": {
       "file": "src/content/events/2026-07-15-alice-bag-band-someones-daughter.md",
@@ -233,7 +231,7 @@
         "alternateImages": [],
         "description": "CapCity Presents:\n\nAlice Bag Band\n\nSomeone's Daughter\n\nWild Child\n\nJuly 15th, 2026\n\nAll Ages Event\n\n$17.25 advance ($19.59 after fees) or $23 day of show\n\n**Alice Bag**\n\nAlice Bag (born Alicia Armendariz on November 7, 1958 in Los Angeles, California) is a punk rock singer, musician, author, educator, artist, and feminist archivist. Alice was lead singer and co-founder of The Bags, one of the first wave of punk bands to form in the mid-1970's in Los Angeles. Her first book, Violence Girl, East LA Rage to Hollywood Stage is the story of her upbringing in East L.A., her teenage years in Hollywood and the creative euphoria and dark aftermath of the first punk wave. Violence Girl reveals how domestic abuse fueled Alice’s desire for female empowerment through music and art and sheds a new perspective on the origin of hardcore, a style most often associated with white, suburban males. Alice published her second book, Pipe Bomb for the Soul in 2015. Both books are now required reading in gender, musicology and chicana studies courses across the country. The ongoing influence of Alice’s performance style and musical presence can be seen in the traveling Smithsonian exhibition, American Sabor. She has been profiled by PBS, NPR, and AARP and has spoken at colleges including Stanford, Wellesley and USC. In 2016, Alice’s original portraits of female punk musicians were included in Heads Will Roll - a group show at Coagula Gallery in Los Angeles. Her paintings were the subject of a feature on NPR. Her self-titled 2016 debut album on Don Giovanni was named one of the Best Albums of the Year by AllMusic and Pitchfork. Her second album, Blueprint, was released in 2018 and was subsequently named one of the Best Albums of 2018 by AllMusic, NPR and the Los Angeles Times. In September 2018, Alice was officially recognized by the City of Los Angeles for her “profound influence on music and the punk rock scene in Los Angeles and her activism for the LGBTQ community and speaking out against social injustice.”\n\nIn 2019, Alice’s song, “Dolores Huerta Street” was credited with being one of the inspirations for the official designation of the intersection of 1st Street and Chicago Street in the Boyle Heights section of Los Angeles as ‘Dolores Huerta Square.’\n\nWebsite: alicebag.com\n\nInstagram: @alice\\_bag\n\nTwitter: @alicebag Facebook: facebook.com/alicebag\n\nSoundcloud: soundcloud.com/alicebag\n\nBandcamp: alicebag.bandcamp.com\n\n**Someone's Daughter**"
       },
-      "lastSeenAt": "2026-06-20T23:38:54.841Z"
+      "lastSeenAt": "2026-06-21T00:12:14.373Z"
     },
     "purplepass:376840": {
       "file": "src/content/events/2026-07-16-x-suns-a-collective-subconscious-skyscape-paradise.md",
@@ -268,17 +266,25 @@
         "ageRestriction": "All Ages",
         "price": "$12.50 advance ($14.57 after fees) or $15 day of show",
         "ticketUrl": "https://www.purplepass.com/events/376840-x-suns-plus-a-collective-subconscious-plus-skyscape-paradise-jul-16th-2026",
-        "poster": "/uploads/synced/purplepass-376840-purplepass-e404b4764b.webp",
+        "poster": "/uploads/synced/purplepass-376840-purplepass-c889a9c104.webp",
         "posterSource": "purplepass",
         "imageLocked": false,
         "lockedFields": [],
         "syncId": "purplepass:376840",
         "status": "announced",
         "featured": false,
-        "alternateImages": [],
+        "alternateImages": [
+          {
+            "path": "/uploads/synced/purplepass-376840-purplepass-e404b4764b.webp",
+            "source": "purplepass",
+            "width": 350,
+            "height": 250,
+            "kind": "photo"
+          }
+        ],
         "description": "CapCity Presents:\n**X Suns\nA Collective Sunconscious\nSkyscape Paradise**\nWild Child\nJuly 16th, 2026\n7:00 PM Doors\n7:30 PM Show\n$12.50 advance ($14.57 after fees) or $15 day of show\nAll Ages Welcome\n\n**X Suns**\n\n\"If you're a fan of dark, winding instrumentals, do yourself a favor and put X Suns on your \"to listen\" list. The Seattle trio sit somewhere in the middle of the brutal intensity of Russian Circles and the firework-filled wall of sound of Explosions in the Sky. It's like shoegaze with a backbone. Start with the 11-minute \"Pillars for Palaces.\" Lay back, close your eyes, allow it to envelop you and carry you away to sea.\" - Megan Seling (The Stranger)\n\n**A Collective Sunconscious**\n\nA Collective Subconscious is a Portland, OR–based instrumental rock band delivering massive, sound-bath–like sets that hit as hard as they mesmerize. Their sound shifts from explosive crescendos to hypnotic, meditative passages, blending the atmospheric depth of post-rock with the intricacy of math rock and the weight of doom. Formed in 2012, the band has released four full-length records using a an organic, flow-driven writing process inspired by nature, psychedelics, and the tension between old wisdom and modern living. A Collective Subconscious crafts sonic journeys that might feel more unearthed than composed, inviting listeners into a liminal space where the forest breathes, time bends, and the subconscious speaks. For fans of: Mogwai, Russian Circles, Godspeed You! Black Emperor\n\n**Skyscape Paradise**\n\nskyscape paradise is an Olympia electronic rock project by singer-songwriter and producer Kady Everpetal, combining shoegaze, post-rock, and electronic dance elements."
       },
-      "lastSeenAt": "2026-06-20T23:38:55.059Z"
+      "lastSeenAt": "2026-06-21T00:12:14.761Z"
     },
     "purplepass:375616": {
       "file": "src/content/events/2026-07-17-great-comet-reagan-leilani-karen-laura-peters.md",
@@ -323,7 +329,7 @@
         "alternateImages": [],
         "description": "CapCity Presents\nGreat Comet + Reagan Leilani + Karen Laura Peters\nSaturday May 2nd, 2026\nDoors at 7:00pm\nShow at 7:30pm\nAll Ages Event\n$12 advance ($14.07 after fees) $15 Day of Show\n\n**Great Comet**\n\nGreat Comet, the Americana-tinged indie rock project of songwriter Aaron New, has always been a study in motion, but with the release of the sonically expansive second album, Stranger Land, that motion has found a new direction—a deliberate journey through the spaces between. The album is a powerful document of life on the road, of experiencing lasting love alongside devastating loss, and finding a home in the hushed moments of a world seen through a van window. This newfound dynamic range is the core of Great Comet’s live show, where the band careens from anthemic, in-your-face rock to moments of pin-drop intimacy. Though the performance pushes into electrifying new territory, the project remains grounded in New’s Appalachian roots, blending a reverence for classic storytelling with a modern indie edge. Stranger Land is more than an album; it’s the title of an ongoing story, capturing a pivotal moment for a project defined by change and proving that for Great Comet, the destination is still unknown, but the path forward has never been more compelling.\n\n**Reagan Leilani**\n\nRaegan Leilani is a singer-songwriter whose music blends jazz with vintage pop, creating a sound that's both nostalgic and fresh. Her songs explore themes of identity, connection, and the longing for belonging, weaving heartfelt lyrics with intricate harmonies. Perfect for fans of timeless melodies with a modern twist, Raegan’s music invites you to dive deep and feel every note.\n\n**Karen Laura Peters**\n\nKaren Laura Peters (she/her) is a Tacoma/Seattle based singer-songwriter and cellist. With her airy and authentic voice, soulful cello lines, and sensual groove, Karen's music and performances are unique, spacious and expressive. Trained as a professional cellist at Oberlin Conservatory, Karen regularly records & performs with touring artists and performs often with her Seattle-based dreamy & sultry neo-soul band Queen of Hearts. She has performed regionally on stages including Tractor Tavern (Seattle), Madame Lou's (Seattle), Sunset Tavern (Seattle), McMenamins (Tacoma), and Alberta Street Pub (Portland). Her recent single release, Patterns, is a tender and persistent expression of self-love and processing inherited family patterns. Featuring her bandmates from Queen of Hearts, Patterns was recorded at Sage Arts Recording Studio north of Seattle. Karen is the Co-Founder of the WA based music organization, Momentum, which helps musicians feel inspired, connected and empowered to build momentum on their music journey."
       },
-      "lastSeenAt": "2026-06-20T23:38:55.266Z"
+      "lastSeenAt": "2026-06-21T00:12:15.057Z"
     },
     "purplepass:375615": {
       "file": "src/content/events/2026-07-18-alex-blum-and-the-roadside-quartet-the-lemmings-cd-release.md",
@@ -368,7 +374,7 @@
         "alternateImages": [],
         "description": "CapCity Presents:\n**Alex Blum & The Roadside Quartet + The Lemmings** (CD Release)\nWild Child\nJuly 18th 2026\nDoors at 7PM\nShow at 8PM\n\n$12 advance ($14.07 after fees) or $15 day of show\n\n**Alex Blum & The Roadside Quartet**\n\n**The Lemmings**\n\nLemmings are a homegrown original rock band from Olympia. Formed in the summer of 2012, the band has spent the years since writing, refining, producing, and performing their music at local venues and events throughout the region.\n\nTheir unique sound blends influences from the early days of rock ’n’ roll with modern blues, country, and hard-driving rock. The result is a collection of well-crafted, catchy songs delivered with tight-knit intensity and passion — so crank it up."
       },
-      "lastSeenAt": "2026-06-20T23:38:55.581Z"
+      "lastSeenAt": "2026-06-21T00:12:15.206Z"
     },
     "purplepass:378875": {
       "file": "src/content/events/2026-07-23-calder-allen.md",
@@ -412,7 +418,7 @@
         "alternateImages": [],
         "description": "CapCity Presents:\n**Calder Allen\n**Wild Child\n7:00 PM Doors\n7:30 Show\nJuly 23rd 2026\nAll Ages Event\n\n$15.50 advance ($17.84 after fees) or $20 day of show\n\n**Calder Allen**\n\nBorn and raised in Austin, Texas, Calder Allen is a fifth-generation Texan whose roots run deep in the state. His mother’s family settled in Austin in the 1890s, while his father’s side put down roots in the Texas Panhandle in the early 1900s. That grounding in Texas tradition was paired with an upbringing steeped in creativity. Calder was exposed to the world of music and art at an early age through his family. His grandparents, Terry and Jo Harvey Allen, are lifelong career artists who curated an upbringing and culture that encouraged every form of honest artistic expression. Before pursuing it full-time, he had planned on becoming a fly-fishing guide. Introduced to the river life by his brother Sled, he quickly became captivated by the art of fly fishing, setting his priorities around time on the water and exploring river systems across the country. In 2020, when schools shut down due to the pandemic, Calder used the unexpected time at home to start writing songs. Those early efforts led to his debut studio album, The Game, produced by Charlie Sexton, who quickly became both a mentor and collaborator. Through that process, Calder fell in love with record-making, a discovery that convinced him to change course and commit fully to music. His new album, Fault Lines, recorded at Austin’s renowned Arlyn Studios with Sexton and longtime collaborator Jacob Sciba, is the most complete expression of that decision yet. It’s a deeply personal and cinematic journey through love, loss, self-discovery, and the tension between resilience and fracture. “By the time we started to record this latest album, the working process between the three of us had become a well-oiled machine,” Calder says. “We all had an understanding of what we were creating and the importance of the songs and how they work together.” With contributions from Sexton, Martie Maguire, Jon Randall, and Jack Ingram, the record builds a layered soundscape that mirrors the emotional highs and lows of Calder’s storytelling. Calder approaches his craft with rare openness, channeling his own experiences while leaving space for others to find themselves in the music. “I allow myself to be completely open and transparent and try to convey what I’m trying to say without paying any attention to how it will be received,” he explains. “I’m not in the catering business. As an artist and songwriter, it’s a responsibility to offer an original perspective on life’s commonalities. We are all so similar, yet we each view the world differently. To me, the writing process is very obvious—say what you have to say.” Fault Lines is the culmination of Calder Allen’s journey so far—a record that marries the richness of his Texan roots with the depth of his emotional and musical exploration. It marks the arrival of a songwriter unafraid to navigate both his inner landscape and the wide terrain of Americana music."
       },
-      "lastSeenAt": "2026-06-20T23:38:55.818Z"
+      "lastSeenAt": "2026-06-21T00:12:15.306Z"
     },
     "purplepass:373999": {
       "file": "src/content/events/2026-07-24-russian-blue-moth-logic.md",
@@ -457,7 +463,7 @@
         "alternateImages": [],
         "description": "Wild Child Presents:\n**Russian Blue**\n\n**Chance Of Ghosts**\n\n**Age Of Fiction**\nDoors at 7pm\nShow at 7:30pm\nAll ages Welcome\n$12.50 advance ($14.57 after fees) or $18 day of show\n\nRussian Blue Chance Of Ghosts Age Of Fiction"
       },
-      "lastSeenAt": "2026-06-20T23:38:56.079Z"
+      "lastSeenAt": "2026-06-21T00:12:15.591Z"
     },
     "purplepass:377716": {
       "file": "src/content/events/2026-07-25-friendship-remainders.md",
@@ -502,7 +508,7 @@
         "alternateImages": [],
         "description": "CapCity Presents:\n**Friendship\nRemainders**\nWild Child\nSaturday July 25th, 2026\n7:00 PM Doors\n7:30 PM Start\nAll Ages Event\n$12.50 ($14.57 after Fees) or $15 Day of Show\n\n**Friendship**\n\nMusic for sleeping and waking, walking and driving, hunting and fishing, for loitering outside a roadhouse on the haunted tundra. Okay in elevators, not great for dinner. On Caveman Wakes Up Friendship’s new album and second for Merge Records, the band’s historically capacious definition of country music grows wider still. Shambolic guitars are offset by flute pads, bleary poetry is set against a Motown rhythm section, a song about Jerry Garcia and First Lady Betty Ford fades out with a drum solo, like if Talk Talk came from a dingy Philadelphia basement, and was fronted by James Tate. Songwriter Dan Wriggins’ ragged baritone cuts through eleven murky, swirling country-rock songs with profound lyrical substance and sincerity. Like an alarm clock incorporated into the edge of a dream, Caveman Wakes Up belongs equally to the conscious and subconscious mind, fraught with background, steeped in reference and experimentation, delivered casually and as a dire warning, dedicated, above all, to music’s creative soul. Over the years, dedication has paid off. Friendship has become a kind of reverse supergroup, wherein the band itself and each individual member is located centrally in an increasingly prominent scene of young folk and country musicians and songwriters. Drummer Michael Cormier O’Leary leads the instrumental collective Hour and, along with bassist Jon Samuels, run Dear Life Records, home to friends and peers who count Friendship as a major influence, including MJ Lenderman, Florry, and Fust. (Samuels also plays lead guitar in MJ Lenderman and the Wind). Guitarist Peter Gill’s band 2nd Grade records prolifically. Wriggins began writing the songs of Caveman Wakes Up on a downtuned classical guitar of Lenderman’s, and finished on a barely-tuned piano in an apartment he shared with Sadurn’s G DeGroot. In the summer of 2023, Wriggins had just left the Iowa Writers’ Workshop, where his love for poetry and mistrust for the academic poetry world grew in tandem. A relationship fell apart, and Wriggins crashed for several weeks at Lenderman’s and Wednesday’s Karly Hartzman’s home in North Carolina, where he recorded the first demos of “Resident Evil,” “All Over the World,” and “Love Vape.” Wriggins returned to Philadelphia, and the band got to work on new ideas, finally tracking the album in five days with engineer Jeff Ziegler (Mary Lattimore, War on Drugs). Wriggins recorded vocals with Love the Stranger engineer Bradford Kreiger, and organ, violin (Jason Calhoun), and flute (Adelyn Strei) were recorded by Lucas Knapp in a West Philadelphia church. Lyrically, Caveman Wakes Up covers familiar Friendship ground — the sacred is profaned and the profane sanctified. On “All Over the World,” a landscaper “\\[feels\\] the beating heart of God/ laying down a roll of sod.” Characters complain about work and marvel at love. Here, however, we get Wriggins’ first real confrontation with depression, in “Hollow Skulls,” “All Over the World,” and “Resident Evil,” where the soul wages its perpetual war against darkness and stagnation. It often loses. The verses of Hollow Skulls are punctuated by passages of musical emptiness, a single suspended chord and brushes on a snare drum. When Wriggins complains about a roommate, shouting “who’s that shithead in my living room/ playing Resident Evil,” it’s abundantly clear there is no roommate, that the evil resides within. Caveman Wakes Up showcases Friendship’s particular genius for visionary arrangement, indebted equally across generations to to the folk-rock canon of Neil Young, Joni Mitchell, and Emmylou Harris, to Indie stalwarts like Yo La Tengo and Merge labelmates Lambchop, to contemporaries like Lomelda and ML Buch. Several of the songs employ fade-outs, jokingly referred to in the lyrics of “Love Vape,” and there are other elements lifted from Motown and 70s ballads: locked-in drum patterns, bass intervals, sentimental string arrangements. Each reference is pushed past genre, swirling and repeating, into something new and squarely belonging to the Friendship sound. On “Free Association,” “Artex,” and “Wildwood in January,” the groove is established so that other sounds can come and go seamlessly; mellotron patches, piano flurries and stabs, and clean guitar melodies, teeming textures disguised in unity. As a work of music production, Caveman Wakes Up is Friendship’s most advanced work yet, another testament to the band’s devotion and care. A droning chord calms nerves. A surreal poem moves us not because it’s familiar, but because it grows, stirs up the stagnant waters. A sizzle in the brain stem. Negative capability. Caveman Wakes Up is dreamy, luscious new growth for a band that has become an increasingly verdant oasis in the crescent of indie country civilization. Sure to excite and mystify, to continue growing, to cause new life.\n\n**Remainders**\n\nIn the time before the pandemic, they were a five-piece. In the aftermath, three remained. Nobody died, they just couldn't hang. So like a phoenix rising from the ashes, the three Remainders rose. They took their 60's pop and 90's alternative influences and channeled them through synths and drum machines to become what you see and hear before you."
       },
-      "lastSeenAt": "2026-06-20T23:38:56.375Z"
+      "lastSeenAt": "2026-06-21T00:12:15.695Z"
     },
     "purplepass:378812": {
       "file": "src/content/events/2026-07-31-zack-medlin-spencer-sult-coven-dove.md",
@@ -547,7 +553,7 @@
         "alternateImages": [],
         "description": "CapCity Presents:\n**Zack Medlin\nSpencer Sult\nCoven Dove**\nWild Child\nJuly 31st, 2026\n6:30PM Doors\n7:00 PM Show\n$12 advance (+ fees) or $15 day of show\n\n**Zack Medlin**\n\n**Generifus**\n\n**Coven Dove**"
       },
-      "lastSeenAt": "2026-06-20T23:38:56.612Z"
+      "lastSeenAt": "2026-06-21T00:12:15.813Z"
     },
     "purplepass:376342": {
       "file": "src/content/events/2026-08-01-marak-double-b.md",
@@ -582,16 +588,17 @@
         "ageRestriction": "All Ages",
         "price": "$12.93 advance ($15 after fees) or $15 day of show",
         "ticketUrl": "https://www.purplepass.com/events/376342-marak-plus-double-b-aug-1st-2026",
-        "posterSource": "unknown",
+        "posterSource": "purplepass",
         "imageLocked": false,
         "lockedFields": [],
         "syncId": "purplepass:376342",
         "status": "announced",
         "featured": false,
+        "poster": "/uploads/synced/purplepass-376342-purplepass-285cf31ea9.webp",
         "alternateImages": [],
         "description": "CapCity Presents\n**MaRaK\nDouble B**\nWild Child\nSaturday August 1st\nAll Ages Event\nDoors at 7:30\nShow at 8:00\n$12.93 advance ($15 after fees) or $15 day of show\n\nMaRaK\n\nSince 2011, this Pacific Northwest duo has been distilling the atmosphere of their rain-slicked\nevergreen home into a formidable sonic identity. They have meticulously forged a sound that is\nas dense as the forests that inspired it, occupying the liminal space between progressive\ncomplexity, doom-laden weight, and the raw grit of alternative metal.\n\nA Sonic Duality: Mellow Meets Metal\n\nTheir music is a study in contrasts—a sonic representation of the region’s shifting weather. The\n\"mellow\" side of their sound manifests in haunting, reverb-drenched passages and intricate, clean melodies that echo the stillness of a fog-covered morning.\n\nHowever, this tranquility is frequently shattered by the \"metal\" side of their persona. By blending the crushing, down-tuned tempos of traditional Doom with the unconventional structures of Progressive Metal, they create a listening experience that feels both cerebral and visceral. It isn't just loud; it’s a deliberate, heavy movement that pushes against the boundaries of standard alternative metal.\n\nDouble B\n\nDouble B is an Olympia, Washington–based hip-hop artist known for sharp lyricism, commanding live performances, and a unique brand of humor. His music combines the rawness of 2000s Underground Hip-Hop with modern production, catchy hooks, and emotional honesty. Double B has shared the stage with nationally known artists including Brother Ali, Dead Prez, and Lyrics Born. He is also the founder of The Bridge Music Project, a nonprofit that helps underserved and incarcerated youth develop their voices through songwriting. On his most recent album, Millennial Trash, Double B raps about walking his dog, spending money too fast, and the invasion of the advertisements, finding meaning, humor, and never-ending anxiety through sharp observations of modern life. @DoubleBraps on Instagram"
       },
-      "lastSeenAt": "2026-06-20T23:38:56.854Z"
+      "lastSeenAt": "2026-06-21T00:12:16.124Z"
     },
     "purplepass:379474": {
       "file": "src/content/events/2026-08-06-queen-of-hearts-kate-dinsmore-sarah-burke.md",
@@ -636,7 +643,7 @@
         "alternateImages": [],
         "description": "Wild Child Presents:\n**Queen Of Hearts\nKate Dinsmore\nSarah Burke**\nDoors at 7pm\nShow at 7:30pm\nAll ages Welcome\n$12.50 advance ($14.57 after fees) or $15 day of show\n\n**Queen Of Hearts**\n\nWith powerful feminine energy, sultry voices, lush instrumentals, and endearing stage banter, Queen of Hearts creates a strong connection with the audience that leaves a lasting impression. Embracing the indie-soul aesthetic, their 3 part vocal harmonies accompanied by cello, guitar, keys, and flugelhorn evoke the sounds of artists like Amy Winehouse and boygenius. Queen of Hearts has an undeniable chemistry that radiates through their tender and soulful music, and an irresistible love of performing together.\n\n**Kate Dinsmore**\n\nKate Dinsmore is a singer-songwriter based in Seattle, WA. A dynamic performer and vocalist, Dinsmore brings her songs to the stage with an undeniable presence. Her music is powerful and emotional, with influences ranging from Jazz to Rock to Americana. Dinsmore’s performances quickly gained a following in Seattle, allowing her to open for notable artists such as Pat Benatar, Colin Hay, and the Dip. Her voice is triumphant and intimate. The perfect soundtrack to dropping off the last of your ex’s stuff and driving off into the sunset.\n\n**Sarah Burke**\n\nSarah Burke is a singer-songwriter and acoustic guitarist based in the Pacific Northwest. With uplifting music described as timeless and transcendent, Sarah composes her songs inspired by stories and experiences of those close to her heart. Awarded “Best Musician” by Best of Nisqually 2023 and named top-10 finalist in the Tucson Folk Festival Songwriter’s Competition, she enjoys dancing along the lines of genre. This is evident in her involvement as the lead singer of indie-pop band, WINEHOUSE, her love for her family's mariachi roots in Tucson, AZ, and her background in musical theater and a cappella performance. Known for her unique soulful tone and honest story-telling, Sarah is a firm believer in the power of music as medicine for the soul."
       },
-      "lastSeenAt": "2026-06-20T23:38:57.005Z"
+      "lastSeenAt": "2026-06-21T00:12:16.413Z"
     },
     "purplepass:365704": {
       "file": "src/content/events/2026-08-10-upon-your-dead-body.md",
@@ -681,7 +688,7 @@
         "alternateImages": [],
         "description": "CapCity Presents:\n**Upon Your Dead Body**\n\n**Primrose\n**Wild Child\n7:00 PM Doors\n7:30 Show\nAugust 10th 2026\nAll Ages Event\n\n$18 advance (+ fees) or $22 day of show\n\n**Upon Your Dead Body**"
       },
-      "lastSeenAt": "2026-06-20T23:38:57.282Z"
+      "lastSeenAt": "2026-06-21T00:12:16.462Z"
     },
     "purplepass:379603": {
       "file": "src/content/events/2026-08-21-huligan-sharkeologist-dull-roots-honeyed.md",
@@ -726,7 +733,7 @@
         "alternateImages": [],
         "description": "Capcity Presents:\n\n**Hüligan**\n\n**Sharkeologist**\n\n**Dull Roots**\n\n**Honeyed**\n\nWild Child\n\nAugust 21st 2026\n\nDoors at 7:00PM Show at 7:30PM\n\n$12.50 adv ($14.57 after fees) or $15 day of show\n\nAll Ages Event\n\n**Hüligan**\n\nHüligan is a raw, high-energy rock trio from Olympia, WA, fusing classic rock with punk and heavy influence. Friends since childhood with over 15 years of shared history, the band delivers loud, no-frills rock built on real chemistry and explosive live shows.\n\n**SHARKEOLOGIST**\n\nSHARKEOLOGIST is a rock band with more raw energy than it knows what to do with. Combining 90s riffs with 80s synths and a manic energy that cannot be medicated, they are known for their alt-metal cover of \"Pony,\" the 90s RnB classic.\n\n**Dull Roots**\n\nDull Roots is an Olympia based band who makes music for big feelings. With a sound that is alternative, post-rock, and heavy emo, Dull Roots is heavy on the riffs and long on anthemic melodies.\n\n**Honeyed**\n\nHoneyed is a post-hardcore PNW band that puts on one of the best live shows you'll ever see. With big guitars and off-the-wall energy, their brand of rock digs deep, grooves hard, and burns hot."
       },
-      "lastSeenAt": "2026-06-20T23:38:57.489Z"
+      "lastSeenAt": "2026-06-21T00:12:16.514Z"
     },
     "purplepass:376873": {
       "file": "src/content/events/2026-08-22-horse-feathers-words-are-dead-20-year-tour.md",
@@ -771,7 +778,7 @@
         "alternateImages": [],
         "description": "CapCity Presents:\nHorse Feathers\nWild Child\nAugust 22nd, 2026\nAll Ages Event\n\n$21 advance ($23.62 After Fees) or $25 day of show\n\nHorse Feathers\n\nIn 2026, Horse Feathers’ debut album, Words Are Dead, celebrates its 20th anniversary. Kill Rock\nStars is set to release a deluxe reissue that will be completely remastered and pressed on an\nexclusive vinyl color. It will include a replica of their original six-song demo CD in the package,\nalong with a deluxe foil-stamped LP jacket.\nTo support the release, Horse Feathers’ current ensemble of Justin Ringle (guitar, vocals, banjo),\nNathan Crockett (violin, saw), Halli Anderson of River Whyless (violin, vocals), Kati Claborn of\nBlind Pilot (banjo, vocals, clarinet), and Luke Ydstie also of Blind Pilot (bass, cello, vocals)\nfaithfully recreate the mood of the original release with taut dynamics and sensitive\narrangements.\nIn the years following Words Are Dead, Horse Feathers quietly built a body of work defined by\npatience and evolution rather than reinvention. Records like House With No Home, Thistled\nSpring, and Cynic’s New Year expanded their sonic palette without abandoning the restraint that\nfirst set them apart. By the time of Appreciation, the band had begun to open its sound outward,\nintroducing richer arrangements and a subtle warmth that suggested growth without rupture.\nThrough it all, Ringle remained a steady center, writing songs that favored emotional precision\nover spectacle.\nThe reissue of Words Are Dead does not attempt to rewrite that history. Instead, it brings the\norigin point back into focus, offering a rare chance to hear where it all began while recognizing\nhow far the project has traveled since.\nRevisiting the album now, with two decades of distance, reveals not just a beginning but a\nfoundation. The same careful interplay, the same attention to space and tone, still anchors the\nband’s work today. In that sense, the reissue feels less like a retrospective and more like a\ncontinuation. A reminder that some records do not age so much as they wait for the right\nmoment to be heard again."
       },
-      "lastSeenAt": "2026-06-20T23:38:57.691Z"
+      "lastSeenAt": "2026-06-21T00:12:16.586Z"
     },
     "purplepass:377114": {
       "file": "src/content/events/2026-08-30-the-darts-fan-club-storm-boy.md",
@@ -816,7 +823,7 @@
         "alternateImages": [],
         "description": "CapCity Presents:\n**The Darts\nFan Club\nStorm Boy**\nWild Child\n6:30 PM Doors\n7:00 Show\nAugust 30th 2026\nAll Ages Event\n\n$17.25 advance ($19.59 after fees)\n\n**The Darts**\n\nTHE DARTS (US), now based in Seattle, Washington, formed in 2016 with the goal of making great all-girl garage-rock noise, see the world, and have a fab slumber party every night. The four women threw on vintage black slips, kicked off their shoes, and set out on the adventure. In the first year, the band put out two self-produced EPs and signed with Dirty Water Records (UK), which then released the first full-length vinyl, Me.Ow (2017). Dirty Water then re-released the first two EPs as a second full-length vinyl, The Darts (2017). The band immediately went on tour with The Living End and Billie Joe Armstrong’s The Longshot, and soon found themselves on big European stages like Sjockfest, Cosmic Trip, and Roots n Roses.\n\n**Fan Club**\n\n**\nStorm Boy**\n\nStorm Boy is confident, indulgent, fist throwing, beer cheers-ing, movie climax moment music. If you like that sort of thing, you’ll like Storm Boy."
       },
-      "lastSeenAt": "2026-06-20T23:38:57.939Z"
+      "lastSeenAt": "2026-06-21T00:12:16.637Z"
     },
     "purplepass:377115": {
       "file": "src/content/events/2026-09-29-maya-de-vitry-trio.md",
@@ -861,7 +868,7 @@
         "alternateImages": [],
         "description": "CapCity Presents:\nMaya De Vitry\nWild Child\nSeptember 29th, 2026\n7:00 PM Doors\n7:30 PM Start\nAll Ages Event\n$18.50 advance ($20.84 after fees) or $22 day of show\n\nMaya de Vitry\n\nEnergized by the spontaneity of live performance and a revelatory pursuit of truth in her lyric writing,Maya de Vitry returns with her fifth full-length album,All My Faith. Prioritizing presence and grit overstudio polish, she sounds joyously at home in the alt-country and indie-folk realms.From canyons to kitchens, from cold lakes to highway truck stops, the songs form a vibrant collage of joy,sorrow, and gut-wrenchinghonesty. Whether spinning an inspirational tale about hungover bachelorettesat the Nashville airport or exploring the prison of our own adaptations, de Vitry brings a groundedconfidence and quiet charisma rooted in her belief in the power of song to change us.“I was nurturing self-acceptance as my North Star.I can observe other people all day long but havebeen afraid to write about my own heart in such detail—opening up about my relationship with my partnerand my relationship with touring,” Maya reflects. “I also wanted real self-acceptance in my singing, and Iwanted all the other musicians in the room to understand just how much I trusted and accepted theirinstincts.When the band realized that I was planning to do no edits whatsoever on these tracks,the level of commitment from everyone just soared.It was a really exciting atmosphere in the studio,”de Vitry recalls.And indeed, the band’s playing is responsive, uninhibited, and emotionally spot on. Recorded and mixedby5-time Grammy Award-winning engineer Sean Sullivanandself-produced by de Vitry,All MyFaithis a buoyant gathering of road-tested songs brought to life by a cast of her closest confidantes andcollaborators. For pedal steel and guitar, she enlistedSpencer CullumandEthan Ballinger (bothmembers of Miranda Lambert’s touring band), alongsideJo Schornikow(of alt-country/indie bandPhosphorescent) on keys. They are joined by frequent members of de Vitry’s live band:EthanJodziewiczon bass,Dominic Billetton drums, andShelby MeansandJoel Timmonson harmonyvocals.The album opens with a joyful surrender to time, love, and the unknown in the title track, “All My Faith.” Itexpresses a commitment, not just to a person, but to showing up with true engagement in togetherness.Atits heart, the album reflects onthe ways human beings choose to care for one another in myriadforms and on the generative healing and wisdom that emerge from our relationships—with eachother and with the natural world.These 10 songs are the intoxicating sound of faith in action—abandleader fully trusting in her life experiences, her craft, her collaborators, and the moment. It capturesthe presence she has been cultivating in her live shows, and hearing it magnified on record is its ownrevelation."
       },
-      "lastSeenAt": "2026-06-20T23:38:58.209Z"
+      "lastSeenAt": "2026-06-21T00:12:16.709Z"
     },
     "purplepass:376326": {
       "file": "src/content/events/2026-11-09-squirrel-flower-sour-widows.md",
@@ -906,24 +913,10 @@
         "alternateImages": [],
         "description": "CapCity Presents\n**Squirrel Flower\nSour Widows**\nWild Child\nMonday November 9th\nAll Ages Event\nDoors at 7:00\nShow at 7:30\n$20 advance ($22.62 after fees) or $24 day of show\n\nSquirrel Flower\n\nFly off the handle bohemiennes~ the Squirrel Flower Express is coming your way. Ella Williams returns for her first full band headlining tour in 2 years!!\n\nSour Widows\n\nMaia Sinaiko and Susanna Thomson like to joke that they are delusional about Sour Widows, the Bay Area band they started eight years ago; in those eight years, Sinaiko and Thomson each endured losses and hardships that at times required putting bigger plans on hold; looking back, they can only laugh at these hurdles and wonder if they should have taken them as signs—to stop, to start over, to succumb to the hardship. Absolutely not: Sour Widows has served as an essential outlet for Sinaiko and Thomson, a way to process real-time woes so as to transmute them into something beautiful, useful, real, and lasting. It has been an anchor, too, keeping them lashed to reality as the world roiled around them. ‘Revival of a Friend’ is their collective testament to that process, an hour-long lesson in endurance that is years in the making. Inspired by the folk singing of their youth, the grit and grace of Joni Mitchell, the slowly spiraling dazzle of Duster, and the steady angularity and sudden snarl of Slint, ‘Revival of a Friend’ fully recognizes the arbitrary cruelty of individual existence and finds that some of the best ways beyond it are to share harmonies, a tangle of electric guitars, or a song that simply imagines hope somewhere on the other side. Methodically built over many years with longtime friend and trusted drummer Max Edelman, this is a poignant and gripping record about the pain of growing up and getting on with it. However pervasive it is, grief is not the only takeaway from the album. Sinaiko and Thomson are still here, after all, in a great DIY rock band that is a gathering of best friends, having made a mighty record that encapsulates and so sublimates all this anguish. It feels especially relevant that it emerges as a work of friendship from the Bay Area, dominated in recent years not by stories of the arts but instead by technology and the inequality it has wrought there. ‘Revival of a Friend’ is rooted in personal hurts, but it feels like an invitation to band together and work through our pains as one, to share the burdens of the world until we can find a better way forward. This is not delusion; this is hope, as difficult and necessary now as ever."
       },
-      "lastSeenAt": "2026-06-20T23:38:58.512Z"
+      "lastSeenAt": "2026-06-21T00:12:16.789Z"
     }
   },
   "flags": [
-    {
-      "eventKey": "source:facebook",
-      "title": "Event sync source",
-      "field": "source",
-      "label": "source connection",
-      "severity": "warning",
-      "message": "Facebook source failed: Facebook Graph API error: Please reduce the amount of data you're asking for, then retry your request",
-      "chosen": {
-        "source": "existing",
-        "value": "Existing website data retained."
-      },
-      "candidates": [],
-      "id": "e40b147423538c"
-    },
     {
       "eventKey": "purplepass:379608",
       "title": "Manic Planet + Mattress + Pullover + Hero",
@@ -937,20 +930,6 @@
       },
       "candidates": [],
       "id": "23c4a42723e4f3"
-    },
-    {
-      "eventKey": "purplepass:376342",
-      "title": "MaRaK + Double B",
-      "field": "poster",
-      "label": "poster",
-      "severity": "warning",
-      "message": "Image https://www.purplepass.com/images/shared/data/42425/376342/event_photo.webp returned 403",
-      "chosen": {
-        "source": "unknown",
-        "value": ""
-      },
-      "candidates": [],
-      "id": "d502c7a4fbe7ec"
     }
   ]
 }
