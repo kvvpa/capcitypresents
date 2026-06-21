@@ -125,7 +125,18 @@ export async function fetchPurplepassEvents({
       descriptionDoorsMinutes !== null &&
       descriptionDoorsMinutes < showMinutes
     ) ? descriptionTimes.doorsTime : (structuredDoors || descriptionTimes.doorsTime);
-    const imageUrl = event.imgUrl || event.eventBackgroundImage || summary.eventImgUrl || '';
+    // Purplepass serves a 350x250 thumbnail at imgUrl/eventBackgroundImage, but a
+    // high-res flyer at heroBackgroundImage *only* when imageOptions.hasHeader is
+    // true (otherwise that path 403s). Offer both as candidates and let the Sharp
+    // materializer pick the largest. Labeled 'purplepass' to satisfy the schema enum.
+    const hasHeader = Boolean(event.imageOptions?.hasHeader || summary.imageOptions?.hasHeader);
+    const purplepassImagePaths = hasHeader && event.heroBackgroundImage
+      ? [event.heroBackgroundImage]
+      : [event.imgUrl, event.eventBackgroundImage, summary.eventImgUrl].filter(Boolean);
+    const sourceImages = [...new Set(purplepassImagePaths)].map((path) => ({
+      source: 'purplepass',
+      remoteUrl: new URL(path, 'https://www.purplepass.com').toString(),
+    }));
 
     return {
       source: 'purplepass',
@@ -143,10 +154,7 @@ export async function fetchPurplepassEvents({
       facebookEventUrl: findFacebookEventUrl(`${event.description || ''}\n${event.shortDescription || ''}`),
       description,
       status: statusFromPurplepass(event),
-      images: imageUrl ? [{
-        source: 'purplepass',
-        remoteUrl: new URL(imageUrl, 'https://www.purplepass.com').toString(),
-      }] : [],
+      images: sourceImages,
       evidence: {
         date: 'ticket-page',
         doorsTime: event.doorsOpen ? 'ticket-page' : 'description',
