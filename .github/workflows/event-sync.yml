@@ -2,9 +2,19 @@ name: Sync event listings
 
 on:
   schedule:
-    # GitHub cron uses UTC. Running at both candidates plus the timezone guard
-    # keeps this at 9:00 PM Pacific across daylight-saving changes.
-    - cron: "0 4,5 * * *"
+    # GitHub's scheduler is best-effort: runs are frequently delayed 30+ minutes
+    # and are sometimes dropped entirely during peak load. So instead of relying
+    # on a single precise trigger, we fire hourly across the late-evening Pacific
+    # window and let the job decide for itself whether a sync is due (see the
+    # "Decide whether to sync" step, which runs at most one real sync per Pacific
+    # day). The extra triggers are cheap no-ops that add redundancy against
+    # delayed/dropped schedules.
+    #
+    # Times are UTC. The :07 offset avoids the top-of-hour congestion that makes
+    # delays worst. Hours 4-9 UTC cover roughly 9 PM -> 2 AM Pacific in summer
+    # (UTC-7) and 8 PM -> 1 AM Pacific in winter (UTC-8), so the first trigger of
+    # the night lands near 9 PM Pacific year-round.
+    - cron: "7 4-9 * * *"
   workflow_dispatch:
     inputs:
       requested_by:
@@ -23,40 +33,56 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Check Pacific schedule
-        id: pacific
-        shell: bash
-        run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "run=true" >> "$GITHUB_OUTPUT"
-          else
-            HOUR="$(TZ=America/Los_Angeles date +%H)"
-            if [ "$HOUR" = "21" ]; then
-              echo "run=true" >> "$GITHUB_OUTPUT"
-            else
-              echo "run=false" >> "$GITHUB_OUTPUT"
-            fi
-          fi
-
       - name: Check out repository
-        if: steps.pacific.outputs.run == 'true'
         uses: actions/checkout@v4
         with:
           ref: master
 
+      - name: Decide whether to sync
+        id: decide
+        shell: bash
+        run: |
+          # Manual runs always sync.
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "Manual trigger -> running sync."
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # Scheduled runs are idempotent: do a real sync at most once per
+          # Pacific day. state.json's lastRun.at is rewritten on every sync and
+          # committed to master, so it is a reliable "last synced" marker. This
+          # decouples us from GitHub's unreliable trigger timing -- whichever of
+          # the night's triggers fires first does the work; the rest skip.
+          today="$(TZ=America/Los_Angeles date +%F)"
+          last="$(jq -r '.lastRun.at // empty' event-sync/state.json 2>/dev/null || true)"
+          if [ -n "$last" ]; then
+            last_day="$(TZ=America/Los_Angeles date -d "$last" +%F)"
+          else
+            last_day=""
+          fi
+
+          if [ "$last_day" = "$today" ]; then
+            echo "Already synced today ($today Pacific; last run $last). Skipping."
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "No sync yet today ($today Pacific; last run ${last:-never}). Running."
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Set up Node
-        if: steps.pacific.outputs.run == 'true'
+        if: steps.decide.outputs.run == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: "24"
           cache: npm
 
       - name: Install dependencies
-        if: steps.pacific.outputs.run == 'true'
+        if: steps.decide.outputs.run == 'true'
         run: npm ci
 
       - name: Sync Purplepass and Facebook
-        if: steps.pacific.outputs.run == 'true'
+        if: steps.decide.outputs.run == 'true'
         env:
           EVENT_SYNC_TRIGGER: ${{ github.event_name }}
           PURPLEPASS_ORGANIZER_ID: "42425"
@@ -70,11 +96,11 @@ jobs:
         run: npm run events:sync
 
       - name: Verify site build
-        if: steps.pacific.outputs.run == 'true'
+        if: steps.decide.outputs.run == 'true'
         run: npm run build
 
       - name: Publish synced event files
-        if: steps.pacific.outputs.run == 'true'
+        if: steps.decide.outputs.run == 'true'
         shell: bash
         run: |
           git config user.name "CapCity Event Sync"
