@@ -1,5 +1,5 @@
 ---
-title: Alice Bag Band + Someone's Daughter
+title: Alice Bag Band + Someone's Daughter + Grrrizzly
 date: 2026-07-15
 doorsTime: 7:00 PM
 showTime: 7:30 PM
@@ -7,7 +7,7 @@ venue: Wild Child
 city: Olympia, WA
 ageRestriction: All Ages
 price: $17.25 advance ($19.59 after fees) or $23 day of show
-ticketUrl: https://www.purplepass.com/events/375394-alice-bag-band-plus-someone-s-daughter-jul-15th-2026
+ticketUrl: https://www.purplepass.com/events/375394-alice-bag-band-plus-someone-s-daughter-plus-grrrizzly-jul-15th-2026
 poster: /uploads/synced/purplepass-375394-purplepass-800669d19f.webp
 posterSource: purplepass
 imageLocked: false
@@ -21,6 +21,8 @@ CapCity Presents:
 Alice Bag Band
 
 Someone's Daughter
+
+Grrrizzly
 
 Wild Child
 
@@ -47,3 +49,7 @@ Soundcloud: soundcloud.com/alicebag
 Bandcamp: alicebag.bandcamp.com
 
 **Someone's Daughter**
+
+**GRRRizzly**
+
+Born in the summer of 2022, Lisa Koenig (guitar/vocals) and Liz Franklin (drums/vocals) formed a unique yin yang type of bond that can't be broken. Lisa was the drummer for 90's proto-riot grrrl band Calamity Jane, based out of Olympia/PDX, and then Creep, a psych rock punk band who released on Sub Pop Records. Liz has played drums in the band Tea and the Harbor and also plays with The Mesmerizers, an Olympia psych rock band.

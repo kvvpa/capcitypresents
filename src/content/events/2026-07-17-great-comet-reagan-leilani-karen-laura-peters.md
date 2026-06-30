@@ -18,7 +18,7 @@ featured: false
 ---
 CapCity Presents
 Great Comet + Reagan Leilani + Karen Laura Peters
-Saturday May 2nd, 2026
+Friday July 17th
 Doors at 7:00pm
 Show at 7:30pm
 All Ages Event

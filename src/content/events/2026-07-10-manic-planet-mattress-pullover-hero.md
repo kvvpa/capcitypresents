@@ -7,7 +7,8 @@ venue: Wild Child
 city: Olympia, WA
 price: $12 Advance ($14.07 after fees) of $15 day of show
 ticketUrl: https://www.purplepass.com/events/379608-manic-planet-plus-mattress-plus-pullover-plus-hero-jul-10th-2026
-posterSource: unknown
+poster: /uploads/synced/purplepass-379608-purplepass-0d82572b93.webp
+posterSource: purplepass
 imageLocked: false
 lockedFields: []
 syncId: purplepass:379608

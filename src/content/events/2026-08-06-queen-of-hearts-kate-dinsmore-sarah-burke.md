@@ -10,13 +10,20 @@ price: $12.50 advance ($14.57 after fees) or $15 day of show
 ticketUrl: https://www.purplepass.com/events/379474-queen-of-hearts-plus-kate-dinsmore-plus-sarah-burke-aug-6th-2026
 poster: /uploads/synced/purplepass-379474-purplepass-97ac4312ca.webp
 posterSource: purplepass
+alternateImages:
+  - path: /uploads/synced/purplepass-379474-purplepass-c4bbb6f467.webp
+    source: purplepass
+    width: 350
+    height: 250
+    kind: photo
 imageLocked: false
 lockedFields: []
 syncId: purplepass:379474
 status: announced
 featured: false
 ---
-Wild Child Presents:
+CapCity Presents:
+
 **Queen Of Hearts
 Kate Dinsmore
 Sarah Burke**
@@ -27,7 +34,7 @@ $12.50 advance ($14.57 after fees) or $15 day of show
 
 **Queen Of Hearts**
 
-With powerful feminine energy, sultry voices, lush instrumentals, and endearing stage banter, Queen of Hearts creates a strong connection with the audience that leaves a lasting impression. Embracing the indie-soul aesthetic, their 3 part vocal harmonies accompanied by cello, guitar, keys, and flugelhorn evoke the sounds of artists like Amy Winehouse and boygenius. Queen of Hearts has an undeniable chemistry that radiates through their tender and soulful music, and an irresistible love of performing together.
+With powerful feminine energy, soulful voices, and lush instrumentals, Queen of Hearts creates a magnetic atmosphere that leaves a lasting impression. They evoke a sultry and cinematic soundscape with three-part vocal harmonies accompanied by cello, guitar, keys, and flugelhorn. This new Seattle/Tacoma band has an undeniable chemistry that radiates through their music, and an irresistible love of performing together.
 
 **Kate Dinsmore**
 
