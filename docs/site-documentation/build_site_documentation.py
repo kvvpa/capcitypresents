@@ -513,8 +513,9 @@ def build():
                "long-lived user token is itself long-lived, but it must be re-minted if it is "
                "invalidated (password change, app change, or Meta revocation). Steps:", T.BODY))
     S.append(T.bullets([
-        "In the Meta app dashboard, note the <b>App ID</b> and <b>App Secret</b> (Settings &gt; Basic). "
-        "The Facebook app and the CapCity Page must both be administered by the team.",
+        "In the <b>CapCity Event Sync</b> app dashboard (App ID 1529576541344991), note the "
+        "<b>App ID</b> and <b>App Secret</b> (Settings &gt; Basic). The app is owned by the CapCity "
+        "Presents Business portfolio, so any business admin can reach it.",
         "In the Graph API Explorer, select the app and grant the scopes "
         "<font face='Courier'>pages_show_list</font>, <font face='Courier'>pages_read_engagement</font>, "
         "and <font face='Courier'>pages_read_user_content</font>, then Generate Access Token. This "
@@ -532,13 +533,14 @@ def build():
     S.append(PageBreak())
     S.append(P("8. Continuity Plan (Keeping the Site Alive)", H1N))
     S.append(P(
-        "Today the website's survival depends on one person. Joey is the sole holder of access to the "
-        "GitHub repository, the Netlify account, the domain registrar, the Cloudflare account, the "
-        "Facebook app/token, and the Purplepass organizer login, as well as the only person who knows "
-        "how the pieces fit together. If that access were lost (lost laptop, lost password, lost "
-        "person), the site would keep serving its last build for a while, but no one could deploy "
-        "changes, fix the sync, renew the Facebook token, or move the domain. Over time it would "
-        "quietly break and could not be recovered without painful account-recovery battles.", T.BODY))
+        "Today the website's survival depends largely on one person. Joey is the sole or primary holder "
+        "of access to the GitHub repository, the Netlify account, the Njal.la domain, the Cloudflare "
+        "account, and the Purplepass organizer login, as well as the only person who knows how the "
+        "pieces fit together. (Facebook is the healthy exception, see 8.1.) If that access were lost "
+        "(lost laptop, lost password, lost person), the site would keep serving its last build for a "
+        "while, but no one could deploy changes, fix the sync, renew the Facebook token, or move the "
+        "domain. Over time it would quietly break and could not be recovered without painful "
+        "account-recovery battles.", T.BODY))
     S.append(P("The fix is not technical, it is about <b>shared access and written-down knowledge</b>. "
                "The goal: at least two trusted people can fully operate every account, and the "
                "essential procedures are recorded somewhere both can reach.", T.BODY))
@@ -555,13 +557,27 @@ def build():
         ["Netlify account", "Hosting, deploys, Functions, Identity, Blobs, Forms, DNS, and all the "
             "environment secrets."],
         ["Cloudflare account", "Hosts the Purplepass proxy Worker."],
-        ["Facebook app + Page", "Page admin rights and the app used to mint the Page access token."],
+        ["Facebook (Page + app)", "Both sit under the <b>CapCity Presents</b> Meta Business portfolio. "
+            "The Page already has several full-access admins (incl. Andy Moreno), and the token-minting "
+            "app (<b>CapCity Event Sync</b>, App ID 1529576541344991) is business-owned, so any business "
+            "admin can manage it. This is the one area already in good shape. (See 8.1 note.)"],
         ["Purplepass organizer", "The ticketing account whose feed drives most listings."],
         ["Email", "<font face='Courier'>booking@capcitypresents.com</font> and the account behind it; "
             "also the recovery address for the services above."],
         ["The secrets themselves", "The token values stored in GitHub/Netlify, needed to rebuild the "
             "automation elsewhere if required."],
     ], col0=1.7 * inch, head=("Asset", "Why it matters")))
+    S.append(T.Callout(
+        "Verified 30 June 2026: Facebook is already resilient",
+        "A check of the Meta setup confirmed the CapCity Presents Business portfolio has multiple "
+        "full-access admins (Joey and Andy Moreno active; two others inactive), and the CapCity Event "
+        "Sync app is owned by that business, so its admins can regenerate the token. The only small gap: "
+        "Joey is currently the only <i>direct</i> administrator listed on the app itself. Adding a second "
+        "direct admin (e.g. Andy) is optional tidiness rather than a real gap, and it requires that "
+        "person to first register a developer account at developers.facebook.com before they can be "
+        "added. The other services above were not audited and are "
+        "the real priorities below.",
+        accent=T.SUCCESS, bg=T.SUCCLT))
 
     S.append(P("8.2 Recommended actions, in priority order", H2N))
     S.append(P("<b>Priority 1: do these soon.</b>", T.BODY))
@@ -573,8 +589,8 @@ def build():
         "login (and the email/PGP tied to it) in the shared vault, keep the account funded so the "
         "prepaid domain never lapses, and confirm a co-owner can actually sign in. Since DNS lives in "
         "Netlify, securing Netlify (below) protects where the domain points.",
-        "<b>Add a second owner/admin to GitHub, Netlify, Cloudflare, the Facebook Page, and "
-        "Purplepass</b> so no account is reachable by only one human.",
+        "<b>Add a second owner/admin to GitHub, Netlify, Cloudflare, and Purplepass</b> so no account is "
+        "reachable by only one human. (Facebook is already covered; see the note above.)",
     ]))
     S.append(P("<b>Priority 2: structural resilience.</b>", T.BODY))
     S.append(T.bullets([
@@ -583,8 +599,10 @@ def build():
         "<b>Move Netlify into a team</b> with multiple members rather than a single personal login.",
         "<b>Write down the secret values</b> (Facebook token, Purplepass proxy token, GitHub "
         "automation token) in the shared vault, so the automation can be rebuilt if an account is lost.",
-        "<b>Document the Facebook token renewal steps</b> as a short checklist, since that token "
-        "expires and is the most likely thing to silently break.",
+        "<b>Document the Facebook token renewal steps</b> as a short checklist (7.1 above), since that "
+        "token is the most likely thing to silently break. Optionally add a second <b>direct "
+        "administrator</b> (e.g. Andy) to the CapCity Event Sync app; note the person must first register "
+        "a developer account at developers.facebook.com before they can be added.",
     ]))
     S.append(P("<b>Priority 3: safety nets.</b>", T.BODY))
     S.append(T.bullets([
@@ -620,12 +638,12 @@ def _checklist_table():
     rows = [["", "Action", "Priority"]]
     items = [
         ("Shared password vault with a co-owner", "1"),
-        ("Domain: registrar known, auto-renew on, 2FA + co-access", "1"),
-        ("Second owner/admin on GitHub, Netlify, Cloudflare, FB, Purplepass", "1"),
+        ("Njal.la domain: login in vault, kept funded, co-owner can sign in", "1"),
+        ("Second owner/admin on GitHub, Netlify, Cloudflare, Purplepass", "1"),
         ("Repo moved to a GitHub Organization (2+ owners)", "2"),
         ("Netlify moved to a multi-member team", "2"),
         ("Secret values recorded in the shared vault", "2"),
-        ("Facebook token renewal documented", "2"),
+        ("Facebook token renewal documented + 2nd direct app admin", "2"),
         ("Off-platform backup of the repo", "3"),
         ("2FA backup codes saved for every account", "3"),
         ("One-page break-glass runbook written", "3"),
