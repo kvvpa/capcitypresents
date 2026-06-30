@@ -7,3 +7,7 @@ public/logo/
 .DS_Store
 .env
 .env.*
+
+# Python (incident-report tooling)
+__pycache__/
+*.pyc
