@@ -291,6 +291,76 @@ export function inferFacebookPostEventDate(text = '', createdTime = '') {
   return parsedDate;
 }
 
+// A post that shares/creates a Facebook Event carries an attachment whose
+// media_type is "event" (or whose link points at /events/<id>). Pull the event
+// id so we can look up the event's real details instead of guessing from the
+// post text. Returns null when the post is not an event share.
+export function parseEventAttachment(attachments = []) {
+  for (const attachment of attachments) {
+    const url = attachment?.target?.url || attachment?.url || '';
+    const idFromUrl = String(url).match(/facebook\.com\/events\/(\d+)/i)?.[1] || '';
+    const isEvent = attachment?.media_type === 'event' || Boolean(idFromUrl);
+    if (!isEvent) continue;
+    const targetId = String(attachment?.target?.id || '');
+    const eventId = /^\d+$/.test(targetId) ? targetId : idFromUrl;
+    if (!eventId) continue;
+    return {
+      eventId,
+      eventUrl: url || `https://www.facebook.com/events/${eventId}`,
+      title: cleanText(attachment?.title || ''),
+    };
+  }
+  return null;
+}
+
+// Convert a fetched Facebook Event object into the fields we publish. The event's
+// start_time is authoritative, which is what lets us keep events whose feed post
+// has too little text to parse a date from. Times are expressed in Pacific to
+// match the venues. Only returns fields we can actually derive.
+export function eventDetailsToFields(details = {}) {
+  const fields = {};
+  const name = cleanText(details.name || '');
+  if (name) fields.title = name;
+  if (details.id) fields.facebookEventUrl = `https://www.facebook.com/events/${details.id}`;
+
+  const start = details.start_time ? new Date(details.start_time) : null;
+  if (start && !Number.isNaN(start.getTime())) {
+    const dp = new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'America/Los_Angeles', year: 'numeric', month: '2-digit', day: '2-digit',
+    }).formatToParts(start);
+    const part = (type) => dp.find((p) => p.type === type)?.value || '';
+    fields.date = `${part('year')}-${part('month')}-${part('day')}`;
+    const clock = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/Los_Angeles', hour: 'numeric', minute: '2-digit', hour12: true,
+    }).format(start);
+    fields.showTime = formatTime(clock) || clock;
+  }
+
+  const place = details.place || {};
+  const venue = cleanText(place.name || '');
+  if (venue) fields.venue = normalizeVenue(venue);
+  const city = cleanText(place.location?.city || '');
+  const state = cleanText(place.location?.state || '');
+  if (city) fields.city = state ? `${city}, ${state}` : city;
+  return fields;
+}
+
+// Best-effort lookup of a single event the Page owns. Facebook has restricted the
+// Events API over time, so this may return null (deprecated/permission); callers
+// must fall back to text-parsed values. Never throws.
+async function fetchFacebookEventDetails(eventId, apiVersion, accessToken) {
+  try {
+    const url = new URL(`https://graph.facebook.com/${apiVersion}/${eventId}`);
+    url.searchParams.set('fields', 'id,name,start_time,end_time,place');
+    url.searchParams.set('access_token', accessToken);
+    const response = await fetch(url.toString());
+    if (!response.ok) return null;
+    return await response.json();
+  } catch {
+    return null;
+  }
+}
+
 export async function fetchFacebookEvents({
   pageId = process.env.FACEBOOK_PAGE_ID,
   accessToken = process.env.FACEBOOK_PAGE_ACCESS_TOKEN,
@@ -338,32 +408,43 @@ export async function fetchFacebookEvents({
     const priceLine = message.split('\n').find((line) => /\$\s?\d/.test(line)) || '';
     const location = inferFacebookPostLocation(`${message}\n${title}`);
 
+    // When the post shares a Facebook Event, look the event up so its real
+    // start_time/name/venue win over whatever we could scrape from the post
+    // text. This is what lets a bare "we created an event" post still publish.
+    // If Facebook declines the lookup, `event` stays empty and we fall back.
+    const eventRef = parseEventAttachment(attachments);
+    const eventDetails = eventRef?.eventId && accessToken
+      ? await fetchFacebookEventDetails(eventRef.eventId, apiVersion, accessToken)
+      : null;
+    const event = eventDetails ? eventDetailsToFields({ ...eventDetails, id: eventRef.eventId }) : {};
+
+    const resolvedDate = event.date || date;
     return {
       source: 'facebook',
       sourceId: String(post.id),
       sourceUrl: post.permalink_url || '',
       sourceCreatedAt: post.created_time || '',
-      title,
-      date,
+      title: event.title || title,
+      date: resolvedDate,
       doorsTime: times.doorsTime,
-      showTime: times.showTime,
-      venue: location.venue,
-      city: location.city,
+      showTime: event.showTime || times.showTime,
+      venue: event.venue || location.venue,
+      city: event.city || location.city,
       ageRestriction: cleanText(ageLine.match(/\b(All Ages|21\+|18\+)\b/i)?.[1] || ''),
       price: cleanText(priceLine),
       ticketUrl: urls.purplepassUrl || urls.externalUrl,
-      facebookEventUrl: urls.facebookEventUrl || post.permalink_url || '',
+      facebookEventUrl: urls.facebookEventUrl || event.facebookEventUrl || post.permalink_url || '',
       description: message,
       status: /\b(cancelled|canceled)\b/i.test(message) ? 'cancelled' : /\bsold\s*out\b/i.test(message) ? 'sold-out' : 'announced',
       images,
       purplepassId: parsePurplepassId(urls.purplepassUrl),
       evidence: {
-        date: date && message.match(new RegExp(date.slice(0, 4))) ? 'post-text-explicit' : 'post-text',
+        date: event.date ? 'facebook-event' : (resolvedDate && message.match(new RegExp(resolvedDate.slice(0, 4))) ? 'post-text-explicit' : 'post-text'),
         doorsTime: times.doorsTime ? 'post-text' : '',
-        showTime: times.showTime ? 'post-text' : '',
-        title: attachments.some((attachment) => cleanText(attachment.title || '') === title) ? 'attachment-title' : 'post-text',
-        venue: location.venue ? 'post-text-explicit' : '',
-        city: location.city ? 'post-text-explicit' : '',
+        showTime: event.showTime ? 'facebook-event' : (times.showTime ? 'post-text' : ''),
+        title: event.title ? 'facebook-event' : (attachments.some((attachment) => cleanText(attachment.title || '') === title) ? 'attachment-title' : 'post-text'),
+        venue: event.venue ? 'facebook-event' : (location.venue ? 'post-text-explicit' : ''),
+        city: event.city ? 'facebook-event' : (location.city ? 'post-text-explicit' : ''),
       },
     };
   }))).filter(isFacebookEventEligible);
