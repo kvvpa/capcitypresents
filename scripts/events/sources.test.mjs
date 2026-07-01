@@ -5,6 +5,8 @@ import {
   inferFacebookPostEventDate,
   inferFacebookPostLocation,
   isFacebookEventEligible,
+  parseEventAttachment,
+  eventDetailsToFields,
 } from './sources.mjs';
 import { proxyPurplepass } from './utils.mjs';
 
@@ -102,4 +104,46 @@ test('allows a Purplepass-linked post even when location text is missing', () =>
     facebookEventUrl: 'https://www.facebook.com/events/123/',
     purplepassId: '456',
   }), true);
+});
+
+test('parseEventAttachment reads the event id from an event-type attachment', () => {
+  const ref = parseEventAttachment([
+    { media_type: 'event', title: 'Some Show', target: { id: '1234567890', url: 'https://www.facebook.com/events/1234567890/' } },
+  ]);
+  assert.equal(ref.eventId, '1234567890');
+  assert.equal(ref.title, 'Some Show');
+});
+
+test('parseEventAttachment falls back to the event id embedded in a link', () => {
+  const ref = parseEventAttachment([
+    { media_type: 'share', url: 'https://www.facebook.com/events/987654321?ref=x' },
+  ]);
+  assert.equal(ref.eventId, '987654321');
+});
+
+test('parseEventAttachment ignores non-event attachments', () => {
+  assert.equal(parseEventAttachment([{ media_type: 'photo', url: 'https://www.facebook.com/photo/?fbid=1' }]), null);
+  assert.equal(parseEventAttachment([]), null);
+});
+
+test('eventDetailsToFields derives Pacific date, time, title and venue from an event', () => {
+  const fields = eventDetailsToFields({
+    id: '1234567890',
+    name: 'Loud Night',
+    start_time: '2026-08-15T20:00:00-0700',
+    place: { name: 'Wild Child', location: { city: 'Olympia', state: 'WA' } },
+  });
+  assert.equal(fields.title, 'Loud Night');
+  assert.equal(fields.date, '2026-08-15');
+  assert.equal(fields.showTime, '8:00 PM');
+  assert.equal(fields.venue, 'Wild Child');
+  assert.equal(fields.city, 'Olympia, WA');
+  assert.equal(fields.facebookEventUrl, 'https://www.facebook.com/events/1234567890');
+});
+
+test('eventDetailsToFields returns only what it can derive', () => {
+  const fields = eventDetailsToFields({ id: '55', name: 'TBA Show' });
+  assert.equal(fields.title, 'TBA Show');
+  assert.equal(fields.date, undefined);
+  assert.equal(fields.venue, undefined);
 });
