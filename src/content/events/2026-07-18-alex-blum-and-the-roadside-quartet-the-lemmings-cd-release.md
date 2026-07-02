@@ -8,8 +8,15 @@ city: Olympia, WA
 ageRestriction: All Ages
 price: $12 advance ($14.07 after fees) or $15 day of show
 ticketUrl: https://www.purplepass.com/events/375615-alex-blum-the-roadside-quartet-plus-the-lemmings-cd-release-jul-18th-2026
-poster: /uploads/synced/purplepass-375615-purplepass-2f9a66b48c.webp
-posterSource: purplepass
+facebookEventUrl: https://www.facebook.com/events/1024787143449247/
+poster: /uploads/synced/purplepass-375615-facebook-440a438431.jpg
+posterSource: facebook
+alternateImages:
+  - path: /uploads/synced/purplepass-375615-purplepass-2f9a66b48c.webp
+    source: purplepass
+    width: 350
+    height: 250
+    kind: photo
 imageLocked: false
 lockedFields: []
 syncId: purplepass:375615

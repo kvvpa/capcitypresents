@@ -8,9 +8,15 @@ city: Olympia, WA
 ageRestriction: All Ages
 price: $12.50 advance ($14.57 after fees) or $15 day of show
 ticketUrl: https://www.purplepass.com/events/379474-queen-of-hearts-plus-kate-dinsmore-plus-sarah-burke-aug-6th-2026
-poster: /uploads/synced/purplepass-379474-purplepass-97ac4312ca.webp
-posterSource: purplepass
+facebookEventUrl: https://www.facebook.com/events/2507504669670183/
+poster: /uploads/synced/purplepass-379474-facebook-3e93359308.jpg
+posterSource: facebook
 alternateImages:
+  - path: /uploads/synced/purplepass-379474-purplepass-97ac4312ca.webp
+    source: purplepass
+    width: 350
+    height: 250
+    kind: photo
   - path: /uploads/synced/purplepass-379474-purplepass-c4bbb6f467.webp
     source: purplepass
     width: 350

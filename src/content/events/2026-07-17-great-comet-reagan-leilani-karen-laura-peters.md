@@ -8,8 +8,15 @@ city: Olympia, WA
 ageRestriction: All Ages
 price: $15 advance ($17.34 after fees) $20 Day of Show
 ticketUrl: https://www.purplepass.com/events/375616-great-comet-plus-reagan-leilani-plus-karen-laura-peters-jul-17th-2026
-poster: /uploads/synced/purplepass-375616-purplepass-9a1ae43e84.webp
-posterSource: purplepass
+facebookEventUrl: https://www.facebook.com/events/1608131040297668/
+poster: /uploads/synced/purplepass-375616-facebook-9d6082f198.jpg
+posterSource: facebook
+alternateImages:
+  - path: /uploads/synced/purplepass-375616-purplepass-9a1ae43e84.webp
+    source: purplepass
+    width: 350
+    height: 250
+    kind: photo
 imageLocked: false
 lockedFields: []
 syncId: purplepass:375616

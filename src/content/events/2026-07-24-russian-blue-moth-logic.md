@@ -8,8 +8,15 @@ city: Olympia, WA
 ageRestriction: All Ages
 price: $12.50 advance ($14.57 after fees) or $18 day of show
 ticketUrl: https://www.purplepass.com/events/373999-russian-blue-plus-chance-of-ghosts-plus-age-of-fiction-jul-24th-2026
-poster: /uploads/synced/purplepass-373999-purplepass-f162cca155.webp
-posterSource: purplepass
+facebookEventUrl: https://www.facebook.com/events/1930155334278396/
+poster: /uploads/synced/purplepass-373999-facebook-7b4a3bdf5f.jpg
+posterSource: facebook
+alternateImages:
+  - path: /uploads/synced/purplepass-373999-purplepass-f162cca155.webp
+    source: purplepass
+    width: 350
+    height: 250
+    kind: photo
 imageLocked: false
 lockedFields: []
 syncId: purplepass:373999

@@ -8,8 +8,15 @@ city: Olympia, WA
 ageRestriction: All Ages
 price: $17.25 advance ($19.59 after fees) or $23 day of show
 ticketUrl: https://www.purplepass.com/events/375394-alice-bag-band-plus-someone-s-daughter-plus-grrrizzly-jul-15th-2026
-poster: /uploads/synced/purplepass-375394-purplepass-800669d19f.webp
-posterSource: purplepass
+facebookEventUrl: https://www.facebook.com/events/854499210256845/
+poster: /uploads/synced/purplepass-375394-facebook-99ea0d53c2.jpg
+posterSource: facebook
+alternateImages:
+  - path: /uploads/synced/purplepass-375394-purplepass-800669d19f.webp
+    source: purplepass
+    width: 350
+    height: 250
+    kind: photo
 imageLocked: false
 lockedFields: []
 syncId: purplepass:375394

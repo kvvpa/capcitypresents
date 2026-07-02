@@ -8,8 +8,15 @@ city: Olympia, WA
 ageRestriction: All Ages
 price: $17.25 advance ($19.59 after fees) or $22 Day of Show
 ticketUrl: https://www.purplepass.com/events/377114-the-darts-plus-fan-club-plus-storm-boy-aug-30th-2026
-poster: /uploads/synced/purplepass-377114-purplepass-fe7a52b34a.webp
-posterSource: purplepass
+facebookEventUrl: https://www.facebook.com/events/1046265587827423/
+poster: /uploads/synced/purplepass-377114-facebook-2d6ed3e16b.jpg
+posterSource: facebook
+alternateImages:
+  - path: /uploads/synced/purplepass-377114-purplepass-fe7a52b34a.webp
+    source: purplepass
+    width: 350
+    height: 250
+    kind: photo
 imageLocked: false
 lockedFields: []
 syncId: purplepass:377114
